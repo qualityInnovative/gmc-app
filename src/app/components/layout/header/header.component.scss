@@ -1,0 +1,460 @@
+
+@import "../../../../styles.scss";
+.headerNav {
+  box-shadow: 0px 0px 10px 0px #0000003d;
+}
+.CustomContainer {    
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.nameandbutton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.create-query-div > a {
+  font-weight: 500;
+  font-size: 18px;
+  color: $primary-color;
+  display: flex;
+  align-items: center;
+}
+.svg_bg {
+  background-color: $primary-color;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+.create-query-div .ng-fa-icon {
+  margin-left: 7px;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.notification-bell {
+  position: relative;
+}
+.notification-bell fa-icon {
+  color: $primary-color;
+  font-size: 32px;
+}
+.notification-bell .notification-counter {    
+  position: absolute;
+  top: -15px;
+  right: -3px;
+  background-color: #e13838;
+  font-size: 13px;
+  border-radius: 50%;
+  color: #fff;
+  height: 17px;
+  width: 17px;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nameandemail {
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  color: $black;
+}
+.text-email {
+  font-size: 14px;
+  color: #979797;
+  font-weight: 500;
+  display: block;
+  text-align: left;
+}
+.role_org {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  color: $white !important;
+  padding: 0px 5px;
+  width: fit-content;
+  border-radius: 3px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.dropdown-menu {
+  right: auto;
+  left: -80px;
+  top: 75px;
+  width: 340px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
+  border: 0;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.notification-dropdown {
+  right: auto !important;
+  left: -80px !important;
+  border-radius: 5px;
+}
+.notificationDropDown {
+  right: auto !important;
+  left: -180px !important;
+  top: 80px;
+  border-radius: 5px;
+}
+.userprofileDropDown {
+  right: auto !important;
+  left: -150px !important;
+  top: 70px;
+  border-radius: 5px;
+}
+.title-wrap {
+  padding: 10px;
+}
+.title-wrap .title {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.title-wrap a.small {
+  color: $primary-color;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+.title-wrap a.small:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.view-all-notification {
+  border-top: 1px solid #f5f5f5;
+  padding: 5px 0px;
+  padding-bottom: 2px;
+}
+.view-all-notification > p a {
+  text-decoration: none;
+  color: $primary-color;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.view-all-notification > p a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.notificationScroll .notificationList {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  overflow-y: auto;
+  height: 270px;
+}
+.notificationScroll .notificationList li {
+  overflow: hidden;
+  margin: 5px 0px;
+}
+.notificationScroll .notificationList li:first-child {
+  border-bottom: none;
+}
+.notificationScroll .notificationList a.dropdown-item {
+  padding-left: 0px;
+  padding-right: 0px;
+  cursor: pointer;
+}
+.notificationScroll .notificationList a.dropdown-item:hover {
+  background-color: lightgoldenrodyellow;
+}
+.notificationScroll .notificationList a.dropdown-item:active {
+  background-color: transparent !important;
+  color: #1e2125 !important;
+}
+.dropdownTop::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid $white;
+  position: absolute;
+  top: -7px;
+  right: 50%;
+  left: 50%;
+}
+.active_page {
+  border-bottom: 5px solid $primary-color;
+}
+.userinfo{
+  margin: 25px 10px;  
+}
+.userinfo-name{
+  display: flex;
+  flex-direction: column;
+}
+.userinfo-image img {
+  width: 100%;
+  height: auto;
+}
+.dropdown-menu li:first-child {
+  border-bottom: 1px solid #f5f5f5;
+}
+.dropdown-menu li:nth-child(even){
+  padding: 0px !important;
+}
+hr {
+  color: #939393;
+  margin: 10px auto;
+}
+.header-user-name{
+  font-size: 20px;
+  line-height: 22px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: $black;
+  margin-bottom: 5px;
+}
+.userinfo-image {
+  height: 100px;
+  width: 100px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+// li:hover{
+//   background-color: transparent;
+// }
+.dropdown-item:hover{
+  background-color: transparent;
+}
+.button{
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-bottom: 30px;
+  padding-right:10px;
+  background-color: #f5f5f5;
+  border:none;
+  color:#707070;
+  font-size:15px;
+  padding: 10px 20px;
+  margin:5px;
+  border-radius:4px;
+  outline:none;
+  width:200px;
+  border: 1px solid transparent;
+}
+.profileLink {
+  color: $primary-color;
+  font-weight: 500;
+  font-size: 16px;
+}
+.profileLink fa-icon {
+  margin-right: 5px;
+}
+.button:hover{
+  border-color: #c8c8c8;
+  color:#808080;
+}
+.button:focus{
+  border:1px solid #4885ed;
+  padding: 9px 19px;
+}
+.dropdown-bottom{
+  margin-top: 10px;
+  display: flex;
+  align-items: space-around;
+  justify-content: center;
+}
+  
+.menu-item-span{
+  font-size: 20px;
+  font-weight: 500;
+  color: $primary-color;
+}
+.adminDashboard {
+  color: #16a5d9 !important;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.adminDashboard fa-icon {
+  color: $white !important;
+} 
+.notification{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-items: center;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+.notification-text-div{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width:300px;
+  overflow: hidden;
+}
+.notification-text-div .notification-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.notification-text{
+  font-size: 12px;
+  font-weight: 400;
+  color: #000000;
+}
+.notification-unread{
+  background-color: #f70808;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 50%;
+}
+.notification-read{
+  background-color: #033ff4;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 50%;
+}
+.QueryDropdown {
+  width: auto !important;
+}
+.QueryDropdown li:first-child {
+  border-bottom: none;
+}
+.QueryDropdown li {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.QueryDropdown li a {
+  display: flex;
+  align-items: center;
+}
+.QueryDropdown li a .menu-item-span {  
+  font-size: 18px;
+  font-weight: 400;
+  color: gray !important;
+}
+
+// offline Header
+.offline-header {
+  box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 8%);
+  .navbar-nav {
+    margin-left: 10%;
+    .nav-item {
+      .nav-link {
+        color: $primary-color;
+        font-size: 19px;
+        font-weight: bold;
+        padding: 15px;
+        position: relative;
+        &.active {
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            border-bottom: 5px solid $primary-color;
+          }
+        }
+      }
+      .nav-login {
+        font-size: 21px;
+        background-color: $primary-color;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+      }
+
+    }
+    .research-drop {      
+      .dropdown-toggle::after {
+        display: block;   
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        transform: translate(-50%);
+      }
+      .dropdown-menu {
+        max-width: 220px;
+        border-radius: 10px;
+        left: -15px;
+        .dropdown-item {          
+          color: $primary-color;
+          font-size: 18px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  .navbar-toggler {
+    outline: none;
+    box-shadow: none;
+    fa-icon {
+      font-size: 40px;
+    }
+  }
+}
+
+.signButtons {
+  li {
+    a {
+      font-size: 18px !important;
+      img {
+        width: 17px !important;
+      }
+    }
+    .nav-login {
+      font-size: 18px !important;
+      svg {
+        width: 18px !important;
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 1450px) {
+  .offline-header {
+    .navbar-nav {
+      .nav-link {
+        font-size: 18px !important;
+      }
+    }
+  }
+    
+}
+@media only screen and (max-width: 1280px) {
+  .offline-header {
+    .navbar-nav {      
+      margin-left: 0%;
+      align-items: flex-end !important;
+      .nav-link {
+        font-size: 16px !important;
+        padding: 10px 8px !important;
+      }
+    }
+  }
+    
+}
+@media only screen and (max-width: 900px) {
+  .mobileScreenClass {
+    .signButtons {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end !important;
+      flex-direction: column;
+      li {
+        margin-bottom:10px !important;
+        a {          
+          padding: 10px 20px !important;
+        }
+      }
+    }
+  }
+    
+}

@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-menu></ratelist-menu>
+        </div>
+        <div class="col-md-9 mt-5">
+            <h2 class="mb-3">{{categoryName | uppercase}}</h2>
+            <div class="card shadow">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">enter price</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">tehsils</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let commodity of commodityAndRateList;let i =index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{commodity.name}}</td>
+                                <td>
+                                    <input type="text" name="price" class="form-control"
+                                        placeholder="Enter Commodity price" [(ngModel)]="commodity.rateList.price"
+                                        disabled="{{commodity.id == selecteditem ? 'false' : 'true'}}">
+                                </td>
+                                <td>
+                                    <input type="date" name="date" class="form-control"
+                                        placeholder="Enter Commodity Start date"
+                                        [(ngModel)]="commodity.rateList.effectiveStartDate"
+                                        disabled="{{commodity.id == selecteditem ? 'false' : 'true'}}">
+
+                                <td>
+                                    <input type="date" name="date" class="form-control"
+                                        placeholder="Enter Commodity end Date"
+                                        [(ngModel)]="commodity.rateList.effectiveEndDate"
+                                        disabled="{{commodity.id == selecteditem ? 'false' : 'true'}}">
+                                </td>
+                                <td>
+                                    <ng-multiselect-dropdown [placeholder]="'select tehsil'"
+                                        [settings]="dropdownSettings" [data]="tehsils"
+                                        [(ngModel)]="commodity.rateList.tehsils" (onSelect)="onItemSelect($event)"
+                                        (onSelectAll)="onSelectAll($event)"
+                                        [disabled]="commodity.id == selecteditem ? false : true">
+                                    </ng-multiselect-dropdown>
+                                </td>
+                                <td>
+                                    <!-- <a class="btn btn-primary" [routerLink]="['/ratelist', commodity.id]">View</a> -->
+                                    <fa-icon [icon]="faEdit" (click)="addRateList(commodity.id)"></fa-icon>
+                                    <!-- view -->
+                                    <fa-icon [icon]="faEye" (click)="view(commodity.id)"></fa-icon>
+                                    <!-- save -->
+                                    <!-- show save only if edit is true  -->
+                                    <fa-icon *ngIf="commodity.id == selecteditem ? true : false" [icon]="faSave"
+                                        (click)="save(commodity.id)"></fa-icon>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

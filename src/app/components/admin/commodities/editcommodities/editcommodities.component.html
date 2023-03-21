@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-6 manage-specialty mt-3">
+                    <h3 *ngIf="edit" class="card-title">Edit Category</h3>
+                    <h3 *ngIf="!edit" class="card-title">Add Category</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <form #form="ngForm" (ngSubmit)="saveCommodities()">
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity Name</label>
+                            <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                                [(ngModel)]="  commodity.name" required>
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity Category</label>
+                            <select class="form-control input_feild" id="categoryId" name="category" placeholder=" "
+                                [(ngModel)]="   commodity.categoryId" required>
+                              
+                               <option *ngFor="let category of categories" [value]="category.id">
+                                    {{ category.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity Unit</label>
+                            <select class="form-control input_feild" id="unitId" name="unit" placeholder=" "
+                                [(ngModel)]="   commodity.unitId" required>
+                             
+                               <option *ngFor="let unit of units" [value]="unit.id">
+                                    {{ unit.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
+                            save
+                        </button>
+                        <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                            cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>

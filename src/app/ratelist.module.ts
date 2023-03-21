@@ -1,0 +1,97 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AppRoutingModule } from './ratelist-routing.module';
+import { AppComponent } from './components/layout/app.component';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegisterComponent } from './components/user/register/register.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RatelistinterceptorInterceptor } from './ratelistinterceptor/ratelistinterceptor.interceptor';
+import { FormsModule } from '@angular/forms';
+import { AdminhomeComponent } from './components/admin/adminhome/adminhome.component';
+import { OfflinehomeComponent } from './components/offline/offlinehome/offlinehome.component';
+import { AboutusComponent } from './components/offline/aboutus/aboutus.component';
+import { ContactusComponent } from './components/offline/contactus/contactus.component';
+import { AdminmenuComponent } from './components/misc/adminmenu/adminmenu.component';
+import { BreadcrumbComponent } from './components/misc/breadcrumb/breadcrumb.component';
+import { StatesComponent } from './components/admin/states/states.component';
+import { DataTablesModule } from 'angular-datatables';
+import { EditstatesComponent } from './components/admin/states/editstates/editstates.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DistrictsComponent } from './components/admin/districts/districts.component';
+import { EditdistrictComponent } from './components/admin/districts/editdistrict/editdistrict.component';
+import { TehsilsComponent } from './components/admin/tehsils/tehsils.component';
+import { EdittehsilComponent } from './components/admin/tehsils/edittehsil/edittehsil.component';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
+import { EditcategoryComponent } from './components/admin/categories/editcategory/editcategory.component';
+import { UnitsComponent } from './components/admin/units/units.component';
+import { EditunitsComponent } from './components/admin/units/editunits/editunits.component';
+import { CommoditiesComponent } from './components/admin/commodities/commodities.component';
+import { EditcommoditiesComponent } from './components/admin/commodities/editcommodities/editcommodities.component';
+import { HomeComponent } from './components/user/home/home.component';
+import { MenuComponent } from './components/misc/menu/menu.component';
+import { UserlistComponent } from './components/admin/userlist/userlist.component';
+import { EdituserComponent } from './components/admin/userlist/edituser/edituser.component';
+import { CategoryComponent } from './components/user/category/category.component';
+import { RatelistComponent } from './components/user/ratelist/ratelist.component';
+import { UserratelistdashboardComponent } from './components/user/userratelistdashboard/userratelistdashboard.component';
+import { LoadingscreenComponent } from './components/misc/loadingscreen/loadingscreen.component';
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent,
+    AdminhomeComponent,
+    OfflinehomeComponent,
+    AboutusComponent,
+    ContactusComponent,
+    AdminmenuComponent,
+    BreadcrumbComponent,
+    StatesComponent,
+    EditstatesComponent,
+    DistrictsComponent,
+    EditdistrictComponent,
+    TehsilsComponent,
+    EdittehsilComponent,
+    CategoriesComponent,
+    EditcategoryComponent,
+    UnitsComponent,
+    EditunitsComponent,
+    CommoditiesComponent,
+    EditcommoditiesComponent,
+    HomeComponent,
+    MenuComponent,
+    UserlistComponent,
+    EdituserComponent,
+    CategoryComponent,
+    RatelistComponent,
+    UserratelistdashboardComponent,
+    LoadingscreenComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    DataTablesModule,
+    BrowserAnimationsModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    ToastrModule.forRoot()
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RatelistinterceptorInterceptor,
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

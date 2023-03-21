@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 mt-5 mb-5">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div *ngIf="loading" class="col-8">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+                    <div class="spinner-border text-primary" role="status"></div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="errorStatus" class="col-8">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+                    {{ error }}
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loading" class="col-md-8 mt-5 mb-5">
+            <div class="row">
+                <div class="d-flex justify-content-between align-items-center manage-specialty">
+                    <h3 class="card-title">Manage Users</h3>
+                </div>
+                <table class="table table-striped mt-5 mb-5" datatable>
+                    <thead>
+                        <tr>
+                            <th scope="col">Index</th>
+                            <th scope="col">email</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{getUserRole(user.roleId)}}</td>
+                            <td>
+                                <fa-icon [icon]="faEdit" (click)="editUser(user.id)"></fa-icon>
+                                <fa-icon [icon]="faTrash" (click)="deleteUser(user.id)"></fa-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

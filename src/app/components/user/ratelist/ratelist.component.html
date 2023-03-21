@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-menu></ratelist-menu>
+        </div>
+        <div class="col-md-8 mt-5">
+            <div class="d-flex mb-3 justify-content-between align-items-center manage-specialty">
+                <h2>{{commodity.name | uppercase}}</h2>
+                <button class="btn buttonFull" (click)="back()">back</button>
+            </div>
+            <div class="d-flex mb-3 justify-content-between align-items-center manage-specialty">
+                <h4>{{state.name | uppercase}}</h4>
+                <h4>{{district.name | uppercase}}</h4>
+            </div>
+            <div class="d-flex mb-3 justify-content-between align-items-center manage-specialty">
+                <!-- select tehsil -->
+
+            </div>
+            <div class="card shadow">
+                <div class="card-body">
+                    <!-- fill ratelist form  -->
+
+                    <form #form="ngForm">
+                        <div class="col-12 mb-4">
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">enter price</label>
+                                <input type="text" name="price" id="price" class="form-control"
+                                    placeholder="Enter Commodity price" [(ngModel)]="rateList.price">
+
+                            </div>
+                        </div>
+                        <div class="col-12 mb-4">
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">effective Start Date</label>
+                                <input type="date" name="effectiveStartDate" id="effectiveStartDate"
+                                    class="form-control" placeholder="Enter Commodity price"
+                                    [(ngModel)]="rateList.effectiveStartDate">
+
+                            </div>
+                        </div>
+                        <div class="col-12 mb-4">
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">effective End Date date</label>
+                                <input type="date" name="effectiveEndDate" id="effectiveEndDate" class="form-control"
+                                    placeholder="Enter Commodity price" [(ngModel)]="rateList.effectiveEndDate">
+
+                            </div>
+                        </div>
+                        <ng-multiselect-dropdown [placeholder]="'select tehsil'" [settings]="dropdownSettings"
+                            [data]="tehsils" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"
+                            (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
+                        </ng-multiselect-dropdown>
+                        <div class="col-12">
+                            <button type="button" (click)="save()" class="btn buttonFull" [disabled]="!form.valid">
+                                save
+                            </button>
+                            <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                                cancel
+                            </button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div *ngIf="loading" class="col-12">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+  </div>
+</div>
+<div *ngIf="errorStatus" class="col-12">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+      {{ error }}
+    </div>
+  </div>
+</div>
+<div *ngIf="!loading" class="col-12">
+  <div class="row mt-5 mb-5">
+    <div class="d-flex justify-content-between align-items-center manage-specialty">
+      <h3 class="card-title">Manage State</h3>
+      <button class="btn buttonFull" (click)="addState()"> Add State </button>
+    </div>
+    <div class="card shadow mt-5">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover" datatable>
+            <thead>
+              <tr>
+                <th>State Name</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let state of states">
+                <td>{{ state.name }}</td>
+                <td class="text-center">
+                  <div class="table_icon">
+                    <fa-icon [icon]="faPenToSquare" (click)="editState(state)" title="Edit State"></fa-icon>
+                    <fa-icon [icon]="faTrash" (click)="deleteState(state)" title="Delete State"></fa-icon>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

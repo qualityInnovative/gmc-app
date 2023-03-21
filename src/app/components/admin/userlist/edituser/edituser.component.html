@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 mt-5 mb-5">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div *ngIf="loading" class="col-9">
+            <div>
+                <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+                    <div class="spinner-border text-primary" role="status"></div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loading" class="col-9">
+            <form #form="ngForm" (ngSubmit)="saveUser()">
+                <div class="col-12 mt-4 mb-4">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">First Name</label>
+                        <input type="text" class="form-control input_feild" id="firstName" name="firstName"
+                            placeholder=" " [(ngModel)]="userProfile.Profile.firstName" required />
+                    </div>
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Last Name</label>
+                        <input type="text" class="form-control input_feild" id="lastName" name="lastName"
+                            placeholder=" " [(ngModel)]="userProfile.Profile.lastName" required />
+                    </div>
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Email</label>
+                        <input type="text" class="form-control input_feild" id="email" name="email" placeholder=" "
+                            [(ngModel)]="userProfile.email" required disabled="" />
+                    </div>
+                    <!-- select role -->
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Role</label>
+                        <select class="form-control input_feild" id="role" name="role" [(ngModel)]="userProfile.roleId"
+                            required>
+                            <option *ngFor="let userrole of roles" [value]="userrole.id">{{userrole.name}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 from-group position-relative">
+                        <label for="name">Assign state district </label>
+                        <select class="form-control input_feild" id="stateid" name="stateid"
+                            [(ngModel)]="stateId" required (change)="getDistrictsofstate(stateId)">
+                            <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 from-group position-relative">
+                        <label for="name">District</label>
+                        <select class="form-control input_feild" id="district" name="district"
+                            [(ngModel)]="districtId" required (change)="selectedDistrits(districtId)">
+                            <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 mt-4 mb-4">
+                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+                </div>
+            </form>
+        </div>
+
+    </div>

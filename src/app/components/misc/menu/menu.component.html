@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card sidebar_query">
+                <div class="card-body">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item mb-3">
+                            <a class="nav-link py-3" routerLinkActive="active" [routerLink]="['/home']"
+                                pathMatch="full">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item mb-3" *ngFor="let category of categories">
+                            <a class="nav-link py-3" routerLinkActive="active" [routerLink]="['/category', category.id]"
+                                [queryParams]="{category: category.name}">
+                                {{category.name}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

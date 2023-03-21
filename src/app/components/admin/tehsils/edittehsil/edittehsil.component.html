@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 mt-5 mb-5">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div *ngIf="loading" class="col-9">
+            <div>
+                <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+                    <div class="spinner-border text-primary" role="status"></div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loading" class="col-9">
+            <form #form="ngForm" (ngSubmit)="saveTehsil()">
+                <div class="col-12 mb-4">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Tehsil Name</label>
+                        <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                            [(ngModel)]="tehsil.name" required />
+                    </div>
+                    <div class="mb-3 form-group position-relative">
+                        <label for="state">State</label>
+                         <!-- on selection of state get the tehsils of the state -->
+                        <select class="form-control input_feild" id="state" name="state" placeholder=" "
+                            [(ngModel)]="stateId" (change)="getDistrictsofstate(
+                                $any($event.target).value
+                            )" required>
+                            <option value="">Select state</option>
+                            <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 form-group position-relative">
+                        <label for="state">District</label>
+                        <select class="form-control input_feild" id="state" name="state" placeholder=" "
+                            [(ngModel)]="tehsil.districtId" required>
+                            <option value="">Select district</option>
+                            <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
+                        save
+                    </button>
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                        cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>

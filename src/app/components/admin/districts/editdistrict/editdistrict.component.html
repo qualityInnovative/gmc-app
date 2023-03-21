@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-6 manage-specialty mt-3">
+                    <h3 *ngIf="edit" class="card-title">Edit District</h3>
+                    <h3 *ngIf="!edit" class="card-title">Add District</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <form #form="ngForm" (ngSubmit)="saveDistrict()">
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">state Name</label>
+                            <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                                [(ngModel)]="district.name" required />
+                            <select class="form-control input_feild" id="state" name="state" [(ngModel)]="district.stateId"
+                                required>
+                                <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
+                            save
+                        </button>
+                        <button *ngIf="edit" type="button" (click)="addTehsil()" class="btn buttonFull buttonFull-transparent ms-2">
+                            Add Tehsil
+                        </button>
+                        <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                            cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="edit" class="col-12 mt-5">
+                <!-- datatable for tehsils -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table datatable
+                                        [dtOptions]="dtOptions"
+                                        [dtTrigger]="dtTrigger"
+                                        class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr. No.</th>
+                                                <th>Tehsil Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let tehsil of tehsils; let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{tehsil.name}}</td>
+                                                <td>
+                                                    <button type="button" (click)="editTehsil(tehsil.id)"
+                                                        class="btn btn-primary">
+                                                        Edit
+                                                    </button>
+                                                    <button type="button" (click)="deleteTehsil(tehsil.id)"
+                                                        class="btn btn-danger">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+
+        </div>
+
+     

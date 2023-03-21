@@ -1,0 +1,108 @@
+// <div class="footer">
+//     <div class="container">
+//         <div class="row">
+//             <div class="col-lg-3 col-md-6 col-sm-12">
+//                 <h2 class="logo-text">Ratelist</h2>
+//                 <p class="footer-text">Ratelist is a platform for people to share their experiences with products and
+//                     services. It is a place where people can find the best products and services for their needs.</p>
+//             </div>
+//             <div class="col-lg-3 col-md-6 col-sm-12">
+//                 <h2 class="footer-heading">Quick Links</h2>
+//                 <ul class="footer-links">
+//                     <li><a href="#">Home</a></li>
+//                     <li><a href="#">About Us</a></li>
+//                     <li><a href="#">Contact Us</a></li>
+//                     <li><a href="#">Terms & Conditions</a></li>
+//                     <li><a href="#">Privacy Policy</a></li>
+//                 </ul>
+//             </div>
+//             <div class="col-lg-3 col-md-6 col-sm-12">
+//                 <h2 class="footer-heading">Contact Us</h2>
+//                 <ul class="footer-links">
+//                     <li><a href="#">+234 803 000 0000</a></li>
+//                     <li><a href="#">+234 803 000 0000</a></li>
+//                     <li><a href="#">+234 803 000 0000</a></li>
+//                     <li><a href="#">+234 803 000 0000</a></li>
+//                     <li><a href="#">+234 803 000 0000</a></li>
+//                 </ul>
+//             </div>
+//             <div class="col-lg-3 col-md-6 col-sm-12">
+//                 <h2 class="footer-heading">Follow Us</h2>
+//                 <ul class="footer-links">
+//                     <li><a href="#">Facebook</a></li>
+//                     <li><a href="#">Twitter</a></li>
+//                     <li><a href="#">Instagram</a></li>
+//                     <li><a href="#">LinkedIn</a></li>
+//                     <li><a href="#">YouTube</a></li>
+//                 </ul>
+//             </div>
+
+//         </div>
+//     </div>
+// </div>
+
+.footer {
+    background-color: #f5f5f5;
+    padding: 3rem 0;
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.5;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.footer .logo-text {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1.5rem;
+}
+.footer .footer-text {
+    color: #000;
+    margin-bottom: 1.5rem;
+}
+.footer .footer-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1.5rem;
+}
+.footer .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer .footer-links li {
+    margin-bottom: 0.5rem;
+}
+.footer .footer-links li a {
+    color: #000;
+    text-decoration: none;
+}
+.footer .footer-links li a:hover {
+    color: #000;
+    text-underline-offset: 3px;
+}
+.footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer ul li {
+    margin-bottom: 0.5rem;
+    justify-content: center;
+}
+.footer ul li a {
+    color: #000;
+    text-decoration: none;
+}
+.footer ul li a:hover {
+    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 0.5rem;
+}

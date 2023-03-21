@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 mt-5 mb-5">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div *ngIf="loading" class="col-9">
+            <div>
+                <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+                    <div class="spinner-border text-primary" role="status"></div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loading" class="col-9">
+            <form #form="ngForm" (ngSubmit)="saveUnit()">
+                <div class="col-12 mb-4">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Unit Name</label>
+                        <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                            [(ngModel)]="unit.name" required />
+                        
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
+                        save
+                    </button>
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                        cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>

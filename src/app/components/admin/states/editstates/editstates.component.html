@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-6 manage-specialty">
+                    <h3 *ngIf="edit" class="card-title">Edit state</h3>
+                    <h3 *ngIf="!edit" class="card-title">Add state</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <form #form="ngForm" (ngSubmit)="saveState()">
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">state Name</label>
+                            <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                                [(ngModel)]="state.name" required />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
+                            save
+                        </button>
+
+                        <button *ngIf="edit" type="button" class="btn buttonFull" (click)="addDistrictToState()">
+                            Add District
+                        </button>
+                        <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                            cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="edit" class="row mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>State Name</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let district of districts">
+                                        <td>{{ district.name }}</td>
+                                        <td class="text-center">
+                                            <div class="table_icon">
+                                                <fa-icon [icon]="faPenToSquare" (click)="editDistrict(district)"
+                                                    title="Edit district"></fa-icon>
+                                                <fa-icon [icon]="faTrash" (click)="deleteDistrict(district)"
+                                                    title="Delete district"></fa-icon>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
