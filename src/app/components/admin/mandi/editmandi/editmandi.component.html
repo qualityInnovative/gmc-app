@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-6 manage-specialty mt-3">
+                    <h3 *ngIf="edit" class="card-title">Edit Mandi</h3>
+                    <h3 *ngIf="!edit" class="card-title">Add Mandi</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <form #form="ngForm" (ngSubmit)="saveMandi()">
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Mandi Name</label>
+                            <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                                [(ngModel)]="mandi.name" required />
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Mandi Address</label>
+                            <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                                [(ngModel)]="mandi.address" required />
+                        </div>
+                        <!--  select states -->
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Select State</label>
+                            <select class="form-control input_feild" id="state" name="state" [(ngModel)]="mandi.stateId"
+                                required (change)="getDistrictsByStateId($event)">
+                                <option value="">Select State</option>
+                                <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+                            </select>
+                        </div>
+                        <!-- select district -->
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Select District</label>
+                            <select class="form-control input_feild" id="district" name="district"
+                                [(ngModel)]="mandi.districtId" required>
+                                <option value="">Select District</option>
+                                <option *ngFor="let district of districts" [value]="district.id">
+                                    {{district.name}}</option>
+                            </select>
+                        </div>
+                        <!-- save mandi -->
+                    </div>
+                    <div class="col-12 mb-3 d-flex justify-content-end">
+                        <button type="submit" class="btn buttonFull buttonFull-primary">Save</button>
+                        <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

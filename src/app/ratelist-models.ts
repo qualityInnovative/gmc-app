@@ -12,3 +12,4 @@ export * from './models/commodity';
 export * from './models/role';
 export * from './models/ratelist';
 export * from './models/userprofile';
+export * from './models/mandi';

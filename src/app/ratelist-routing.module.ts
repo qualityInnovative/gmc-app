@@ -23,6 +23,8 @@ import { UserlistComponent } from './components/admin/userlist/userlist.componen
 import { EdituserComponent } from './components/admin/userlist/edituser/edituser.component';
 import { CategoryComponent } from './components/user/category/category.component';
 import { RatelistComponent } from './components/user/ratelist/ratelist.component';
+import { MandiComponent } from './components/admin/mandi/mandi.component';
+import { EditmandiComponent } from './components/admin/mandi/editmandi/editmandi.component';
 const routes: Routes = [
   {
     path: '',
@@ -145,6 +147,18 @@ const routes: Routes = [
     component:RatelistComponent,
     pathMatch:'full',
     canActivate:[AuthGuard]
+  },
+  {
+    path: 'admin/mandi',
+    component: MandiComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/mandi/editmandi/:mandiId',
+    component: EditmandiComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   }
 ];
 @NgModule({

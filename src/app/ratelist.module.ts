@@ -40,6 +40,8 @@ import { CategoryComponent } from './components/user/category/category.component
 import { RatelistComponent } from './components/user/ratelist/ratelist.component';
 import { UserratelistdashboardComponent } from './components/user/userratelistdashboard/userratelistdashboard.component';
 import { LoadingscreenComponent } from './components/misc/loadingscreen/loadingscreen.component';
+import { MandiComponent } from './components/admin/mandi/mandi.component';
+import { EditmandiComponent } from './components/admin/mandi/editmandi/editmandi.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +74,9 @@ import { LoadingscreenComponent } from './components/misc/loadingscreen/loadings
     CategoryComponent,
     RatelistComponent,
     UserratelistdashboardComponent,
-    LoadingscreenComponent
+    LoadingscreenComponent,
+    MandiComponent,
+    EditmandiComponent
   ],
   imports: [
     BrowserModule,
