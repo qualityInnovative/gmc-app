@@ -1,11 +1,17 @@
 export class Profile {
     id: number = 0;
-    avatar: string = '';
-    bio: string = '';
-    phoneNumber: string = '';
-    address: string = '';
     firstName: string = '';
     lastName: string = '';
-    createdAt: string = '';
-    updatedAt: string = '';
+    contact: string = '';
+    aadarNumber: string = '';
+    address: string = '';
+    city: string = '';
+    stateId: number = 0;
+    districtId: number = 0;
+    departmentId: number = 0;
+    designationId: number = 0;
+    image: string = '';
+    createdAt: Date = new Date();
+    updatedAt: Date = new Date();
+    userId: number = 0;
 }

@@ -1,35 +1,36 @@
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3 mt-5 mb-5">
-        <ratelist-adminmenu></ratelist-adminmenu>
-      </div>
-      <div *ngIf="loading" class="col-8">
-        <div class="row">
-          <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
-            <div class="spinner-border text-primary" role="status"></div>
-          </div>
+  <div class="row">
+    <div class="col-md-3 mb-5">
+      <ratelist-adminmenu></ratelist-adminmenu>
+    </div>
+    <div *ngIf="loading" class="col-8">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+          <div class="spinner-border text-primary" role="status"></div>
         </div>
       </div>
-      <div *ngIf="errorStatus" class="col-8">
-        <div class="row">
-          <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
-            {{ error }}
-          </div>
+    </div>
+    <div *ngIf="errorStatus" class="col-8">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+          {{ error }}
         </div>
       </div>
-      <div *ngIf="!loading" class="col-md-8 mt-5 mb-5">
-            <div class="d-flex justify-content-between align-items-center manage-specialty">
-              <h3 class="card-title">Manage Categories</h3>
-              <button class="btn buttonFull" (click)="addCategory()"> Add Category </button>
-  
-            </div>
-            <div class="card">
-              <div class="card-body">
-            <table class="table table-striped mt-5 mb-5" datatable>
+    </div>
+    <div *ngIf="!loading" class="col-md-8 mt-5 mb-5">
+      <div class="d-flex justify-content-between align-items-center manage-specialty">
+        <h3 class="card-title">Manage Categories</h3>
+        <button class="btn buttonFull" (click)="addCategory()"> Add Category </button>
+
+      </div>
+      <div class="card shadow mt-5">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover" datatable>
               <thead>
                 <tr>
                   <th scope="col">Category</th>
-                 
+
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -47,3 +48,4 @@
         </div>
       </div>
     </div>
+  </div>

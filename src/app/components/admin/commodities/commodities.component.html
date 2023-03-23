@@ -1,50 +1,46 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 mt-5 mb-5">
+        <div class="col-md-3 mb-5">
             <ratelist-adminmenu></ratelist-adminmenu>
         </div>
-
-        <div *ngIf="loading" class="col-12">
+        <!-- <div *ngIf="loading" class="col-8">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
                     <div class="spinner-border text-primary" role="status"></div>
                 </div>
             </div>
         </div>
-        <div *ngIf="errorStatus" class="col-12">
+        <div *ngIf="errorStatus" class="col-8">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
                     {{ error }}
                 </div>
             </div>
-        </div>
-        <div *ngIf="!loading" class="col-8">
-            <div class="row mt-5 mb-5">
+        </div> -->
+        <div *ngIf="!loading" class="col-md-8 mt-5 mb-5">
+            <div class="row">
                 <div class="d-flex justify-content-between align-items-center manage-specialty">
-                    <h3 class="card-title">Manage Commodity</h3>
-                    <button class="btn buttonFull" (click)="addCommodities()"> Add Commodity </button>
+                    <h3 class="card-title">Manage Commodities</h3>
+                    <button class="btn buttonFull" (click)="addCommodities()"> Add Commdity </button>
                 </div>
                 <div class="card shadow mt-5">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover">
+                            <table class="table table-bordered table-striped table-hover" datatable>
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>unit</th>
-                                        <th>Category</th>
-                                        <th>Action</th>
+                                        <th scope="col">Index</th>
+                                        <th scope="col">Commodity</th>
+                                        <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let commodity of commodities">
-                                        <td>{{ commodity.name }}</td>
-                                        <td>{{getUnitName(commodity.unitId) }}</td>
-                                        <td>{{ getCategoryName(commodity.categoryId) }}</td>
+                                    <tr *ngFor="let commodity of commodities; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{commodity.name}}</td>
                                         <td>
                                             <fa-icon [icon]="faEdit" (click)="editCommodities(commodity.id)"></fa-icon>
-                                            <fa-icon [icon]="faTrash"
-                                                (click)="deleteCommodities(commodity.id)"></fa-icon>
+                                            <fa-icon [icon]="faTrash" (click)="deleteCommodities(commodity.id)"></fa-icon>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -52,31 +48,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
-            <div class="d-flex justify-content-center align-items-center mt-2">
-                <div _ngcontent-uuw-c667="">
-                    <nav aria-label="Page navigation" class="mb-4">
-                        <div class="pagination">
-                            <div class="page-item d-flex">
-                                <a *ngIf="currentdrugPage > 1" (click)="getCommodities(currentdrugPage - 1)"
-                                    class="page-link ms-2">&laquo;</a>
-                            </div>
-                            <div class="page-item d-flex">
-                                <a *ngFor="let page of commodityPages" [class.active]="page === currentdrugPage"
-                                    (click)="getCommodities(page)" class="page-link ms-2">
-                                    {{ page }}
-                                </a>
-                            </div>
-                            <div class="page-item d-flex">
-                                <a *ngIf="currentdrugPage < totalPages"
-                                    (click)="getCommodities(currentdrugPage + 1)" class="page-link ms-2">&raquo;</a>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-
         </div>
-    </div>
+</div>

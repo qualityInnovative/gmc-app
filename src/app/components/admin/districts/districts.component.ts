@@ -7,6 +7,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { StatesService } from 'src/app/services/states/states.service';
 import { State } from 'src/app/ratelist-models';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'ratelist-districts',
   templateUrl: './districts.component.html',
@@ -26,7 +27,8 @@ export class DistrictsComponent implements OnInit {
   constructor(
     private DistrictsService: DistrictsService,
     private router: Router,
-    private statesService: StatesService
+    private statesService: StatesService,
+    private toastr: ToastrService
   ) {
   }
   ngOnInit(): void {
@@ -53,18 +55,16 @@ export class DistrictsComponent implements OnInit {
       district.stateId,
       district.id
     ]);
-
-
   }
   getAllDistricts() {
     this.DistrictsService.admingetDistricts().subscribe((districts) => {
-      this.loading = true;
+      this.loading = false;
       this.districts = districts.data;
       this.dtTrigger.next(districts.data);
     }, (error) => {
       this.errorStatus = true;
       this.error = error.message;
-      this.loading = true;
+      this.loading = false;
     });
   }
   deleteDistrict(district: District) {
@@ -72,11 +72,16 @@ export class DistrictsComponent implements OnInit {
       this.DistrictsService.adminDeleteDistrict(district.id)
         .subscribe(
           data => {
+            if(data.success == true){
+              this.toastr.success(data.message);
+            }
             this.getAllDistricts();
+            
           },
           error => {
             this.errorStatus = true;
             this.error = error.message;
+            this.loading = false;
           }
         )
     }

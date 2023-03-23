@@ -3,6 +3,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { Router } from '@angular/router';
 import { Unit } from 'src/app/ratelist-models';
 import { UnitsService } from 'src/app/services/units/units.service';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'ratelist-units',
   templateUrl: './units.component.html',
@@ -15,11 +16,12 @@ export class UnitsComponent implements OnInit {
   units: Unit[] = [];
   faEdit = faEdit;
   faTrash = faTrash;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
   constructor(
     private router: Router,
     private unitsService: UnitsService
   ) { }
-
   ngOnInit(): void {
     this.getUnits();
   }
@@ -27,7 +29,7 @@ export class UnitsComponent implements OnInit {
     this.unitsService.getUnits().subscribe(
       (data) => {
         this.units = data.data;
-        console.log(this.units);
+        this.dtTrigger.next(this.units);
         this.loading = false;
       },
       (error) => {
@@ -44,6 +46,7 @@ export class UnitsComponent implements OnInit {
       this.unitsService.deleteUnit(id).subscribe(
         (data) => {
           this.getUnits();
+          this.dtTrigger.next(this.units);
         },
         (error) => {
           this.error = error;

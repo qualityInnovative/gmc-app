@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 mt-5 mb-5">
+        <div class="col-md-3 mb-5">
             <ratelist-adminmenu></ratelist-adminmenu>
         </div>
         <div *ngIf="loading" class="col-8">
@@ -23,25 +23,35 @@
                     <h3 class="card-title">Manage Units</h3>
                     <button class="btn buttonFull" (click)="addUnit()"> Add Unit </button>
                 </div>
-                <table class="table table-striped mt-5 mb-5" datatable>
-                    <thead>
-                        <tr>
-                            <th scope="col">Index</th>
-                            <th scope="col">unit</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let unit of units; let i = index">
-                            <td>{{i+1}}</td>
-                            <td>{{unit.name}}</td>
-                            <td>
-                                <fa-icon [icon]="faEdit" (click)="editUnit(unit.id)"></fa-icon>
-                                <fa-icon [icon]="faTrash" (click)="deleteUnit(unit.id)"></fa-icon>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="card shadow mt-5">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover" datatable
+                             
+                            >
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Index</th>
+                                        <th scope="col">unit</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let unit of units; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{unit.name}}</td>
+                                        <td>
+                                            <fa-icon [icon]="faEdit" (click)="editUnit(unit.id)"></fa-icon>
+                                            <fa-icon [icon]="faTrash" (click)="deleteUnit(unit.id)"></fa-icon>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+</div>

@@ -117,16 +117,25 @@ export class EditstatesComponent implements OnInit, OnDestroy {
             this.toastr.success('State Updated Successfully', 'Success');
           }
         }
+        ,(error) => {
+          this.toastr.error('State Update Failed', error.error.message);
+        }
       )
 
   }
 
   addState() {
-    console.log('add', this.state);
     this.statesService.adminAddState(this.state)
       .subscribe(
         data => {
           console.log(data);
+          if (data.success == true) {
+            this.toastr.success('State Added Successfully', 'Success');
+            this.location.back();
+            
+          }
+        },(error) => {
+          this.toastr.error('State Add Failed', error.error.message);
         }
       )
 

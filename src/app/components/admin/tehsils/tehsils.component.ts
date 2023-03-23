@@ -3,6 +3,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { Router } from '@angular/router';
 import { DistrictsService, TehsilService } from 'src/app/ratelist-services';
 import { Tehsil, District } from "./../../../ratelist-models"
+import { Subject } from 'rxjs';
 @Component({
   selector: 'ratelist-tehsils',
   templateUrl: './tehsils.component.html',
@@ -17,6 +18,8 @@ export class TehsilsComponent implements OnInit {
   errorStatus: boolean = false;
   faEdit = faEdit;
   faTrash = faTrash;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
   constructor(
     private router: Router,
     private districtsService: DistrictsService,
@@ -27,6 +30,12 @@ export class TehsilsComponent implements OnInit {
   ngOnInit(): void {
     this.getTehsils();
     this.getDistricts();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 50,
+      processing: true
+    };
+
   }
   getDistricts() {
     this.districtsService.admingetDistricts().subscribe((data: any) => {
@@ -37,6 +46,7 @@ export class TehsilsComponent implements OnInit {
   getTehsils() {
     this.tehsilService.admingetalltehsils().subscribe((data: any) => {
       this.tehsils = data.data;
+      this.dtTrigger.next(this.tehsils);
 
     })
   }

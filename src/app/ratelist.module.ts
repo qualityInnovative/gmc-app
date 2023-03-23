@@ -83,7 +83,11 @@ import { LoadingscreenComponent } from './components/misc/loadingscreen/loadings
     DataTablesModule,
     BrowserAnimationsModule,
     NgMultiSelectDropDownModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [
     {

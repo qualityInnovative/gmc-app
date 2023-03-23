@@ -4,6 +4,7 @@ import { DistrictsService,TehsilService,StatesService } from 'src/app/ratelist-s
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'ratelist-editdistrict',
   templateUrl: './editdistrict.component.html',
@@ -23,13 +24,22 @@ export class EditdistrictComponent implements OnInit {
     private StatesService: StatesService,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private toastr: ToastrService
   ) {
     this.districtId = this.route.snapshot.params['districtId'];
   }
   ngOnInit(): void {
     this.isEdit();
     this.getStates();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      processing: true,
+      dom: 'Bfrtip',
+      searching: true,
+    };
+    
   }
   getStates() {
     this.StatesService.admingetStates()
@@ -47,8 +57,6 @@ export class EditdistrictComponent implements OnInit {
     if (this.districtId > 0) {
       this.edit = true;
       this.getDistrict();
-
-      
     } else {
       this.edit = false;
       this.district.id = 0;
@@ -85,11 +93,16 @@ export class EditdistrictComponent implements OnInit {
     this.DistrictsService.adminupdateDistrict(this.district)
       .subscribe(
         data => {
-          console.log(data);
-          this.router.navigate(['/admin/districts']);
+          if(data.success){
+            this.toastr.success(data.message);
+            this.router.navigate(['/admin/districts']);
+          }else{
+            this.toastr.error(data.message);
+          }
+          
         },
         error => {
-          console.log(error);
+          this.toastr.error(error);
         }
       )
   }
@@ -111,7 +124,7 @@ export class EditdistrictComponent implements OnInit {
         data => {
           this.tehsils = data.data;
           console.log(this.tehsils);
-         
+          this.dtTrigger.next(this.tehsils);
         },
         error => {
           console.log(error);

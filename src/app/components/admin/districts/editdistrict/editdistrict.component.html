@@ -19,11 +19,14 @@
                 <form #form="ngForm" (ngSubmit)="saveDistrict()">
                     <div class="col-12 mb-4">
                         <div class="mb-3 form-group position-relative">
-                            <label for="name">state Name</label>
+                            <label for="name">District Name</label>
                             <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
                                 [(ngModel)]="district.name" required />
-                            <select class="form-control input_feild" id="state" name="state" [(ngModel)]="district.stateId"
-                                required>
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">state Name</label>
+                            <select class="form-control input_feild" id="state" name="state"
+                                [(ngModel)]="district.stateId" required>
                                 <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
                             </select>
                         </div>
@@ -32,7 +35,8 @@
                         <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
                             save
                         </button>
-                        <button *ngIf="edit" type="button" (click)="addTehsil()" class="btn buttonFull buttonFull-transparent ms-2">
+                        <button *ngIf="edit" type="button" (click)="addTehsil()"
+                            class="btn buttonFull buttonFull-transparent ms-2">
                             Add Tehsil
                         </button>
                         <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
@@ -48,9 +52,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table datatable
-                                        [dtOptions]="dtOptions"
-                                        [dtTrigger]="dtTrigger"
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
                                         class="table table-striped">
                                         <thead>
                                             <tr>
@@ -80,10 +82,9 @@
                             </div>
                         </div>
                     </div>
-    
+
                 </div>
             </div>
-
         </div>
-
-     
+    </div>
+</div>

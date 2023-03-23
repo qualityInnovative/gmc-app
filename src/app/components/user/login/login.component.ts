@@ -54,13 +54,14 @@ export class LoginComponent implements OnInit {
         console.log("res", res);
         this.busy = false;
         if (res.success) {
+          console.log("res", res);
           this.loginService.setToken(res.data.token);
-          this.loginService.setUser(res.data);
-          if (res.data.roleId == Roles.admin) {
+          this.loginService.setUser(res.data.user);
+          if (res.data.user.roleId == Roles.admin) {
             this.router.navigate(['/admin/states']);
-          } else if (res.data.roleId == Roles.moderator) {
+          } else if (res.data.user.roleId == Roles.moderator) {
             this.router.navigate(['/Moderator']);
-          } else if (res.data.roleId == Roles.user) {
+          } else if (res.data.user.roleId == Roles.user) {
             this.router.navigate(['/home']);
           } else {
             this.router.navigate(['/']);
@@ -69,7 +70,6 @@ export class LoginComponent implements OnInit {
           this.hasError = true;
           alert(res.message);
         }
-
       }, err => {
         this.busy = false;
         this.hasError = true;

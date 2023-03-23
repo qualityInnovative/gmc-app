@@ -19,12 +19,14 @@ export class LoginService {
   }
   setToken(token: string): void {
     localStorage.setItem('token', token);
+
   }
   setUser(user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
   }
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
   isUserLoggedIn(): boolean {
     return !!this.getToken();

@@ -3,7 +3,7 @@
         class="d-flex justify-content-between navbar navbar-expand-lg navbar-light bg-white headerNav">
         <div class="container-fluid CustomContainer">
             <a class="navbar-brand" [routerLink]="['/home']">
-                <img src="../../../../assets/images/logo.png" width="230" height="60"
+                <img src="../../../../assets/images/logo.png" width="230" height="35"
                     style="margin-left: 0px; object-fit: contain" class="d-inline-block align-top" alt="" />
             </a>
             <div *ngIf="userProfile.email" class="d-inline-flex mt-2 mt-md-0 ms-md-auto px-3 align-items-center">
@@ -40,8 +40,8 @@
                 <div class="dropdown text-end">
                     <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img [src]="userProfile.Profile.avatar" alt="" class="rounded-circle"
-                            style="height: 50px; width: 50px; object-fit: cover" />&nbsp;&nbsp;
+                        <img [src]="userProfile.Profile.image" alt="" class="rounded-circle"
+                            style="height: 35px; width: 35px; object-fit: cover" />&nbsp;&nbsp;
                         <span class="pe-1 nameandemail">
                             <span>
                                 {{ userProfile.Profile.firstName }} {{ userProfile.Profile.lastName }}
@@ -59,7 +59,7 @@
                                 <div class="row">
                                     <div class="col-sm-4 d-flex align-items-center">
                                         <div class="userinfo-image">
-                                            <img [src]="userProfile.Profile.avatar" alt="" class="rounded-circle" />
+                                            <img [src]="userProfile.Profile.image" alt="" class="rounded-circle" />
                                         </div>
                                     </div>
                                     <div class="col-sm-8">
@@ -86,13 +86,7 @@
                                 <fa-icon [icon]="faLock"></fa-icon> Change Password
                             </a>
                         </li>
-
-                        <!-- <li *ngIf="user.id==1 || userService.hasRoles([Roles.Admin]) || userService.hasRoles([Roles.GroupAdmin])" >
-              <a [routerLink]="['/admin/dashboard']" class="dropdown-item">Admin Dashboard</a>
-            </li> -->
-
                         <hr />
-
                         <li class="d-flex justify-content-center">
                             <a (click)="logout()" style="cursor: pointer"
                                 class="dropdown-item text-center mb-3 mt-3 button">
@@ -103,7 +97,6 @@
             </div>
         </div>
     </nav>
-
     <nav *ngIf="!loginService.isUserLoggedIn()"
         class="d-flex justify-content-between navbar navbar-expand-lg navbar-light bg-white offline-header headerNav">
         <div class="container-fluid CustomContainer">

@@ -42,6 +42,7 @@ export class HeaderComponent implements OnInit {
   getUserProfile(id:number){
     this.loginService.getUserProfile(id).subscribe((res:any)=>{
       this.userProfile = res.data;
+      console.log("userProfile",this.userProfile) 
     })
   }
   dontShowHeaderinLogin(): boolean {

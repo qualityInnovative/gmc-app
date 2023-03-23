@@ -6,8 +6,8 @@
         <div class="col-8">
             <div class="row">
                 <div class="col-6 manage-specialty mt-3">
-                    <h3 *ngIf="edit" class="card-title">Edit Category</h3>
-                    <h3 *ngIf="!edit" class="card-title">Add Category</h3>
+                    <h3 *ngIf="edit" class="card-title">Edit Commodity</h3>
+                    <h3 *ngIf="!edit" class="card-title">Add Commodity</h3>
                 </div>
                 <div class="col-6 text-end">
                     <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
@@ -17,7 +17,7 @@
             </div>
             <div class="row mt-5">
                 <form #form="ngForm" (ngSubmit)="saveCommodities()">
-                    <div class="col-12 mb-4">
+                    <div class="col-8 mb-4">
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Commodity Name</label>
                             <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "

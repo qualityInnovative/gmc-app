@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 mt-5 mb-5">
+        <div class="col-md-3 mb-5">
             <ratelist-adminmenu></ratelist-adminmenu>
         </div>
         <div *ngIf="!loading" class="col-8">
@@ -23,25 +23,32 @@
                     <h3 class="card-title">Manage tehsil</h3>
                     <button class="btn buttonFull" (click)="addTehsil()"> Add Tehsil </button>
                 </div>
-                <table class="table table-striped mt-5 mb-5" datatable>
-                    <thead>
-                        <tr>
-                            <th scope="col">Tehsil</th>
-                            <th scope="col">District</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let tehsil of tehsils">
-                            <td>{{tehsil.name}}</td>
-                            <td>{{getDistrictName(tehsil.districtId)}}</td>
-                            <td>
-                                <fa-icon [icon]="faEdit" (click)="editTehsil(tehsil)"></fa-icon>
-                                <fa-icon [icon]="faTrash" (click)="deleteTehsil(tehsil)"></fa-icon>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="card shadow mt-5">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"
+                                [dtTrigger]="dtTrigger">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Tehsil</th>
+                                        <th scope="col">District</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let tehsil of tehsils">
+                                        <td>{{tehsil.name}}</td>
+                                        <td>{{getDistrictName(tehsil.districtId)}}</td>
+                                        <td>
+                                            <fa-icon [icon]="faEdit" (click)="editTehsil(tehsil)"></fa-icon>
+                                            <fa-icon [icon]="faTrash" (click)="deleteTehsil(tehsil)"></fa-icon>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
