@@ -30,6 +30,7 @@ export class EditmandicommoditypricingComponent implements OnInit {
   commodities: Commodity[] = [];
   units: Unit[] = [];
   mandicommoditypricing: Mandicommoditypricing = new Mandicommoditypricing();
+  mandicommoditypricingId: number=0;
   constructor(
     private router: Router,
     private statesService: StatesService,
@@ -40,12 +41,26 @@ export class EditmandicommoditypricingComponent implements OnInit {
     private commoditiesService: CommoditiesService,
     private unitsService: UnitsService,
     private mandicommoditypricingService: MandicommoditypricingService
-  ) { }
+  ) {
+    this.route.params.subscribe(params => {
+      this.mandicommoditypricingId = params['id'];
+    });
+   }
   ngOnInit(): void {
+    this.isEdit();
     this.getMandis();
     this.getCommodities();
     this.getUnits();
    }
+  isEdit() {
+    if(this.mandicommoditypricingId > 0){
+      this.edit = true;
+      this.getMandiCommodityPricingById(this.mandicommoditypricingId);
+      console.log(this.mandicommoditypricingId);
+    }else{
+      this.edit = false;
+    }
+  }
   getMandis() {
     this.mandiService
     .getallMandis()
@@ -73,14 +88,79 @@ export class EditmandicommoditypricingComponent implements OnInit {
       }
     });
   }
-
   back() {
     this.location.back();
   }
+  save(){
+    console.log(this.edit);
+    if(this.edit){
+      this.updateMandiCommodityPricing();
+    }else{
+      this.savemandicommoditypricing();
+    }
+  }
   savemandicommoditypricing() {
     console.log(this.mandicommoditypricing)
-    this.toastr.success(
-      JSON.stringify(this.mandicommoditypricing),'Success');
+    if(this.mandicommoditypricing.price == 0){
+      this.toastr.warning('Please select price','Warning');
+      return;
+    }
+    if(this.mandicommoditypricing.mandiId == 0){
+      this.toastr.warning('Please select mandi','Warning');
+      return;
+    }
+    if(this.mandicommoditypricing.commodityId == 0){
+      this.toastr.warning('Please select commodity','Warning');
+      return;
+    }
+    if(this.mandicommoditypricing.unitId == 0){
+      this.toastr.warning('Please select unit','Warning');
+      return;
+    }
+    // check start date and end date is valid
+    if(this.mandicommoditypricing.effectiveStartDate > this.mandicommoditypricing.effectiveEndDate){
+      this.toastr.warning('Start date should be less than end date','Warning');
+      return;
+    }
+    if(this.mandicommoditypricing.effectiveStartDate == this.mandicommoditypricing.effectiveEndDate){
+      if(this.mandicommoditypricing.effectiveStartTime > this.mandicommoditypricing.effectiveEndTime){
+        this.toastr.warning('Start time should be less than end time','Warning');
+        return;
+      }
+    }
+    this.mandicommoditypricingService
+      .saveMandiCommodityPricing(this.mandicommoditypricing)
+      .subscribe((data: Apiresponse) => {
+        if (data.success) {
+          this.toastr.success('Mandi Commodity Pricing saved successfully','Success');
+          this.router.navigate(['/admin/mandicommoditypricing']);
+        } else {
+          this.toastr.error(data.message,'Error');
+        }
+      });
   }
-
+  updateMandiCommodityPricing() {
+    this.mandicommoditypricingService
+      .updateMandiCommodityPricing(this.mandicommoditypricing)
+      .subscribe((data: Apiresponse) => {
+        if (data.success) {
+          this.toastr.success('Mandi Commodity Pricing updated successfully','Success');
+          this.router.navigate(['/admin/mandicommoditypricing']);
+        } else {
+          this.toastr.error(data.message,'Error');
+        }
+      });
+  }
+  getMandiCommodityPricingById(id: number) {
+    this.mandicommoditypricingService
+      .getMandiCommodityPricingById(id)
+      .subscribe((data: Apiresponse) => {
+        if (data.success) {
+          this.mandicommoditypricing = data.data;
+          console.log(this.mandicommoditypricing);
+        }
+      });
+  }
 }
+
+

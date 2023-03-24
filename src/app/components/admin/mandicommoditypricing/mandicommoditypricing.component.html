@@ -30,23 +30,30 @@
                                 [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                                 <thead>
                                     <tr>
-                                       
-                                        <th>District Name</th>
                                         <th>Commodity Name</th>
+                                        <th>Price</th>
+                                        <th>Mandi</th>
+                                        <th>isApproved</th>
+                                        <th>startDate</th>
+                                        <th>endDate</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let mandipricing of mandicommoditypricing">
+                                        <td>{{getCommodityName(mandipricing.commodityId)}}</td>
                                         <td>{{ mandipricing.price }}</td>
+                                        <td>{{ getMandiName(mandipricing.mandiId) }}</td>
+                                        <td>{{ mandipricing.isApproved }}</td>
+                                        <td>{{ mandipricing.effectiveStartDate | date }}</td>
+                                        <td>{{ mandipricing.effectiveEndDate | date }}</td>
                                         <td class="text-center">
                                             <div class="table_icon">
-                                                <fa-icon [icon]="faPenToSquare"
-                                                    (click)="editmandicommoditypricing()"
+                                                <fa-icon [icon]="faPenToSquare" (click)="editmandicommoditypricing(mandipricing)"
                                                     title="Edit State"></fa-icon>
-                                                <fa-icon [icon]="faTrash"
-                                                    (click)="deletemandicommoditypricing()"
-                                                    title="Delete State"></fa-icon>
+                                                <fa-icon [icon]="faTrash" (click)="deletemandicommoditypricing(
+                                                    mandipricing.id
+                                                )" title="Delete State"></fa-icon>
                                             </div>
                                         </td>
                                     </tr>
