@@ -9,7 +9,7 @@ import { UnitsService } from 'src/app/ratelist-services';
 import { Apiresponse } from 'src/app/ratelist-models';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'ratelist-editcommodities',
   templateUrl: './editcommodities.component.html',
@@ -19,21 +19,18 @@ export class EditcommoditiesComponent implements OnInit {
   edit: boolean = false;
   commodity: Commodity = new Commodity();
   categories: Category[] = [];
-  units: Unit[] = [];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private commoditiesService: CommoditiesService,
     private categoryService: CategoryService,
     private Location: Location,
-    private unitsService: UnitsService) { }
-
-
+    private toastr: ToastrService,
+  ) { }
   ngOnInit(): void {
     this.isEdit();
     this.getAllCategories();
-    this.getAllUnits();
-
   }
   isEdit() {
     this.route.params.subscribe(params => {
@@ -69,17 +66,7 @@ export class EditcommoditiesComponent implements OnInit {
       }
     );
   }
-  getAllUnits() {
-    this.unitsService.getUnits().subscribe(
-      (response: any) => {
-        this.units = response.data;
-        console.log(response);
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
-  }
+
   saveCommodities() {
     if (this.edit) {
       this.updateCommodity();
@@ -91,10 +78,14 @@ export class EditcommoditiesComponent implements OnInit {
     this.commoditiesService.addCommodity(this.commodity).subscribe(
       (response: any) => {
         console.log(response);
-        alert("Commodity added successfully");
+        this.toastr.success('Commodity added successfully');
+        this.back();
       },
       (error: any) => {
         console.log(error);
+        this.toastr.error(
+          error.error.message,
+        );
       }
     );
   }
@@ -102,7 +93,8 @@ export class EditcommoditiesComponent implements OnInit {
     this.commoditiesService.updateCommodity(this.commodity).subscribe(
       (response: any) => {
         console.log(response);
-        alert("Commodity updated successfully");
+        this.toastr.success('Commodity updated successfully');
+        this.back();
       },
       (error: any) => {
         console.log(error);

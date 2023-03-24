@@ -25,6 +25,10 @@ import { CategoryComponent } from './components/user/category/category.component
 import { RatelistComponent } from './components/user/ratelist/ratelist.component';
 import { MandiComponent } from './components/admin/mandi/mandi.component';
 import { EditmandiComponent } from './components/admin/mandi/editmandi/editmandi.component';
+import { DistrictrateconfigurationComponent } from './components/admin/districtrateconfiguration/districtrateconfiguration.component';
+import { EditdistrictconfigurationComponent } from './components/admin/districtrateconfiguration/editdistrictconfiguration/editdistrictconfiguration.component';
+import { MandicommoditypricingComponent } from './components/admin/mandicommoditypricing/mandicommoditypricing.component';
+import { EditmandicommoditypricingComponent } from './components/admin/mandicommoditypricing/editmandicommoditypricing/editmandicommoditypricing.component';
 const routes: Routes = [
   {
     path: '',
@@ -136,17 +140,17 @@ const routes: Routes = [
     component: EdituserComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
-  },{
+  }, {
     path: 'category/:commodityId',
     component: CategoryComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
   {
-    path:'ratelist/:commodityId',
-    component:RatelistComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'ratelist/:commodityId',
+    component: RatelistComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin/mandi',
@@ -160,6 +164,32 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard]
   }
+  ,
+  {
+    path: 'admin/districtrateconfiguration',
+    component: DistrictrateconfigurationComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/districtrateconfiguration/editdistrictconfiguration/:id',
+    component: EditdistrictconfigurationComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/mandicommoditypricing',
+    component: MandicommoditypricingComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/mandicommoditypricing/editmandicommoditypricing/:id',
+    component: EditmandicommoditypricingComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  }
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

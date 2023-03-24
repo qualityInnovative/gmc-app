@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-6 manage-specialty mt-3">
+                    <h3 *ngIf="edit" class="card-title">Edit District</h3>
+                    <h3 *ngIf="!edit" class="card-title">Add District</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <form #form="ngForm">
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Retail price factor</label>
+                            <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                                [(ngModel)]="districtRateConfiguration.retailPriceFactor" required />
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">state Name</label>
+                            <select class="form-control input_feild" id="state" name="state" [(ngModel)]="state.id"
+                                (change)="onStateChange($event)" required>
+                                <option value="">Select State</option>
+                                <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">District Name</label>
+                            <select class="form-control input_feild" id="districtId" name="districtId"
+                                [(ngModel)]="districtRateConfiguration.districtId" required>
+                                <option value="">Select District</option>
+                                <option *ngFor="let district of districts" [value]="district.id">{{district.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <!-- all commodities for commodityId -->
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity Name</label>
+                            <select class="form-control input_feild" id="commodityId" name="commodityId"
+                                [(ngModel)]="districtRateConfiguration.commodityId" required>
+                                <option value="">Select Commodity</option>
+                                <option *ngFor="let commodity of commodities" [value]="commodity.id">{{commodity.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-12 text-end">
+                    <button type="button" (click)="saveDistrictconfig()" class="btn buttonFull">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

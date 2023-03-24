@@ -10,7 +10,7 @@
                 <!-- Home Link -->
                 <div class="me-5 create-query-div">
                     <a class="py-2 text-decoration-none" [routerLink]="['/home']">
-                        <span class="align-top icon svg_bg">
+                        <!-- <span class="align-top icon svg_bg">
                             <svg width="16" id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 355.26 345.81">
                                 <defs>
                                     <style>
@@ -24,14 +24,14 @@
                                         d="M133.51,249.81v95.99H48.42s-19.2-6.11-20.51-19.63V179.13H4.29s-8.79-2.81-1.22-13.49L168.51,2.73s9.07-6.57,16.78,.68l166.85,162.32s7.71,7.71-1.13,12.24h-27.66v146.3s3.93,20.25-19.95,21.46h-87.96v-95.82l-81.93-.1Z" />
                                 </g>
                             </svg>
-                        </span>
+                        </span> -->
                         Home
                     </a>
                 </div>
                 <!-- admin dashboard link -->
                 <div *ngIf="userProfile.roleId == Roles.admin">
                     <a class="me-5 text-dark text-decoration-none adminDashboard" [routerLink]="['/admin/states']">
-                        <span class="svg_bg"><fa-icon [icon]="faUserGear"></fa-icon></span>
+                        <!-- <span class="svg_bg"><fa-icon [icon]="faUserGear"></fa-icon></span> -->
                         Admin</a>
                 </div>
             </div>

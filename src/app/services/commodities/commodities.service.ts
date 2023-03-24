@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Commodity } from 'src/app/models/commodity';
 import { Apiresponse } from 'src/app/ratelist-models';
 import { environment } from 'src/environments/environment';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +27,12 @@ export class CommoditiesService {
   }
   getCommoditiesByCategory(categoryId: number): Observable<Apiresponse> {
     return this.http.get<Apiresponse>(`${environment.apiUrl}/commodities/commoditiesbycategory/${categoryId}`);
+  }
+  deleteCommodity(id: number): Observable<Apiresponse> {
+    return this.http.delete<Apiresponse>(`${environment.apiUrl}/commodities/delete/${id}`);
+  }
+  getAllCommodities(): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(`${environment.apiUrl}/commodities/getall`);
   }
 
 }

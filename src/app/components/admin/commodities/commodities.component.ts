@@ -66,7 +66,11 @@ export class CommoditiesComponent implements OnInit {
     this.router.navigate(['/admin/commodities/editcommodity/' + id]);
   }
   deleteCommodities(id: number) {
-    console.log(id);
+    this.commoditiesService.deleteCommodity(id).subscribe(
+      (response: Apiresponse) => {
+        this.getCommodities(this.page);
+      }
+    );
   }
   getAllCategories() {
     this.categoryService.admingetCategories().subscribe(

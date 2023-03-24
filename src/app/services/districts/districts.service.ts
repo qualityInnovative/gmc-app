@@ -30,6 +30,9 @@ export class DistrictsService {
   adminDeleteDistrict(id: number): Observable<Apiresponse> {
     return this.http.delete<Apiresponse>(`${environment.apiUrl}/districts/delete/`+id)
   }
+  getAllDistricts(): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(`${environment.apiUrl}/districts/getall`)
+  }
 
 
 

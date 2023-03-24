@@ -33,16 +33,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="mb-3 form-group position-relative">
-                            <label for="name">Commodity Unit</label>
-                            <select class="form-control input_feild" id="unitId" name="unit" placeholder=" "
-                                [(ngModel)]="   commodity.unitId" required>
-                             
-                               <option *ngFor="let unit of units" [value]="unit.id">
-                                    {{ unit.name }}
-                                </option>
-                            </select>
-                        </div>
+                        
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn buttonFull" [disabled]="!form.valid">

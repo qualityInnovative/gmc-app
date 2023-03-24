@@ -42,6 +42,10 @@ import { UserratelistdashboardComponent } from './components/user/userratelistda
 import { LoadingscreenComponent } from './components/misc/loadingscreen/loadingscreen.component';
 import { MandiComponent } from './components/admin/mandi/mandi.component';
 import { EditmandiComponent } from './components/admin/mandi/editmandi/editmandi.component';
+import { DistrictrateconfigurationComponent } from './components/admin/districtrateconfiguration/districtrateconfiguration.component';
+import { EditdistrictconfigurationComponent } from './components/admin/districtrateconfiguration/editdistrictconfiguration/editdistrictconfiguration.component';
+import { MandicommoditypricingComponent } from './components/admin/mandicommoditypricing/mandicommoditypricing.component';
+import { EditmandicommoditypricingComponent } from './components/admin/mandicommoditypricing/editmandicommoditypricing/editmandicommoditypricing.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +80,11 @@ import { EditmandiComponent } from './components/admin/mandi/editmandi/editmandi
     UserratelistdashboardComponent,
     LoadingscreenComponent,
     MandiComponent,
-    EditmandiComponent
+    EditmandiComponent,
+    DistrictrateconfigurationComponent,
+    EditdistrictconfigurationComponent,
+    MandicommoditypricingComponent,
+    EditmandicommoditypricingComponent
   ],
   imports: [
     BrowserModule,
