@@ -20,4 +20,7 @@ export class RetailratelistService {
   saveRetailRateList(retailratelist: RetailRateList): Observable<Apiresponse> {
     return this.http.post<Apiresponse>(`${environment.apiUrl}/retailratelist/create`, retailratelist);
   }
+  updateRetailRateList(id: number, retailratelist: RetailRateList): Observable<Apiresponse> {
+    return this.http.put<Apiresponse>(`${environment.apiUrl}/retailratelist/update/${id}`, retailratelist);
+  }
 }

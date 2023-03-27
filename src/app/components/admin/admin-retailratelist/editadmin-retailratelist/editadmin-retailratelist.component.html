@@ -19,11 +19,58 @@
                 <form #form="ngForm" (ngSubmit)="saveRateList()">
                     <div class="col-12 mb-4">
                         <div class="mb-3 form-group position-relative">
-                            <!-- <label for="name">Department Name</label> -->
-                            <!-- <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
-                                [(ngModel)]="  designation.name" required> -->
+                            <label for="name">Retail Price</label>
+                            <input type="text" class="form-control input_feild" id="retailPrice" name="retailPrice"
+                                placeholder=" " [(ngModel)]=" retailratelist.retailPrice" required>
                         </div>
                     </div>
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Mandi Price</label>
+                            <input type="text" class="form-control input_feild" id="mandiPrice" name="mandiPrice"
+                                placeholder=" " [(ngModel)]=" retailratelist.mandiPrice" required>
+                        </div>
+                    </div>
+                    <!-- effective start date -->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Effective Start Date</label>
+                            <input type="date" class="form-control input_feild" id="effectiveStartDate"
+                                name="effectiveStartDate" placeholder=" "
+                                [(ngModel)]=" retailratelist.effectiveStartDate" required>
+                        </div>
+                    </div>
+                    <!-- effective end date -->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Effective End Date</label>
+                            <input type="date" class="form-control input_feild" id="effectiveEndDate"
+                                name="effectiveEndDate" placeholder=" " [(ngModel)]=" retailratelist.effectiveEndDate"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity</label>
+                            <select class="form-control input_feild" id="commodityId" name="commodityId"
+                                [(ngModel)]=" retailratelist.commodityId" required>
+                                <option value="">Select Commodity</option>
+                                <option *ngFor="let commodity of commodities" [value]="commodity.id">
+                                    {{commodity.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
                     <div class="col-12">
                         <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
                             save
