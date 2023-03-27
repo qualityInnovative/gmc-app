@@ -46,6 +46,12 @@ import { DistrictrateconfigurationComponent } from './components/admin/districtr
 import { EditdistrictconfigurationComponent } from './components/admin/districtrateconfiguration/editdistrictconfiguration/editdistrictconfiguration.component';
 import { MandicommoditypricingComponent } from './components/admin/mandicommoditypricing/mandicommoditypricing.component';
 import { EditmandicommoditypricingComponent } from './components/admin/mandicommoditypricing/editmandicommoditypricing/editmandicommoditypricing.component';
+import { DeparmentsComponent } from './components/admin/deparments/deparments.component';
+import { DesignationComponent } from './components/admin/designation/designation.component';
+import { EditdeparmentComponent } from './components/admin/deparments/editdeparment/editdeparment.component';
+import { EditdesignationComponent } from './components/admin/designation/editdesignation/editdesignation.component';
+import { AdminRetailratelistComponent } from './components/admin/admin-retailratelist/admin-retailratelist.component';
+import { EditadminRetailratelistComponent } from './components/admin/admin-retailratelist/editadmin-retailratelist/editadmin-retailratelist.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +90,13 @@ import { EditmandicommoditypricingComponent } from './components/admin/mandicomm
     DistrictrateconfigurationComponent,
     EditdistrictconfigurationComponent,
     MandicommoditypricingComponent,
-    EditmandicommoditypricingComponent
+    EditmandicommoditypricingComponent,
+    DeparmentsComponent,
+    DesignationComponent,
+    EditdeparmentComponent,
+    EditdesignationComponent,
+    AdminRetailratelistComponent,
+    EditadminRetailratelistComponent
   ],
   imports: [
     BrowserModule,

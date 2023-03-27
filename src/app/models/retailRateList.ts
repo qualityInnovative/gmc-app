@@ -1,0 +1,14 @@
+export class RetailRateList {
+    id: number = 0;
+    retailPrice: number = 0;
+    effectiveStartDate: Date = new Date();
+    effectiveEndDate: Date = new Date();
+    commodityId: number = 0;
+    mandiId: number = 0;
+    approvedByUserId: number = 0;
+    districtId: number = 0;
+    unitId: number = 0;
+    mandiPrice: number = 0;
+    createdAt: Date = new Date();
+    updatedAt: Date = new Date();
+}

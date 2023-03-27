@@ -29,6 +29,12 @@ import { DistrictrateconfigurationComponent } from './components/admin/districtr
 import { EditdistrictconfigurationComponent } from './components/admin/districtrateconfiguration/editdistrictconfiguration/editdistrictconfiguration.component';
 import { MandicommoditypricingComponent } from './components/admin/mandicommoditypricing/mandicommoditypricing.component';
 import { EditmandicommoditypricingComponent } from './components/admin/mandicommoditypricing/editmandicommoditypricing/editmandicommoditypricing.component';
+import { DeparmentsComponent } from './components/admin/deparments/deparments.component';
+import { EditdeparmentComponent } from './components/admin/deparments/editdeparment/editdeparment.component';
+import { DesignationComponent } from './components/admin/designation/designation.component';
+import { EditdesignationComponent } from './components/admin/designation/editdesignation/editdesignation.component';
+import { AdminRetailratelistComponent } from './components/admin/admin-retailratelist/admin-retailratelist.component';
+import {EditadminRetailratelistComponent}  from './components/admin/admin-retailratelist/editadmin-retailratelist/editadmin-retailratelist.component';
 const routes: Routes = [
   {
     path: '',
@@ -188,8 +194,43 @@ const routes: Routes = [
     component: EditmandicommoditypricingComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/departments',
+    component: DeparmentsComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/deparments/editdeparment/:id',
+    component: EditdeparmentComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/designation',
+    component: DesignationComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/designation/editdesignation/:id',
+    component: EditdesignationComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'admin/adminretailratelist',
+    component:AdminRetailratelistComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'admin/adminretailratelist/editadminretaillist/:id',
+    component:EditadminRetailratelistComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
   }
-
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 mb-5">
+        <ratelist-adminmenu></ratelist-adminmenu>
+      </div>
+      <div *ngIf="loading" class="col-8">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+            <div class="spinner-border text-primary" role="status"></div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="errorStatus" class="col-8">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!loading && !errorStatus" class="col-8">
+        <div class="row mt-5 mb-5">
+          <div class="d-flex justify-content-between align-items-center manage-specialty">
+            <h3 class="card-title">Manage ratelist</h3>
+            <button class="btn buttonFull" (click)="addratelist()"> Add ratelist </button>
+          </div>
+          <div class="card shadow mt-5">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" 
+                datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                  <thead>
+                    <tr>
+                      <th>ratelist Name</th>
+                      <th>ratelist address</th>
+                      <th>ratelist Contact Name </th>
+                      <th>ratelist email</th>
+                      <th class="text-center">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let ratelist of retailratelist">
+                        <td>{{ratelist.commodityId}}</td>
+                        <td>{{ratelist.mandiPrice}}</td>
+                      <td class="text-center">
+                        <div class="table_icon">
+                          <fa-icon [icon]="faPenToSquare" (click)="editratelist(ratelist.id)" title="Edit State"></fa-icon>
+                          <fa-icon [icon]="faTrash" (click)="deleteratelist(ratelist.id)" title="Delete State"></fa-icon>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

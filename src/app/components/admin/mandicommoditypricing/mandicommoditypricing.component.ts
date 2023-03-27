@@ -76,7 +76,7 @@ export class MandicommoditypricingComponent implements OnInit {
       .subscribe((data: Apiresponse) => {
         if (data.success) {
           this.mandicommoditypricing = data.data;
-          console.log(this.mandicommoditypricing);
+          console.log('mandi commodity pricing ', this.mandicommoditypricing);
           this.dtTrigger.next(
             this.mandicommoditypricing
           );
@@ -84,7 +84,6 @@ export class MandicommoditypricingComponent implements OnInit {
       });
   }
   getCommodityName(id: number) {
-    console.log(this.commmodities)
     const commodity = this.commmodities.find(x => x.id === id);
     if (commodity) {
       return commodity.name;
