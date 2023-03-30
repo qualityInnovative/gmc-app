@@ -52,6 +52,8 @@ import { EditdeparmentComponent } from './components/admin/deparments/editdeparm
 import { EditdesignationComponent } from './components/admin/designation/editdesignation/editdesignation.component';
 import { AdminRetailratelistComponent } from './components/admin/admin-retailratelist/admin-retailratelist.component';
 import { EditadminRetailratelistComponent } from './components/admin/admin-retailratelist/editadmin-retailratelist/editadmin-retailratelist.component';
+import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +98,9 @@ import { EditadminRetailratelistComponent } from './components/admin/admin-retai
     EditdeparmentComponent,
     EditdesignationComponent,
     AdminRetailratelistComponent,
-    EditadminRetailratelistComponent
+    EditadminRetailratelistComponent,
+    EditprofileComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

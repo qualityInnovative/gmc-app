@@ -23,4 +23,14 @@ export class RetailratelistService {
   updateRetailRateList(id: number, retailratelist: RetailRateList): Observable<Apiresponse> {
     return this.http.put<Apiresponse>(`${environment.apiUrl}/retailratelist/update/${id}`, retailratelist);
   }
+  getRetailandMandiPrice(commodityId: number, districtId: number, mandiId: number, unitId: number): Observable<Apiresponse> {
+    let data = {
+      commodityId: commodityId,
+      districtId: districtId,
+      mandiId: mandiId,
+      unitId: unitId
+    }
+    return this.http.post<Apiresponse>(`${environment.apiUrl}/retailratelist/getretailandmandiprice`, data);
+  }
+
 }

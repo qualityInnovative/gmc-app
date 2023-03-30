@@ -19,7 +19,6 @@ export class LoginService {
   }
   setToken(token: string): void {
     localStorage.setItem('token', token);
-
   }
   setUser(user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
@@ -38,7 +37,10 @@ export class LoginService {
     return this.http.get<Apiresponse>(`${environment.apiUrl}/user/get/${id}`)
   }
   updateUserProfile(user: User): Observable<Apiresponse> {
-    return this.http.put<Apiresponse>(`${environment.apiUrl}/user/update/${user.id}`, user)
+    return this.http.put<Apiresponse>(`${environment.apiUrl}/user/update`, user)
+  }
+  reloadHeaderComponent(): void {
+    window.location.reload();
   }
 
 }

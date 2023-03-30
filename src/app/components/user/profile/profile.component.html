@@ -1,0 +1,111 @@
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-8">
+            <div class="card shadow">
+                <div class="row">
+                    <div class="col-12 mb-3 d-flex justify-content-end">
+                        <span (click)="editProfile()" class="p-2">
+                           <fa-icon [icon]="faEdit"  class="text-primary"></fa-icon>
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="{{userprofile.Profile.image}}" class="img-fluid" alt="Profile Image">
+                        </div>
+                        <div class="col-8 ">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>First Name :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.Profile.firstName}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Last Name :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.Profile.lastName}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Email :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.email}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Address :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.Profile.address}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Contact :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.Profile.contact}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>City :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.Profile.city}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Aadar Number :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.Profile.aadarNumber}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Designation :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.Profile.designationId}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Department :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.Profile.departmentId}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>District :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.Profile.districtId}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>State :</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>{{userprofile.Profile.stateId}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

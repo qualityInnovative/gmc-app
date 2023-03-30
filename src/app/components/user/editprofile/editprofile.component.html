@@ -1,0 +1,137 @@
+<!-- {
+    "id": 2,
+    "email": "obaidh@live.com",
+    "password": "$2b$10$jDsuVJZu8slC2xO0QfwMAeidxWN4vBC1KyTgfko4F3OvK.t.hMrmK",
+    "createdAt": "2023-03-30T07:14:24.000Z",
+    "updatedAt": "2023-03-30T07:14:24.000Z",
+    "roleId": 1,
+    "Profile": {
+        "id": 1,
+        "firstName": null,
+        "lastName": null,
+        "address": null,
+        "contact": null,
+        "city": null,
+        "aadarNumber": null,
+        "image": "https://www.w3schools.com/howto/img_avatar.png",
+        "createdAt": "2023-03-30T07:14:24.000Z",
+        "updatedAt": "2023-03-30T07:14:24.000Z",
+        "userId": 2,
+        "designationId": null,
+        "departmentId": null,
+        "districtId": null,
+        "stateId": null
+    }
+} -->
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-8">
+            <div class="card p-3  mb-5 shadow">
+                <form (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <h3 class="card-title">Edit Profile</h3>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="userprofile-image">
+                            <label for="file-input" class="uploadfileinput">
+                                <fa-icon [icon]="faEdit"
+                                 style="color: rgb(0, 0, 0); 
+                                    font-size: 20px;
+                                 "></fa-icon>
+                                <input class="uploadfileinput" type="file" accept="image/*"
+                                    (change)="onFileChange($event)" />
+                            </label>
+                            <img src="{{userprofile.Profile.image}}" 
+                            class="thumbnail"
+                            alt="Cinque Terre"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="firstName">first Name</label>
+                            <input type="text" class="form-control input_feild" id="firstName" name="firstName"
+                                placeholder="firstName" [(ngModel)]="
+                                userprofile.Profile.firstName" required />
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="lastName">last Name</label>
+                            <input type="text" class="form-control input_feild" id="lastName" name="lastName"
+                                placeholder="lastName" [(ngModel)]="
+                                userprofile.Profile.lastName" required />
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="Contact">Contact</label>
+                            <input type="text" class="form-control input_feild" id="Contact" name="Contact"
+                                placeholder="Contact" [(ngModel)]="
+                                userprofile.Profile.contact" required />
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control input_feild" id="address" name="address"
+                                placeholder="Address" [(ngModel)]="
+                                userprofile.Profile.address" required />
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="aadarNumber">Aadar Number</label>
+                            <input type="text" class="form-control input_feild" id="aadarNumber" name="aadarNumber"
+                                placeholder="aadarNumber " [(ngModel)]="
+                                userprofile.Profile.aadarNumber" required />
+                        </div>
+                    </div>
+
+                    <!-- select from states  -->
+                    <div class="col-12 mb-3">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="state">State</label>
+                            <select class="form-control input_feild" id="state" name="state"
+                                [(ngModel)]="userprofile.Profile.stateId"
+                                (change)="getDistricts(userprofile.Profile.stateId)" required>
+                                <option value="">Select State</option>
+                                <option *ngFor="let state of stateList" [value]="state.id">{{state.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- distrcits -->
+
+                    <div class="col-12 mb-3">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="district">District</label>
+                            <select class="form-control input_feild" id="district" name="district"
+                                [(ngModel)]="userprofile.Profile.districtId" required>
+                                <option value="">Select District</option>
+                                <option *ngFor="let district of districtList" [value]="district.id">{{district.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <!-- submit cancel button -->
+
+                    <div class="col-12 mb-3">
+                        <div class="mb-3 form-group position-relative">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

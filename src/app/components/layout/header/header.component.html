@@ -1,12 +1,12 @@
 <ng-container *ngIf="dontShowHeaderinLogin()">
     <nav *ngIf="loginService.isUserLoggedIn()"
         class="d-flex justify-content-between navbar navbar-expand-lg navbar-light bg-white headerNav">
-        <div class="container-fluid CustomContainer">
+        <div class="container CustomContainer">
             <a class="navbar-brand" [routerLink]="['/home']">
                 <img src="../../../../assets/images/logo.png" width="230" height="35"
                     style="margin-left: 0px; object-fit: contain" class="d-inline-block align-top" alt="" />
             </a>
-            <div *ngIf="userProfile.email" class="d-inline-flex mt-2 mt-md-0 ms-md-auto px-3 align-items-center">
+            <div *ngIf="userProfile?.email" class="d-inline-flex mt-2 mt-md-0 ms-md-auto px-3 align-items-center">
                 <!-- Home Link -->
                 <div class="me-5 create-query-div">
                     <a class="py-2 text-decoration-none" [routerLink]="['/home']">
@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <!-- admin dashboard link -->
-                <div *ngIf="userProfile.roleId == Roles.admin">
+                <div *ngIf="userProfile?.roleId == Roles.admin">
                     <a class="me-5 text-dark text-decoration-none adminDashboard" [routerLink]="['/admin/states']">
                         <!-- <span class="svg_bg"><fa-icon [icon]="faUserGear"></fa-icon></span> -->
                         Admin</a>
@@ -99,7 +99,7 @@
     </nav>
     <nav *ngIf="!loginService.isUserLoggedIn()"
         class="d-flex justify-content-between navbar navbar-expand-lg navbar-light bg-white offline-header headerNav">
-        <div class="container-fluid CustomContainer">
+        <div class="container CustomContainer">
             <a class="navbar-brand" [routerLink]="['/']">
                 <img src="../../../../assets/images/logo.png" width="230" height="60"
                     style="margin-left: 0px; object-fit: contain" class="d-inline-block align-top" alt="" />

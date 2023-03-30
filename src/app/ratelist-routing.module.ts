@@ -34,7 +34,9 @@ import { EditdeparmentComponent } from './components/admin/deparments/editdeparm
 import { DesignationComponent } from './components/admin/designation/designation.component';
 import { EditdesignationComponent } from './components/admin/designation/editdesignation/editdesignation.component';
 import { AdminRetailratelistComponent } from './components/admin/admin-retailratelist/admin-retailratelist.component';
-import {EditadminRetailratelistComponent}  from './components/admin/admin-retailratelist/editadmin-retailratelist/editadmin-retailratelist.component';
+import { EditadminRetailratelistComponent } from './components/admin/admin-retailratelist/editadmin-retailratelist/editadmin-retailratelist.component';
+import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 const routes: Routes = [
   {
     path: '',
@@ -55,6 +57,18 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     pathMatch: 'full'
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'editprofile',
+    component: EditprofileComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin/states',
@@ -220,16 +234,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path:'admin/adminretailratelist',
-    component:AdminRetailratelistComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'admin/adminretailratelist',
+    component: AdminRetailratelistComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
-    path:'admin/adminretailratelist/editadminretaillist/:id',
-    component:EditadminRetailratelistComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'admin/adminretailratelist/editadminretaillist/:id',
+    component: EditadminRetailratelistComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   }
 ];
 @NgModule({
