@@ -31,7 +31,6 @@ export class UserratelistdashboardComponent implements OnInit {
     private districtsService: DistrictsService,
     private rateListService: RatelistService,
     private tehsilService: TehsilService,
-
   ) {
     this.userId = this.loginService.getLoggedInUser().id;
   }

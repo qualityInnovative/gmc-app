@@ -19,6 +19,7 @@ import { DistrictsService } from 'src/app/ratelist-services';
 
 import { FileuploadService } from 'src/app/services/fileupload/fileupload.service';
 
+import { Location } from '@angular/common';
 
 
 
@@ -45,7 +46,8 @@ export class EditprofileComponent implements OnInit {
     private departmentService: DeparmentService,
     private statesService: StatesService,
     private districtsService: DistrictsService,
-    private fileuploadService: FileuploadService
+    private fileuploadService: FileuploadService,
+    private location: Location
 
 
   ) {
@@ -121,5 +123,8 @@ export class EditprofileComponent implements OnInit {
         this.toastr.error(error.error.message, 'Error');
       }
     );
+  }
+  goBack() {
+    this.location.back();
   }
 }

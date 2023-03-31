@@ -47,19 +47,20 @@ input[type="file"] {
 
 .uploadfileinput {
   display: inline-block;
- 
   cursor: pointer;
   position: absolute;
   bottom: 0;
-  right:0;
-  
-  
+  right: 0;
+  width: 40px;
+  height: 40px;
 }
-.userprofile-image{
-  position: relative; 
+
+.userprofile-image {
+  position: relative;
   width: fit-content;
 }
-.thumbnail{
+
+.thumbnail {
   width: 200px;
   height: 200px;
   border-radius: 50%;

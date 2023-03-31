@@ -31,4 +31,7 @@ export class UserService {
     let id = JSON.parse(user).id
     return this.http.get<Apiresponse>(`${environment.apiUrl}/user/get/${id}`)
   }
+  changePassword(oldPassword: string, newPassword: string,id:number): Observable<Apiresponse> {
+    return this.http.put<Apiresponse>(environment.apiUrl + '/user/updatepassword', { oldPassword, newPassword ,id});
+  }
 }

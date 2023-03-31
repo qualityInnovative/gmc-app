@@ -54,6 +54,7 @@ import { AdminRetailratelistComponent } from './components/admin/admin-retailrat
 import { EditadminRetailratelistComponent } from './components/admin/admin-retailratelist/editadmin-retailratelist/editadmin-retailratelist.component';
 import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
+import { ResetpasswordComponent } from './components/user/resetpassword/resetpassword.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +101,8 @@ import { ProfileComponent } from './components/user/profile/profile.component';
     AdminRetailratelistComponent,
     EditadminRetailratelistComponent,
     EditprofileComponent,
-    ProfileComponent
+    ProfileComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,

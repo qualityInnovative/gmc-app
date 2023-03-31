@@ -1,6 +1,5 @@
 <!-- create a dashbard -->
 <div *ngIf="!loading" class="container-fluid">
-
     <div class="col-md-12 mt-5">
         <div class="row">
             <div *ngFor="let category of categories" class="col">
@@ -17,7 +16,6 @@
             <h3>{{district.name}}</h3>
         </div>
         <div class="row mt-3">
-
             <!-- show rate list  -->
             <div class="card shadow">
                 <table class="table table-striped table-hover">
@@ -29,48 +27,9 @@
                             <th scope="col">Category</th>
                             <th scope="col">Tehsil</th>
                             <th scope="col">last updated</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- {
-                        "id": 57,
-                        "price": 120,
-                        "effectiveStartDate": "2023-03-20T00:00:00.000Z",
-                        "effectiveEndDate": "2023-04-04T00:00:00.000Z",
-                        "createdAt": "2023-03-20T10:11:15.000Z",
-                        "updatedAt": "2023-03-20T10:11:15.000Z",
-                        "commodityId": 1,
-                        "tehsilId": 2,
-                        "Commodity": {
-                            "id": 1,
-                            "name": "Rice",
-                            "categoryId": 1,
-                            "unitId": 1,
-                            "Category": {
-                                "id": 1,
-                                "name": "essentials"
-                            },
-                            "Unit": {
-                                "id": 1,
-                                "name": "kilograms"
-                            }
-                        },
-                        "Tehsil": {
-                            "id": 2,
-                            "name": "Srinagar Norths",
-                            "districtId": 728,
-                            "District": {
-                                "id": 728,
-                                "name": "Srinagar",
-                                "stateId": 32,
-                                "State": {
-                                    "id": 32,
-                                    "name": "Jammu and Kashmir"
-                                }
-                            }
-                        }
-                    } -->
                         <tr *ngFor="let rate of ratelist">
                             <td>{{rate.Commodity.name}}</td>
                             <td>{{rate.price}}</td>
@@ -84,11 +43,7 @@
                     </tbody>
                 </table>
             </div>
-
-
-
         </div>
     </div>
-
 </div>
 <ratelist-loadingscreen *ngIf="loading"></ratelist-loadingscreen>

@@ -38,7 +38,7 @@
 
             <div class="nameandbutton" *ngIf="userProfile.email">
                 <div class="dropdown text-end">
-                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                    <a   class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img [src]="userProfile.Profile.image" alt="" class="rounded-circle"
                             style="height: 35px; width: 35px; object-fit: cover" />&nbsp;&nbsp;
@@ -58,7 +58,7 @@
                             <div class="userinfo">
                                 <div class="row">
                                     <div class="col-sm-4 d-flex align-items-center">
-                                        <div class="userinfo-image">
+                                        <div routerLink="/profile" class="userinfo-image">
                                             <img [src]="userProfile.Profile.image" alt="" class="rounded-circle" />
                                         </div>
                                     </div>
@@ -75,17 +75,19 @@
                                 </div>
                             </div>
                         </li>
+
                         <li>
-                            <a [routerLink]="['/profile']" class="profileLink dropdown-item">
+                            <a [routerLink]="['/editprofile']" class="profileLink dropdown-item">
                                 <fa-icon [icon]="faPencil"></fa-icon> Edit Profile
                             </a>
                         </li>
 
                         <li>
-                            <a [routerLink]="['/changepassword']" class="profileLink dropdown-item">
+                            <a [routerLink]="['/resetpassword']" class="profileLink dropdown-item">
                                 <fa-icon [icon]="faLock"></fa-icon> Change Password
                             </a>
                         </li>
+
                         <hr />
                         <li class="d-flex justify-content-center">
                             <a (click)="logout()" style="cursor: pointer"

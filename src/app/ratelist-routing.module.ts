@@ -37,6 +37,7 @@ import { AdminRetailratelistComponent } from './components/admin/admin-retailrat
 import { EditadminRetailratelistComponent } from './components/admin/admin-retailratelist/editadmin-retailratelist/editadmin-retailratelist.component';
 import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
+import { ResetpasswordComponent } from './components/user/resetpassword/resetpassword.component';
 const routes: Routes = [
   {
     path: '',
@@ -244,8 +245,14 @@ const routes: Routes = [
     component: EditadminRetailratelistComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
+  },
+  {
+    path:'resetpassword',
+    component:ResetpasswordComponent,
+    pathMatch:'full',
+    canActivate: [AuthGuard]
   }
-];
+]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
