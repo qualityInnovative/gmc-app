@@ -95,7 +95,7 @@ export class UserratelistdashboardComponent implements OnInit {
     });
   }
   tehsilnamebyid(id: number): string {
-    return this.tehsils.find(x => x.id == id).name;
+    return this.tehsils.find(x => x.id == id)!.name;
   }
 
 }
