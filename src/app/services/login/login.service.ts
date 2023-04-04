@@ -26,6 +26,9 @@ export class LoginService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.clear();
+    localStorage.setItem('token', '');
+    localStorage.setItem('user', '');
   }
   isUserLoggedIn(): boolean {
     return !!this.getToken();

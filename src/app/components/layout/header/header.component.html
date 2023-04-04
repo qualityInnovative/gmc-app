@@ -7,38 +7,20 @@
                     style="margin-left: 0px; object-fit: contain" class="d-inline-block align-top" alt="" />
             </a>
             <div *ngIf="userProfile?.email" class="d-inline-flex mt-2 mt-md-0 ms-md-auto px-3 align-items-center">
-                <!-- Home Link -->
                 <div class="me-5 create-query-div">
-                    <a class="py-2 text-decoration-none" [routerLink]="['/home']">
-                        <!-- <span class="align-top icon svg_bg">
-                            <svg width="16" id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 355.26 345.81">
-                                <defs>
-                                    <style>
-                                        .cls-2 {
-                                            fill: #ffffff;
-                                        }
-                                    </style>
-                                </defs>
-                                <g id="Layer_1-2">
-                                    <path class="cls-2" fill="#ffffff"
-                                        d="M133.51,249.81v95.99H48.42s-19.2-6.11-20.51-19.63V179.13H4.29s-8.79-2.81-1.22-13.49L168.51,2.73s9.07-6.57,16.78,.68l166.85,162.32s7.71,7.71-1.13,12.24h-27.66v146.3s3.93,20.25-19.95,21.46h-87.96v-95.82l-81.93-.1Z" />
-                                </g>
-                            </svg>
-                        </span> -->
+                    <a 
+                    class="py-2 text-decoration-none home" (click)="gotohome()">
                         Home
                     </a>
                 </div>
-                <!-- admin dashboard link -->
                 <div *ngIf="userProfile?.roleId == Roles.admin">
                     <a class="me-5 text-dark text-decoration-none adminDashboard" [routerLink]="['/admin/states']">
-                        <!-- <span class="svg_bg"><fa-icon [icon]="faUserGear"></fa-icon></span> -->
                         Admin</a>
                 </div>
             </div>
-
-            <div class="nameandbutton" *ngIf="userProfile.email">
+            <div class="nameandbutton" *ngIf="userProfile?.email">
                 <div class="dropdown text-end">
-                    <a   class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                    <a class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img [src]="userProfile.Profile.image" alt="" class="rounded-circle"
                             style="height: 35px; width: 35px; object-fit: cover" />&nbsp;&nbsp;
@@ -51,7 +33,6 @@
                         <fa-icon [icon]="faAngleDown" style="margin-left: 5px; font-size: 18px"></fa-icon>
                         <span class="nav-username"></span>
                     </a>
-
                     <ul class="dropdown-menu dropdownTop userprofileDropDown text-small"
                         aria-labelledby="dropdownUser1">
                         <li class="mb-2">
@@ -87,7 +68,6 @@
                                 <fa-icon [icon]="faLock"></fa-icon> Change Password
                             </a>
                         </li>
-
                         <hr />
                         <li class="d-flex justify-content-center">
                             <a (click)="logout()" style="cursor: pointer"

@@ -9,47 +9,71 @@
                 <button class="btn buttonFull" (click)="back()">back</button>
             </div>
             <div class="d-flex mb-3 justify-content-between align-items-center manage-specialty">
-                <h4>{{state.name | uppercase}}</h4>
-                <h4>{{district.name | uppercase}}</h4>
+                <h4>{{mandi.name | uppercase}}</h4>
             </div>
-            <div class="d-flex mb-3 justify-content-between align-items-center manage-specialty">
-                <!-- select tehsil -->
-
-            </div>
-            <div class="card shadow">
+           
+            <div class="card shadow mb-5">
                 <div class="card-body">
-                    <!-- fill ratelist form  -->
-
                     <form #form="ngForm">
+                        <!-- units -->
                         <div class="col-12 mb-4">
                             <div class="mb-3 form-group position-relative">
-                                <label for="name">enter price</label>
-                                <input type="text" name="price" id="price" class="form-control"
-                                    placeholder="Enter Commodity price" [(ngModel)]="rateList.price">
-
+                                <label for="name">Unit</label>
+                                <select class="form-control input_feild" id="unitId" name="unitId"
+                                    (change)="unitSelected($event)" [(ngModel)]=" retailRateList.unitId" required>
+                                    <option value="">Select Unit</option>
+                                    <option *ngFor="let unit of units" [value]="unit.id">
+                                        {{unit.name}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
+                        <!-- district -->
                         <div class="col-12 mb-4">
                             <div class="mb-3 form-group position-relative">
-                                <label for="name">effective Start Date</label>
-                                <input type="date" name="effectiveStartDate" id="effectiveStartDate"
-                                    class="form-control" placeholder="Enter Commodity price"
-                                    [(ngModel)]="rateList.effectiveStartDate">
-
+                                <label for="name">District</label>
+                                <select class="form-control input_feild" id="districtId" name="districtId"
+                                    (change)="districtSelected($event)" [(ngModel)]=" retailRateList.districtId" required>
+                                    <option value="">Select District</option>
+                                    <option *ngFor="let district of districts" [value]="district.id">
+                                        {{district.name}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
+
                         <div class="col-12 mb-4">
                             <div class="mb-3 form-group position-relative">
-                                <label for="name">effective End Date date</label>
+                                <label for="name">Mandi Price</label>
+                                <input type="text" name="mandiprice" id="mandiprice" class="form-control"
+                                    placeholder="Enter Commodity price" [(ngModel)]="retailRateList.mandiPrice">
+                            </div>
+                        </div>
+
+                        <div class="col-12 mb-4">
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name"> Retail Price</label>
+                                <input type="text" name="retailPrice" id="retailPrice" class="form-control"
+                                    placeholder="Enter Commodity price" [(ngModel)]="retailRateList.retailPrice">
+                            </div>
+                        </div>
+
+                        <div class="col-12 mb-4">
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">Effective Start Date</label>
+                                <input type="date" name="effectiveStartDate" id="effectiveStartDate" class="form-control"
+                                    placeholder="Enter Commodity price" [(ngModel)]="retailRateList.effectiveStartDate" required>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mb-4">
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">Effective End Date</label>
                                 <input type="date" name="effectiveEndDate" id="effectiveEndDate" class="form-control"
-                                    placeholder="Enter Commodity price" [(ngModel)]="rateList.effectiveEndDate">
-
+                                    placeholder="Enter Commodity price" [(ngModel)]="retailRateList.effectiveEndDate">
                             </div>
                         </div>
-                        <ng-multiselect-dropdown [placeholder]="'select tehsil'" [settings]="dropdownSettings"
-                            [data]="tehsils" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"
-                            (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
-                        </ng-multiselect-dropdown>
+
                         <div class="col-12">
                             <button type="button" (click)="save()" class="btn buttonFull" [disabled]="!form.valid">
                                 save
@@ -60,10 +84,19 @@
                         </div>
 
                     </form>
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+<!-- <ng-multiselect-dropdown [placeholder]="'select tehsil'" [settings]="dropdownSettings"
+                            [data]="tehsils" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"
+                            (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)">
+                        </ng-multiselect-dropdown> -->

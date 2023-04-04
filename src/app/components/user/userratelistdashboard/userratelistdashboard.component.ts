@@ -34,7 +34,6 @@ export class UserratelistdashboardComponent implements OnInit {
   ) {
     this.userId = this.loginService.getLoggedInUser().id;
   }
-
   ngOnInit(): void {
     this.getUserProfile(this.userId);
   }
@@ -43,34 +42,19 @@ export class UserratelistdashboardComponent implements OnInit {
     this.loginService.getUserProfile(id).subscribe((res: Apiresponse) => {
       if (res.success == true) {
         this.userProfile = res.data;
-        this.userAssignedDistrict = this.userProfile.AssignedDistrict.districtId
-        this.userAssignedState = this.userProfile.AssignedDistrict.stateId
-        this.getStateById();
-        this.getDistrictById();
         console.log(this.userProfile);
-        this.getTehsilsByDistrictId(this.userAssignedDistrict);
       }
-    })
-  }
-  getStateById() {
-    this.statesService.admingetStateById(this.userAssignedState).subscribe((data: Apiresponse) => {
-      this.state = data.data;
     }, (error) => {
-      console.log(error);
+      this.toastr.error(error.error.message);
     });
   }
-  getDistrictById() {
-    this.districtsService.admingetDistrictById(this.userAssignedDistrict).subscribe((data: Apiresponse) => {
-      this.district = data.data;
-    }, (error) => {
-      console.log(error);
-    });
-  }
+
   getAllCategories() {
     this.categoryService.getAllCategories().subscribe(
       (data: Apiresponse) => {
         this.categories = data.data
         this.selectedCategory = this.categories[0];
+        this.loadingessentials(this.selectedCategory.id, this.userId);
         console.log(this.categories, this.selectedCategory);
       },
       (error) => {
@@ -79,23 +63,11 @@ export class UserratelistdashboardComponent implements OnInit {
       }
     );
   }
-  loadingessentials(id: number, stateId: number, districtId: number) {
-    console.log(id, stateId, districtId);
-    this.rateListService.getRateListByCategory(id, stateId, districtId).subscribe((data: Apiresponse) => {
+  loadingessentials(id: number, createdBy: number) {
+    console.log(id);
+    this.rateListService.getRateListByCategoryUser(id, createdBy).subscribe((data: Apiresponse) => {
       this.ratelist = data.data;
       console.log(this.ratelist);
     })
   }
-  getTehsilsByDistrictId(id: number) {
-    this.tehsilService.admingettehsilsfordistrict(
-      id
-    ).subscribe((data: Apiresponse) => {
-      this.tehsils = data.data;
-      console.log(this.tehsils);
-    });
-  }
-  tehsilnamebyid(id: number): string {
-    return this.tehsils.find(x => x.id == id)!.name;
-  }
-
 }

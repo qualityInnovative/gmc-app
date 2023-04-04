@@ -6,11 +6,22 @@ import { UserService, StatesService, DistrictsService, TehsilService } from 'src
 import { Apiresponse, Commodity, State, District, Tehsil, RateList, UserProfile } from 'src/app/ratelist-models';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { RatelistService } from 'src/app/services/ratelist/ratelist.service';
+import { Mandicommoditypricing } from 'src/app/ratelist-models';
+import { RetailRateList } from 'src/app/models/retailRateList';
+import { Unit } from 'src/app/ratelist-models';
+import { UnitsService } from 'src/app/ratelist-services';
+import { MandiService } from 'src/app/services/mandi/mandi.service';
+import { Mandi } from 'src/app/models/mandi';
+import { RetailratelistService } from 'src/app/services/retailratelist/retailratelist.service';
+import { CommodityAndRateList } from 'src/app/models/CommodityAndRateList';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/ratelist-services';
 @Component({
   selector: 'ratelist-ratelist',
   templateUrl: './ratelist.component.html',
   styleUrls: ['./ratelist.component.scss']
 })
+
 export class RatelistComponent implements OnInit {
   commodity: Commodity = new Commodity();
   userProfile: UserProfile = new UserProfile();
@@ -19,31 +30,55 @@ export class RatelistComponent implements OnInit {
   assignedDistrictId: number = 0;
   state: State = new State();
   district: District = new District();
+  districts: District[] = [];
   tehsils: Tehsil[] = [];
   tehsil: Tehsil = new Tehsil();
-  selectedTehsilId: number = 0;
-  rateList: RateList = new RateList();
-  ///////
+  mandi: Mandi = new Mandi();
+  mandis: Mandi[] = [];
+  mandicommoditypricing: Mandicommoditypricing = new Mandicommoditypricing();
+  retailRateList: RetailRateList = new RetailRateList();
+  units: Unit[] = [];
+  unit: Unit = new Unit();
   dropdownList: any[] = [];
   selectedItems: any[] = [];
   dropdownSettings = {};
   selecteditem: number = 0;
+
+  mandiAndRateList: any[] = [];
+  commodityAndRateList: CommodityAndRateList = new CommodityAndRateList();
+  /////
+  userStateId: number = 0;
+  userMandiId: number = 0;
+  selectedCommodityId: number = 0;
+  selectedDistrictId: number = 0;
+  selectedMandiId: number = 0;
+  selectedUnitId: number = 0;
+  //////
+
   constructor(
-    private commodityService: CommoditiesService,
     private route: ActivatedRoute,
     private location: Location,
+    private commodityService: CommoditiesService,
     private userService: UserService,
     private statesService: StatesService,
     private districtsService: DistrictsService,
     private tehsilService: TehsilService,
     private ratelistservice: RatelistService,
+    private unitsService: UnitsService,
+    private mandiService: MandiService,
+    private retailratelistService: RetailratelistService,
+    private router: Router,
+    private loginService: LoginService
+    
   ) { }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.commodity.id = params['commodityId'];
       this.getCommmodityById();
     });
     this.getUserProfile();
+    this.getUnits();
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -53,59 +88,86 @@ export class RatelistComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true
     };
+  }
+  unitSelected(event: HTMLSelectElement | any) {
+    this.selectedUnitId = event.target.value;
+    console.log(event.target.value);
 
   }
+  getRetailandMandiPrice(
+    commodityId: number,
+    districtId: number,
+    mandiId: number,
+    unitId: number
+  ) {
+    this.retailratelistService
+      .getRetailandMandiPrice(
+        commodityId,
+        districtId,
+        mandiId,
+        unitId
+      )
+      .subscribe((data: Apiresponse) => {
+        this.commodityAndRateList = data.data;
+        this.retailRateList.mandiPrice = this.commodityAndRateList.mandiPrice;
+        this.retailRateList.retailPrice = (this.commodityAndRateList.retailPriceFactor * this.commodityAndRateList.mandiPrice) + this.commodityAndRateList.mandiPrice;
+      }, (error) => {
+        console.log(error);
+      });
+  }
+  getUnits() {
+    this.unitsService.getUnits()
+      .subscribe((data: Apiresponse) => {
+        this.units = data.data;
+      }, (error) => {
+        console.log(error);
+      });
+  }
   getCommmodityById() {
-    this.commodityService.getCommodityById(this.commodity.id).subscribe((data: Apiresponse) => {
-      this.commodity = data.data;
-      console.log(this.commodity);
-    }, (error) => {
-      console.log(error);
-    });
+    this.commodityService.getCommodityById(this.commodity.id)
+      .subscribe((data: Apiresponse) => {
+        this.commodity = data.data;
+      }, (error) => {
+        console.log(error);
+      });
   }
   getUserProfile() {
-    this.userService.getUserProfile().subscribe((data: Apiresponse) => {
-      this.userProfile = data.data;
-      this.assignedStateId = this.userProfile.AssignedDistrict.stateId;
-      this.assignedDistrictId = this.userProfile.AssignedDistrict.districtId;
-      this.getStateById();
-      console.log(this.assignedStateId);
-      console.log(this.assignedDistrictId);
-      this.getDistrictById();
-      this.getTehsilsByDistrictId();
+    this.userService.getUserProfile()
+      .subscribe((data: Apiresponse) => {
+        this.userProfile = data.data;
+        this.userStateId = this.userProfile.Profile.stateId;
+        this.selectedMandiId = this.userProfile.Profile.mandiId;
+        this.getDistrictsByStateId(this.userStateId);
+        if (this.userProfile.Profile.mandiId != null) {
+          this.getMandiNameById(this.selectedMandiId);
+        }
+      }, (error) => {
+        console.log(error);
+      });
+  }
+  getDistrictsByStateId(stateId: number) {
+    this.statesService.getDistrictsofstate(stateId)
+      .subscribe((data: Apiresponse) => {
+        this.districts = data.data;
+      }, (error) => {
+        console.log(error);
+      });
+  }
+  getMandiNameById(mandiId: number) {
+    this.mandiService.adminGetMandiById(mandiId).subscribe((data: Apiresponse) => {
+      this.mandi = data.data;
     }, (error) => {
       console.log(error);
     });
   }
-  getTehsilsByDistrictId() {
-    this.tehsilService.admingettehsilsfordistrict(this.assignedDistrictId).subscribe((data: Apiresponse) => {
-      this.tehsils = data.data;
-      console.log(this.tehsils);
-    }, (error) => {
-      console.log(error);
-    });
-  }
-  getDistrictById() {
-    this.districtsService.admingetDistrictById(this.assignedDistrictId).subscribe((data: Apiresponse) => {
-      this.district = data.data;
-    }, (error) => {
-      console.log(error);
-    });
-  }
-  getStateById() {
-    this.statesService.admingetStateById(this.assignedStateId).subscribe((data: Apiresponse) => {
-      this.state = data.data;
-    }, (error) => {
-      console.log(error);
-    });
+  districtSelected(event: HTMLSelectElement | any) {
+    this.selectedDistrictId = event.target.value;
+    this.getRetailandMandiPrice(this.commodity.id, this.selectedDistrictId, this.selectedMandiId, this.selectedUnitId);
   }
   back() {
     this.location.back();
   }
-  getTehsilratelist(event: any) {
-    this.selectedTehsilId = event.target.value;
-    console.log(this.selectedTehsilId);
-  }
+  getTehsilratelist(event: any) { }
   onSelectAll(items: any) {
     this.selectedItems = items;
   }
@@ -119,37 +181,34 @@ export class RatelistComponent implements OnInit {
     this.selectedItems = [];
   }
   save() {
-    this.rateList.commodityId = this.commodity.id;
-    console.log(this.rateList);
-    console.log(this.selectedItems)
-    if (this.selectedItems.length == 0) {
-      alert("Please select atleast one item");
-      return;
-    }
-    if (this.rateList.price == null || this.rateList.price == 0 || this.rateList.price == undefined) {
-      alert("Please enter price");
-      return;
-    }
-    let tehsils = this.selectedItems;
-    let rateListObj = {
-      tehsils: tehsils,
-      commodityId: this.rateList.commodityId,
-      tehsilId: this.rateList.tehsilId,
-      price: this.rateList.price,
-      effectiveStartDate: this.rateList.effectiveStartDate,
-      effectiveEndDate: this.rateList.effectiveEndDate,
-
-    }
-    this.ratelistservice.addRateListfromMain(rateListObj).subscribe((data: Apiresponse) => {
-      if (data.success == true) {
-        alert("Rate list added successfully");
+    this.retailRateList.commodityId = this.commodity.id;
+    this.retailRateList.mandiId = this.selectedMandiId;
+    this.retailRateList.unitId = this.selectedUnitId;
+    console.log(this.retailRateList)
+    this.retailRateList.createdBy = this.loginService.getLoggedInUser().id;
+    this.retailratelistService.saveRetailRateList(this.retailRateList)
+      .subscribe((data: Apiresponse) => {
         this.location.back();
-      } else {
-        alert("Something went wrong");
-
-      }
-    });
-
+      }, (error) => {
+        console.log(error);
+      });
   }
+  // saveRateList() {
+  //   if (this.edit) {
+  //     console.log(this.retailratelist);
+  //     this.retailratelistService.
+  //       updateRetailRateList(this.retailratelistId, this.retailratelist).
+  //       subscribe((res: Apiresponse) => {
+  //         this.router.navigate(['admin/adminretailratelist']);
+  //       });
+  //   } else {
+  //     console.log(this.retailratelist);
+  //     this.retailratelist.approvedByUserId= this.loginService.getLoggedInUser().id;
+  //     this.retailratelistService.saveRetailRateList(this.retailratelist)
+  //       .subscribe((res: Apiresponse) => {
+  //         this.router.navigate(['admin/adminretailratelist']);
+  //       });
+  //   }
+  // }
 }
 

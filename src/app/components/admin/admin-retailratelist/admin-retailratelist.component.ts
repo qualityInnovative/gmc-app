@@ -121,7 +121,11 @@ export class AdminRetailratelistComponent implements OnInit {
     this.router.navigate(['admin/adminretailratelist/editadminretaillist', id]);
   }
   deleteratelist(id: number) {
-    console.log(id);
+    this.retailratelistService
+    .deleteRetailRateList(id)
+    .subscribe((res: Apiresponse) => {
+      this.getRetailRateList();
+    });
   }
 
 

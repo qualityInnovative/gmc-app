@@ -55,6 +55,17 @@ import { EditadminRetailratelistComponent } from './components/admin/admin-retai
 import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { ResetpasswordComponent } from './components/user/resetpassword/resetpassword.component';
+
+import { ModeratordashboardComponent } from './components/moderator/moderatordashboard/moderatordashboard.component';
+import { AdmindashboardComponent } from './components/admin/admindashboard/admindashboard.component';
+
+import { ModeratormenuComponent } from './components/misc/moderatormenu/moderatormenu.component';
+import { ModeratorhomeComponent } from './components/moderator/moderatorhome/moderatorhome.component';
+import { ModeratordistricconfigurationComponent } from './components/moderator/moderatordistricconfiguration/moderatordistricconfiguration.component';
+import { ModeratormandicommoditypricingComponent } from './components/moderator/moderatormandicommoditypricing/moderatormandicommoditypricing.component';
+import { ModeratorretailratelistComponent } from './components/moderator/moderatorretailratelist/moderatorretailratelist.component';
+import { ModeratormandiusersComponent } from './components/moderator/moderatormandiusers/moderatormandiusers.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +113,11 @@ import { ResetpasswordComponent } from './components/user/resetpassword/resetpas
     EditadminRetailratelistComponent,
     EditprofileComponent,
     ProfileComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    ModeratordashboardComponent,
+    ModeratormenuComponent,
+    AdmindashboardComponent, 
+    ModeratorhomeComponent, ModeratordistricconfigurationComponent, ModeratormandicommoditypricingComponent, ModeratorretailratelistComponent, ModeratormandiusersComponent,   
   ],
   imports: [
     BrowserModule,

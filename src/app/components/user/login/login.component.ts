@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router
-  ) { }
-  ngOnInit(): void {
+  ) { 
     if (this.loginService.isUserLoggedIn()) {
       this.router.navigate(['/']);
     }
   }
+  ngOnInit(): void {}
   seepassword(): void {
     if (
       (document.getElementById("password") as HTMLInputElement).type ===
@@ -60,12 +60,13 @@ export class LoginComponent implements OnInit {
           if (res.data.user.roleId == Roles.admin) {
             this.router.navigate(['/admin/states']);
           } else if (res.data.user.roleId == Roles.moderator) {
-            this.router.navigate(['/Moderator']);
+            this.router.navigate(['/moderator']);
           } else if (res.data.user.roleId == Roles.user) {
             this.router.navigate(['/home']);
           } else {
             this.router.navigate(['/']);
           }
+          this.loginService.reloadHeaderComponent();
         } else {
           this.hasError = true;
           alert(res.message);

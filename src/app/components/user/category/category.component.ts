@@ -120,7 +120,6 @@ export class CategoryComponent implements OnInit {
       this.selecteditem = 0;
       return;
     }
-    
     this.selecteditem = id;
     console.log(this.selecteditem);
   }
@@ -141,7 +140,8 @@ export class CategoryComponent implements OnInit {
       alert('Please enter rate');
       return
     } if (rateListObj.effectiveEndDate != undefined && rateListObj.effectiveStartDate != undefined && rateListObj.price != undefined) {
-      this.ratelistservice.addRateListfromMain(rateListObj).subscribe((data: Apiresponse) => {
+      this.ratelistservice.addRateListfromMain(rateListObj)
+      .subscribe((data: Apiresponse) => {
         if (data.success) {
           alert('Rate list added successfully');
           this.selecteditem = 0;
@@ -154,21 +154,16 @@ export class CategoryComponent implements OnInit {
     }
   }
   getUserProfile() {
-    this.userService.getUserProfile().subscribe((data: Apiresponse) => {
+    this.userService.getUserProfile()
+    .subscribe((data: Apiresponse) => {
       this.userProfile = data.data;
-      this.assignedStateId = this.userProfile.AssignedDistrict.stateId;
-      this.assignedDistrictId = this.userProfile.AssignedDistrict.districtId;
-      this.getStateById();
-      console.log(this.assignedStateId);
-      console.log(this.assignedDistrictId);
-      this.getDistrictById();
-      this.getTehsilsByDistrictId();
     }, (error) => {
       console.log(error);
     });
   }
   getTehsilsByDistrictId() {
-    this.tehsilService.admingettehsilsfordistrict(this.assignedDistrictId).subscribe((data: Apiresponse) => {
+    this.tehsilService.admingettehsilsfordistrict(this.assignedDistrictId)
+    .subscribe((data: Apiresponse) => {
       this.tehsils = data.data;
       console.log(this.tehsils);
     }, (error) => {
@@ -176,21 +171,19 @@ export class CategoryComponent implements OnInit {
     });
   }
   getDistrictById() {
-    this.districtsService.admingetDistrictById(this.assignedDistrictId).subscribe((data: Apiresponse) => {
+    this.districtsService.admingetDistrictById(this.assignedDistrictId)
+    .subscribe((data: Apiresponse) => {
       this.district = data.data;
     }, (error) => {
       console.log(error);
     });
   }
   getStateById() {
-    this.statesService.admingetStateById(this.assignedStateId).subscribe((data: Apiresponse) => {
+    this.statesService.admingetStateById(this.assignedStateId)
+    .subscribe((data: Apiresponse) => {
       this.state = data.data;
     }, (error) => {
       console.log(error);
     });
   }
-
-
-
-
 }

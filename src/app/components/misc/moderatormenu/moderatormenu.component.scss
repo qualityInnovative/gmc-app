@@ -1,0 +1,22 @@
+@import "../../../../styles.scss";
+.sidebar_query{
+  border: none;
+  border-radius: 0px;
+  margin: 30px 0px;
+  background-color: transparent;
+  box-shadow: 0px 0px 10px 0px #0000003d;
+}
+.sidebar_query .nav li.nav-item .nav-link{
+  border-radius: 0px;
+  background-color: transparent;
+  padding-left: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+  text-transform: capitalize;
+  border-bottom: 1px dotted $primary-color;
+}
+.sidebar_query .nav li.nav-item .nav-link.active ,.sidebar_query .nav li.nav-item .nav-link:hover {
+  background-color: rgba(31, 152, 196, 0.05) !important;
+  color: $primary-color !important;
+}

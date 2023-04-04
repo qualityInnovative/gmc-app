@@ -15,6 +15,8 @@ import { District } from 'src/app/ratelist-models';
 
 import { MandiService } from 'src/app/services/mandi/mandi.service';
 import { Mandi } from 'src/app/models/mandi';
+
+import { LoginService } from 'src/app/ratelist-services';
 @Component({
   selector: 'ratelist-editadmin-retailratelist',
   templateUrl: './editadmin-retailratelist.component.html',
@@ -49,7 +51,9 @@ export class EditadminRetailratelistComponent implements OnInit {
     private commoditiesService: CommoditiesService,
     private mandiService: MandiService,
     private districtsService: DistrictsService,
-    private unitsService: UnitsService
+    private unitsService: UnitsService,
+    private loginService: LoginService
+    
   ) {
     this.retailratelistId = this.route.snapshot.params['id'];
   }
@@ -106,7 +110,6 @@ export class EditadminRetailratelistComponent implements OnInit {
       });
   }
 
-
   isEdit() {
     if (this.retailratelistId > 0) {
       this.edit = true;
@@ -155,6 +158,8 @@ export class EditadminRetailratelistComponent implements OnInit {
         });
     } else {
       console.log(this.retailratelist);
+      this.retailratelist.approvedByUserId= this.loginService.getLoggedInUser().id;
+      this.retailratelist.createdBy= this.loginService.getLoggedInUser().id;
       this.retailratelistService.saveRetailRateList(this.retailratelist)
         .subscribe((res: Apiresponse) => {
           this.router.navigate(['admin/adminretailratelist']);

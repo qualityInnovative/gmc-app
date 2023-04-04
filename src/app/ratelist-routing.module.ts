@@ -38,6 +38,17 @@ import { EditadminRetailratelistComponent } from './components/admin/admin-retai
 import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { ResetpasswordComponent } from './components/user/resetpassword/resetpassword.component';
+
+import { ModeratordashboardComponent } from './components/moderator/moderatordashboard/moderatordashboard.component';
+import { ModeratorhomeComponent } from './components/moderator/moderatorhome/moderatorhome.component';
+
+import { AdmindashboardComponent } from './components/admin/admindashboard/admindashboard.component';
+ 
+import { ModeratordistricconfigurationComponent } from './components/moderator/moderatordistricconfiguration/moderatordistricconfiguration.component';
+import { ModeratormandicommoditypricingComponent } from './components/moderator/moderatormandicommoditypricing/moderatormandicommoditypricing.component';
+import { ModeratormandiusersComponent } from './components/moderator/moderatormandiusers/moderatormandiusers.component';
+import { ModeratorretailratelistComponent } from './components/moderator/moderatorretailratelist/moderatorretailratelist.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -247,12 +258,56 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path:'resetpassword',
-    component:ResetpasswordComponent,
-    pathMatch:'full',
+    path: 'resetpassword',
+    component: ResetpasswordComponent,
+    pathMatch: 'full',
     canActivate: [AuthGuard]
-  }
+  },
+  {
+    path: 'moderator',
+    component: ModeratorhomeComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'moderator/dashboard',
+    component: ModeratordashboardComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admindashboard',
+    component: AdmindashboardComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path:"moderator/mandicommoditypricing",
+    component:ModeratormandicommoditypricingComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+
+  },{
+    path:"moderator/districtrateconfiguration",
+    component:ModeratormandicommoditypricingComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+
+  },{
+    path:"moderator/retailratelist",
+    component:ModeratorretailratelistComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+
+  },
+  {
+    path:"moderator/mandiusers",
+    component:ModeratormandiusersComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
 ]
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

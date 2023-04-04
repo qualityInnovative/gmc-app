@@ -9,6 +9,7 @@ export class RetailRateList {
     districtId: number = 0;
     unitId: number = 0;
     mandiPrice: number = 0;
+    createdBy!: number;
     createdAt: Date = new Date();
     updatedAt: Date = new Date();
 }

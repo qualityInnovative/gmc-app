@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { User ,UserProfile} from 'src/app/ratelist-models';
+import { User, UserProfile } from 'src/app/ratelist-models';
 import { LoginService } from 'src/app/ratelist-services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { faSpinner, faBars, faAngleDown, faUserGear, faEnvelope, faPencil, faLock, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Roles } from 'src/app/ratelist-models';
-
+// change detection strategy
+import { ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'ratelist-header',
   templateUrl: './header.component.html',
@@ -25,8 +26,8 @@ export class HeaderComponent implements OnInit {
   busy: boolean = false;
   hasError: boolean = false;
   user: User = new User() || undefined
-  userProfile:UserProfile = new UserProfile();
-  userId:number = 0;
+  userProfile: UserProfile = new UserProfile();
+  userId: number = 0;
   profileImage: string = "assets/images/profile.png";
   constructor(
     public loginService: LoginService,
@@ -35,12 +36,11 @@ export class HeaderComponent implements OnInit {
     this.dontShowHeaderinLogin();
     this.userId = this.loginService.getLoggedInUser().id;
   }
-
   ngOnInit(): void {
     this.getUserProfile(this.userId);
   }
-  getUserProfile(id:number){
-    this.loginService.getUserProfile(id).subscribe((res:any)=>{
+  getUserProfile(id: number) {
+    this.loginService.getUserProfile(id).subscribe((res: any) => {
       this.userProfile = res.data;
     })
   }
@@ -54,6 +54,17 @@ export class HeaderComponent implements OnInit {
     this.loginService.logout();
     this.route.navigate(['/']);
   }
+  gotohome(): void {
+    if (this.userProfile.roleId == Roles.admin) {
+      this.route.navigate(['/admindashboard']);
+    } else if (this.userProfile.roleId == Roles.moderator) {
+      this.route.navigate(['/moderator']);
+    } else if (this.userProfile.roleId == Roles.user) {
+      this.route.navigate(['/home']);
+    }
+  }
+
+
 
 
 }

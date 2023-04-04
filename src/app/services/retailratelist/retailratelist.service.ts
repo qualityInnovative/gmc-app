@@ -32,5 +32,9 @@ export class RetailratelistService {
     }
     return this.http.post<Apiresponse>(`${environment.apiUrl}/retailratelist/getretailandmandiprice`, data);
   }
-
+  deleteRetailRateList(id: number): Observable<Apiresponse> {
+    return this.http.delete<Apiresponse>(`${environment.apiUrl}/retailratelist/delete/${id}`);
+  }
+ 
+  
 }
