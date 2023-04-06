@@ -74,7 +74,9 @@
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Commodity</label>
                             <select class="form-control input_feild" id="Commodity" name="Commodity" placeholder=" "
-                                [(ngModel)]="mandicommoditypricing.commodityId" required>
+                                [(ngModel)]="mandicommoditypricing.commodityId"
+                                
+                                 required>
                                 <option value="">Select Commodity</option>
                                 <option *ngFor="let commodity of commodities" [value]="commodity.id">
                                     {{commodity.name}}

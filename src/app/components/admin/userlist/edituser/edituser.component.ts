@@ -8,7 +8,8 @@ import { State } from 'src/app/ratelist-models';
 import { StatesService } from 'src/app/ratelist-services';
 import { District } from 'src/app/ratelist-models';
 import { DistrictsService } from 'src/app/ratelist-services';
-import { AssignedDistrict } from 'src/app/models/assignedDistrict';
+import { Mandi } from 'src/app/ratelist-models';
+import { MandiService } from 'src/app/services/mandi/mandi.service';
 @Component({
   selector: 'ratelist-edituser',
   templateUrl: './edituser.component.html',
@@ -25,18 +26,23 @@ export class EdituserComponent implements OnInit {
   stateId: number = 0;
   districts: District[] = [];
   districtId: number = 0;
-  assignDistrict: AssignedDistrict = new AssignedDistrict();
+  mandis: Mandi[] = [];
+  mandi: Mandi = new Mandi();
+
+
   constructor(
     private router: Router,
     private userService: UserService,
     private location: Location,
     private route: ActivatedRoute,
     private statesService: StatesService,
-    private districtsService: DistrictsService
+    private districtsService: DistrictsService,
+    private mandiService: MandiService
   ) { }
   ngOnInit(): void {
     this.getUserRoles();
     this.getAllStates();
+    this.getAllMandis();
     this.isEdit();
     this.loading = true;
   }
@@ -45,10 +51,21 @@ export class EdituserComponent implements OnInit {
       if (params['userId'] > 0) {
         this.userId = params['userId'];
         this.getUserById(this.userId);
-        
-        
+
+
       }
     });
+  }
+  getAllMandis() {
+    this.mandiService.getallMandis().subscribe(
+      (data) => {
+        this.mandis = data.data;
+        this.loading = false;
+      },
+      (error) => {
+        this.loading = false;
+      }
+    )
   }
   getAllStates() {
     this.statesService.admingetStates().subscribe(
@@ -62,8 +79,6 @@ export class EdituserComponent implements OnInit {
     )
   }
   getDistrictsofstate(stateId: number) {
-    this.assignDistrict.stateId = stateId;
-    this.assignDistrict.userId = this.userId;
     this.districtsService.admingetDistrictsByStateId(stateId).subscribe(
       (data) => {
         this.districts = data.data;
@@ -79,8 +94,8 @@ export class EdituserComponent implements OnInit {
       (data) => {
         this.userProfile = data.data
         console.log(this.userProfile)
-        this.stateId = this.userProfile.AssignedDistrict.stateId;
-        this.districtId = this.userProfile.AssignedDistrict.districtId;
+        this.stateId = this.userProfile.Profile.stateId;
+        this.districtId = this.userProfile.Profile.districtId;
         this.getDistrictsofstate(this.stateId);
         this.loading = false;
       },
@@ -101,37 +116,21 @@ export class EdituserComponent implements OnInit {
       }
     )
   }
-  selectedDistrits(districtId: number) {
-    this.assignDistrict.districtId = districtId;
-  }
+
 
   back() {
     this.location.back();
   }
   saveUser() {
-    // only one district is assigned to user
-   
-    this.assignDistrict.userId = this.userId;
-    this.assignDistrict.districtId = this.districtId;
-    this.assignDistrict.stateId = this.stateId;
-    console.log(this.assignDistrict);
-    if(this.assignDistrict.districtId==0){
-      alert("Please select district");
-      return;
-    }
-    if(this.assignDistrict.stateId==0){
-      alert("Please select state");
-      return;
-    }
-    this.userProfile.AssignedDistrict = this.assignDistrict;
-    console.log(this.userProfile);
-    this.userService.updateUser(this.userProfile).subscribe(
+    this.userService.adminUpdateUser(this.userProfile).subscribe(
       (data) => {
-       console.log(data);
-       alert(data.message);
-      })
-
-    
+        this.router.navigate(['/admin/userlist']);
+        this.loading = false;
+      }
+      ,
+      (error) => {
+        this.loading = false;
+      }
+    )
   }
-
 }

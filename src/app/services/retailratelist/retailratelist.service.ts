@@ -35,6 +35,9 @@ export class RetailratelistService {
   deleteRetailRateList(id: number): Observable<Apiresponse> {
     return this.http.delete<Apiresponse>(`${environment.apiUrl}/retailratelist/delete/${id}`);
   }
+  getModeratorRetailRateList(mandiId: number): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(`${environment.apiUrl}/retailratelist/getmoderatorretailratelist/${mandiId}`);
+  }
  
   
 }

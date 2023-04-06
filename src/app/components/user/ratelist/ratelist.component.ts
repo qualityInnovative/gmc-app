@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommoditiesService } from 'src/app/ratelist-services';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { UserService, StatesService, DistrictsService, TehsilService } from 'src/app/ratelist-services';
-import { Apiresponse, Commodity, State, District, Tehsil, RateList, UserProfile } from 'src/app/ratelist-models';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { RatelistService } from 'src/app/services/ratelist/ratelist.service';
+import { UserService, StatesService} from 'src/app/ratelist-services';
+import { Apiresponse, Commodity, State, District, UserProfile } from 'src/app/ratelist-models';
 import { Mandicommoditypricing } from 'src/app/ratelist-models';
 import { RetailRateList } from 'src/app/models/retailRateList';
 import { Unit } from 'src/app/ratelist-models';
@@ -14,7 +12,6 @@ import { MandiService } from 'src/app/services/mandi/mandi.service';
 import { Mandi } from 'src/app/models/mandi';
 import { RetailratelistService } from 'src/app/services/retailratelist/retailratelist.service';
 import { CommodityAndRateList } from 'src/app/models/CommodityAndRateList';
-import { Router } from '@angular/router';
 import { LoginService } from 'src/app/ratelist-services';
 @Component({
   selector: 'ratelist-ratelist',
@@ -31,8 +28,7 @@ export class RatelistComponent implements OnInit {
   state: State = new State();
   district: District = new District();
   districts: District[] = [];
-  tehsils: Tehsil[] = [];
-  tehsil: Tehsil = new Tehsil();
+ 
   mandi: Mandi = new Mandi();
   mandis: Mandi[] = [];
   mandicommoditypricing: Mandicommoditypricing = new Mandicommoditypricing();
@@ -54,22 +50,16 @@ export class RatelistComponent implements OnInit {
   selectedMandiId: number = 0;
   selectedUnitId: number = 0;
   //////
-
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private commodityService: CommoditiesService,
     private userService: UserService,
     private statesService: StatesService,
-    private districtsService: DistrictsService,
-    private tehsilService: TehsilService,
-    private ratelistservice: RatelistService,
     private unitsService: UnitsService,
     private mandiService: MandiService,
     private retailratelistService: RetailratelistService,
-    private router: Router,
     private loginService: LoginService
-    
   ) { }
 
   ngOnInit(): void {
@@ -127,6 +117,7 @@ export class RatelistComponent implements OnInit {
     this.commodityService.getCommodityById(this.commodity.id)
       .subscribe((data: Apiresponse) => {
         this.commodity = data.data;
+        console.log(this.commodity);
       }, (error) => {
         console.log(error);
       });
@@ -167,7 +158,7 @@ export class RatelistComponent implements OnInit {
   back() {
     this.location.back();
   }
-  getTehsilratelist(event: any) { }
+ 
   onSelectAll(items: any) {
     this.selectedItems = items;
   }
@@ -193,22 +184,6 @@ export class RatelistComponent implements OnInit {
         console.log(error);
       });
   }
-  // saveRateList() {
-  //   if (this.edit) {
-  //     console.log(this.retailratelist);
-  //     this.retailratelistService.
-  //       updateRetailRateList(this.retailratelistId, this.retailratelist).
-  //       subscribe((res: Apiresponse) => {
-  //         this.router.navigate(['admin/adminretailratelist']);
-  //       });
-  //   } else {
-  //     console.log(this.retailratelist);
-  //     this.retailratelist.approvedByUserId= this.loginService.getLoggedInUser().id;
-  //     this.retailratelistService.saveRetailRateList(this.retailratelist)
-  //       .subscribe((res: Apiresponse) => {
-  //         this.router.navigate(['admin/adminretailratelist']);
-  //       });
-  //   }
-  // }
+  
 }
 

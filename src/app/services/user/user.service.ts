@@ -34,4 +34,10 @@ export class UserService {
   changePassword(oldPassword: string, newPassword: string,id:number): Observable<Apiresponse> {
     return this.http.put<Apiresponse>(environment.apiUrl + '/user/updatepassword', { oldPassword, newPassword ,id});
   }
+  adminUpdateUser(user: UserProfile): Observable<Apiresponse> {
+    return this.http.put<Apiresponse>(environment.apiUrl + '/user/adminupdateuser', user);
+  }
+  admindeleteUser(id: number): Observable<Apiresponse> {
+    return this.http.delete<Apiresponse>(environment.apiUrl + '/user/admindeleteuser/' + id);
+  }
 }

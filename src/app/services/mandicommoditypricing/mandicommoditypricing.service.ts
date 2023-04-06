@@ -30,6 +30,12 @@ export class MandicommoditypricingService {
   updateMandiCommodityPricing(mandicommoditypricing: Mandicommoditypricing): Observable<Apiresponse> {
     return this.http.put<Apiresponse>(`${environment.apiUrl}/mandicommoditypricing/update`, mandicommoditypricing);
   }
+  getModeratorMandiCommodityPricing(mandiId: number): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(`${environment.apiUrl}/mandicommoditypricing/getcommoditypricingbymandi/${mandiId}`);
+  }
+  getMandiCommodityPricingByCategoryAndUser(categoryId: number, userId: number): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(`${environment.apiUrl}/mandicommoditypricing/getcommoditypricingbycategoryanduser/${categoryId}/${userId}`);
+  }
 
 
 }

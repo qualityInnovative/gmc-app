@@ -43,11 +43,17 @@ import { ModeratordashboardComponent } from './components/moderator/moderatordas
 import { ModeratorhomeComponent } from './components/moderator/moderatorhome/moderatorhome.component';
 
 import { AdmindashboardComponent } from './components/admin/admindashboard/admindashboard.component';
- 
 import { ModeratordistricconfigurationComponent } from './components/moderator/moderatordistricconfiguration/moderatordistricconfiguration.component';
 import { ModeratormandicommoditypricingComponent } from './components/moderator/moderatormandicommoditypricing/moderatormandicommoditypricing.component';
+import { AddeditmandicommoditypricingComponent } from './components/moderator/moderatormandicommoditypricing/addeditmandicommoditypricing/addeditmandicommoditypricing.component';
 import { ModeratormandiusersComponent } from './components/moderator/moderatormandiusers/moderatormandiusers.component';
 import { ModeratorretailratelistComponent } from './components/moderator/moderatorretailratelist/moderatorretailratelist.component';
+import { MandicommoditiesComponent } from './components/moderator/mandicommodities/mandicommodities.component';
+import { AddremovecommodityfrommandiComponent } from './components/moderator/mandicommodities/addremovecommodityfrommandi/addremovecommodityfrommandi.component';
+import { AddmoderatorratelistComponent } from './components/moderator/moderatorretailratelist/addmoderatorratelist/addmoderatorratelist.component';
+import { MandirateComponent } from './components/user/mandirate/mandirate.component';
+import { EditmandirateComponent } from './components/user/mandirate/editmandirate/editmandirate.component';
+import { CreatemandiuserComponent } from './components/moderator/moderatormandiusers/createmandiuser/createmandiuser.component';
 
 const routes: Routes = [
   {
@@ -185,6 +191,19 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path:"mandirate/:commodityId",
+    component:MandirateComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'mandirate/editmandirate/:id',
+    component:EditmandirateComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+
+  },
+  {
     path: 'admin/mandi',
     component: MandiComponent,
     pathMatch: 'full',
@@ -282,30 +301,60 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path:"moderator/mandicommoditypricing",
-    component:ModeratormandicommoditypricingComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: "moderator/mandicommoditypricing",
+    component: ModeratormandicommoditypricingComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "moderator/mandicommoditypricing/editmandicommoditypricing/:id",
+    component: AddeditmandicommoditypricingComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "moderator/districtrateconfiguration",
+    component: ModeratordistricconfigurationComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
 
-  },{
-    path:"moderator/districtrateconfiguration",
-    component:ModeratormandicommoditypricingComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
-
-  },{
-    path:"moderator/retailratelist",
-    component:ModeratorretailratelistComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+  }, {
+    path: "moderator/retailratelist",
+    component: ModeratorretailratelistComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
 
   },
   {
-    path:"moderator/mandiusers",
-    component:ModeratormandiusersComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: "moderator/retailratelist/editretailratelist/:id",
+    component:AddmoderatorratelistComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
+  {
+    path: "moderator/mandiusers",
+    component: ModeratormandiusersComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "moderator/mandiusers/editmandiuser/:id",
+    component:CreatemandiuserComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "moderator/mandicommodities",
+    component: MandicommoditiesComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  }, {
+    path: "moderator/mandicommodities/editmandicommodity/:id",
+    component: AddremovecommodityfrommandiComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+
 ]
 
 @NgModule({

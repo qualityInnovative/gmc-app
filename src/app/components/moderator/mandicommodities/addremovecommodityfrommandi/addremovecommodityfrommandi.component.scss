@@ -1,0 +1,35 @@
+@import "../../../../../styles.scss";
+.buttonFull {
+  width: 130px !important;
+  color: $white;
+  text-transform: capitalize;
+}
+.buttonFull-transparent {
+  text-transform: capitalize;
+}
+.manage-specialty .card-title {
+  font-size: 22px;
+  font-weight: 800;
+  position: relative;
+}
+.manage-specialty .card-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 12%;
+  height: 3px;
+  background-color: $primary-color;
+}
+
+.form-group label {
+  color: $primary-color;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.form-group .input_feild {
+  padding-left: 10px !important;
+  background-color: #f8fcff !important;
+}

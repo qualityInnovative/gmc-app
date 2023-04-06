@@ -65,6 +65,15 @@ import { ModeratordistricconfigurationComponent } from './components/moderator/m
 import { ModeratormandicommoditypricingComponent } from './components/moderator/moderatormandicommoditypricing/moderatormandicommoditypricing.component';
 import { ModeratorretailratelistComponent } from './components/moderator/moderatorretailratelist/moderatorretailratelist.component';
 import { ModeratormandiusersComponent } from './components/moderator/moderatormandiusers/moderatormandiusers.component';
+import { MandicommoditiesComponent } from './components/moderator/mandicommodities/mandicommodities.component';
+import { AddremovecommodityfrommandiComponent } from './components/moderator/mandicommodities/addremovecommodityfrommandi/addremovecommodityfrommandi.component';
+import { AddeditmandicommoditypricingComponent } from './components/moderator/moderatormandicommoditypricing/addeditmandicommoditypricing/addeditmandicommoditypricing.component';
+import { AddmoderatorratelistComponent } from './components/moderator/moderatorretailratelist/addmoderatorratelist/addmoderatorratelist.component';
+import { MandirateComponent } from './components/user/mandirate/mandirate.component';
+import { EditmandirateComponent } from './components/user/mandirate/editmandirate/editmandirate.component';
+import { CreatemandiuserComponent } from './components/moderator/moderatormandiusers/createmandiuser/createmandiuser.component';
+
+
 
 @NgModule({
   declarations: [
@@ -116,8 +125,15 @@ import { ModeratormandiusersComponent } from './components/moderator/moderatorma
     ResetpasswordComponent,
     ModeratordashboardComponent,
     ModeratormenuComponent,
-    AdmindashboardComponent, 
-    ModeratorhomeComponent, ModeratordistricconfigurationComponent, ModeratormandicommoditypricingComponent, ModeratorretailratelistComponent, ModeratormandiusersComponent,   
+    AdmindashboardComponent,
+    ModeratorhomeComponent,
+    ModeratordistricconfigurationComponent, 
+    ModeratormandicommoditypricingComponent, 
+    ModeratorretailratelistComponent, 
+    ModeratormandiusersComponent, 
+    MandicommoditiesComponent, 
+    AddremovecommodityfrommandiComponent, 
+    AddeditmandicommoditypricingComponent, AddmoderatorratelistComponent, MandirateComponent, EditmandirateComponent, CreatemandiuserComponent,
   ],
   imports: [
     BrowserModule,

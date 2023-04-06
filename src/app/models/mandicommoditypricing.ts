@@ -10,6 +10,7 @@ export class Mandicommoditypricing{
     mandiId: number = 0;
     commodityId: number = 0;
     unitId: number = 0;
+    createdBy: number = 0;
     createdAt: Date = new Date();
     updatedAt: Date = new Date();
 }

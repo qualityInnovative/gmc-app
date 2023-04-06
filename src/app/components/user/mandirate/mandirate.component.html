@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-menu></ratelist-menu>
+        </div>
+        <div class="col-md-8 mt-5">
+            <div class="d-flex mb-3 justify-content-between align-items-center manage-specialty">
+                <h2>{{commodity.name | uppercase}}</h2>
+                <button class="btn buttonFull" (click)="back()">back</button>
+            </div>
+            <div class="d-flex mb-3 justify-content-between align-items-center manage-specialty">
+                <h4>{{mandi.name | uppercase}}</h4>
+            </div>
+            <div class="card shadow mb-5">
+                <div class="card-body">
+                    <form #form="ngForm">
+                       
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">Price</label>
+                                <input type="text" class="form-control input_feild" id="mandicommoditypricing.price"
+                                    name="mandicommoditypricing.price" placeholder="price"
+                                    [(ngModel)]="mandicommoditypricing.price" required />
+                            </div>
+                           
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">Effective Start Date</label>
+                                <input type="date" class="form-control input_feild" id="effectiveStartDate"
+                                    name="effectiveStartDate" placeholder="start Date"
+                                    [(ngModel)]="mandicommoditypricing.effectiveStartDate" required />
+                            </div>
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">Effective End Date</label>
+                                <input type="date" class="form-control input_feild" id="effectiveEndDate"
+                                    name="effectiveEndDate" placeholder="End date"
+                                    [(ngModel)]="mandicommoditypricing.effectiveEndDate" required />
+                            </div>
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">Effective Start Time</label>
+                                <input type="time" class="form-control input_feild" id="effectiveStartTime"
+                                    name="effectiveStartTime" placeholder=" "
+                                    [(ngModel)]="mandicommoditypricing.effectiveStartTime" required />
+                            </div>
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">Effective End Time</label>
+                                <input type="time" class="form-control input_feild" id="effectiveEndTime"
+                                    name="effectiveEndTime" placeholder=" "
+                                    [(ngModel)]="mandicommoditypricing.effectiveEndTime" required />
+                            </div>
+                           
+                            <div class="mb-3 form-group position-relative">
+                                <label for="name">Unit</label>
+                                <select class="form-control input_feild" id="unit" name="unit" placeholder=" "
+                                    [(ngModel)]="mandicommoditypricing.unitId" required>
+                                    <option value="">Select Unit</option>
+                                    <option *ngFor="let unit of units" [value]="unit.id">{{unit.name}}</option>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 text-end">
+                                    <button type="button" (click)="save()" class="btn buttonFull">
+                                        Save
+                                    </button>
+                                    <button type="button" (click)="back()" class="btn buttonFull">
+                                        Cancel
+                                    </button>
+
+                                </div>
+                            </div>
+
+                  
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

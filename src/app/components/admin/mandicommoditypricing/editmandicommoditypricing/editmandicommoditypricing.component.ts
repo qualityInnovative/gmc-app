@@ -33,7 +33,6 @@ export class EditmandicommoditypricingComponent implements OnInit {
   loggedInUserId: number = 0;
   constructor(
     private router: Router,
-    private statesService: StatesService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private location: Location,
@@ -77,7 +76,6 @@ export class EditmandicommoditypricingComponent implements OnInit {
       .subscribe((data: Apiresponse) => {
         if (data.success) {
           this.commodities = data.data;
-
         }
       });
   }
@@ -100,7 +98,7 @@ export class EditmandicommoditypricingComponent implements OnInit {
   }
   savemandicommoditypricing() {
     this.mandicommoditypricing.approvedUserId = this.loggedInUserId;
-    
+    this.mandicommoditypricing.createdBy = this.loggedInUserId;
     if (this.mandicommoditypricing.price == 0) {
       this.toastr.warning('Please select price', 'Warning');
       return;
@@ -128,7 +126,6 @@ export class EditmandicommoditypricingComponent implements OnInit {
         return;
       }
     }
-    console.log(this.mandicommoditypricing);
     this.mandicommoditypricingService
       .saveMandiCommodityPricing(this.mandicommoditypricing)
       .subscribe((data: Apiresponse) => {

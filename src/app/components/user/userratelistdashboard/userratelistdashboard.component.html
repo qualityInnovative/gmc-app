@@ -21,24 +21,27 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Mandi price </th>
-                            <th scope="col">Retail Price</th>
                             <th scope="col">Category</th>
                             <th scope="col">Unit</th>
                             <th scope="col">Mandi</th>
-                            <th scope="col">District</th>
                             <th scope="col">last updated</th>
+                            <th scope="col">
+                                Actions
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let rate of ratelist">
+                        <tr *ngFor="let rate of mandiCommodityPricing">
                             <td>{{rate.Commodity.name}}</td>
-                            <td>{{rate.mandiPrice}}</td>
-                            <td>{{rate.retailPrice}}</td>
+                            <td>{{rate.price}}</td>
                             <td>{{rate.Commodity.name}}</td>
                             <td>{{rate.Unit.name}}</td>
                             <td>{{rate.Mandi.name}}</td>
-                            <td>{{rate.District.name}}</td>
                             <td>{{rate.updatedAt | date:'medium'}}</td>
+                            <td>
+                                <fa-icon [icon]="faEdit" (click)="editmandirateRate(rate.id)"> </fa-icon>
+                                <fa-icon [icon]="faTrash" (click)="deletemandiRate(rate.id)"> </fa-icon>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

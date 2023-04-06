@@ -1,0 +1,39 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 mb-5">
+            <ratelist-moderatormenu></ratelist-moderatormenu>
+        </div>
+        <div class="col-md-9">
+            <div class="row mt-5">
+                <form #form="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="email" class="form-label">email</label>
+                            <input type="text" class="form-control input_feild" id="email" name="email"
+                                [(ngModel)]="user.email" required>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="password" class="form-label">password</label>
+                            <input type="text" class="form-control input_feild" id="password" name="password"
+                                [(ngModel)]="user.password" required>
+                        </div>
+                    </div>
+                   
+                    <div class="col-12">
+                        <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
+                            Add
+                        </button>
+
+                        <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
