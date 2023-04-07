@@ -27,10 +27,13 @@
                         <div class="mb-3 form-group  ">
                             <!-- isApproved is a checkbox with value true or false -->
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" 
+                                <input class="form-check-input" 
+                               
+                                type="checkbox" 
                                 value="mandicommoditypricing.isApproved" 
                                 name="mandicommoditypricing.isApproved"
                                 id="mandicommoditypricing.isApproved"
+                                (ngModelChange)="onCheckboxChange($event)"
                                     [(ngModel)]="mandicommoditypricing.isApproved"
                                 >
                                 <label class="form-check-label" for="mandicommoditypricing.isApproved">

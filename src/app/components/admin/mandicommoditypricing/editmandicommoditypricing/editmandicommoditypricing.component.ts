@@ -97,7 +97,6 @@ export class EditmandicommoditypricingComponent implements OnInit {
     }
   }
   savemandicommoditypricing() {
-    this.mandicommoditypricing.approvedUserId = this.loggedInUserId;
     this.mandicommoditypricing.createdBy = this.loggedInUserId;
     if (this.mandicommoditypricing.price == 0) {
       this.toastr.warning('Please select price', 'Warning');
@@ -159,6 +158,17 @@ export class EditmandicommoditypricingComponent implements OnInit {
           this.mandicommoditypricing = data.data;
         }
       });
+  }
+  onCheckboxChange(event: any) {
+    if (event) {
+      console.log('checked', event)
+      this.mandicommoditypricing.isApproved = true;
+      this.mandicommoditypricing.approvedUserId = this.loggedInUserId;
+    } else {
+      console.log('unchecked', event)
+      this.mandicommoditypricing.isApproved = false;
+      this.mandicommoditypricing.approvedUserId = 0;
+    }
   }
 }
 

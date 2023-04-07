@@ -5,6 +5,7 @@ import { MandiusersService } from 'src/app/services/mandiusers/mandiusers.servic
 import { UserProfile } from 'src/app/ratelist-models';
 import { Apiresponse } from 'src/app/ratelist-models';
 import { UserService } from 'src/app/services/user/user.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'ratelist-createmandiuser',
   templateUrl: './createmandiuser.component.html',
@@ -21,7 +22,8 @@ export class CreatemandiuserComponent implements OnInit {
     private route: ActivatedRoute,
     private mandiusersService: MandiusersService,
     private location: Location,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) {
     this.route.params.subscribe(params => {
       this.userId = params['id'];
@@ -43,10 +45,6 @@ export class CreatemandiuserComponent implements OnInit {
       })
   }
 
-
-
-
-
   isEdit() {
     if (this.userId > 0) {
       console.log("edit");
@@ -58,7 +56,6 @@ export class CreatemandiuserComponent implements OnInit {
     }
   }
   getMandiUser(userId: number) {
-
     this.mandiusersService.getMandiUser(userId).subscribe(
       (data: any) => {
         this.user = data.data;
@@ -68,7 +65,7 @@ export class CreatemandiuserComponent implements OnInit {
       })
   }
   onSubmit() {
-    this.user.roleId=3;
+    this.user.roleId = 3;
     this.user.Profile.mandiId = this.mandiId;
     if (this.edit) {
       this.mandiusersService.updateMandiUser(this.userId, this.user).subscribe(
@@ -77,22 +74,28 @@ export class CreatemandiuserComponent implements OnInit {
           this.back();
         },
         (error) => {
-          console.log(error);
+          this.toastr.error(error.error.message);
         })
     } else {
       this.mandiusersService.createMandiUser(this.user).subscribe(
-        (data: Apiresponse) => {
+        (data: any) => {
           console.log(data);
-          if(data.success){
+          if (data.success) {
+            this.toastr.success("User created successfully");
             this.back();
           }
-          else{
-            alert(data.message);
+          else if (data.message == "User already exists") {
+            this.toastr.error("User already exists");
+            this.back();
           }
-         
         },
         (error) => {
-          console.log(error);
+          if (error.error.data.name == "SequelizeUniqueConstraintError") {
+            this.toastr.error("User already exists");
+          }
+          else {
+            this.toastr.error(error.error.message);
+          }
         })
     }
   }

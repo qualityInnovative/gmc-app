@@ -15,16 +15,14 @@
                             [dtTrigger]="dtTrigger">
                             <thead>
                                 <tr>
-                                    <th scope="col">Category</th>
+                                    <th scope="col">Email</th>
                                     <th>Mandi</th>
-                                   
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let mandiuser of users">
                                     <td>{{mandiuser.email}}</td>
-                                    <td>{{mandiuser.Profile.mandiId}}</td>
-                                    
+                                    <td>{{getmandinamebyid(mandiuser.Profile.mandiId)}}</td>
                                 </tr>
                             </tbody>
                         </table>

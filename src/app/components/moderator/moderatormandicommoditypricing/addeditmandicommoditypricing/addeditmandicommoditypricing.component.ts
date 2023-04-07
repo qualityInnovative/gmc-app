@@ -61,6 +61,17 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
       this.getMandiCommodityPricing(this.mandicommoditypricingId);
     }
   }
+  onCheckboxChange(event: any) {
+    if (event) {
+      console.log('checked', event)
+      this.mandicommoditypricing.isApproved = true;
+      this.mandicommoditypricing.approvedUserId = this.loggedInUserId;
+    } else {
+      console.log('unchecked', event)
+      this.mandicommoditypricing.isApproved = false;
+      this.mandicommoditypricing.approvedUserId = 0;
+    }
+  }
   getUserProfile() {
     this.userService.getUserProfile().subscribe(
       (data: Apiresponse) => {
@@ -86,7 +97,6 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
       this.units = res.data;
     })
   }
-
   save() {
     this.mandicommoditypricing.mandiId = this.mandiId;
     // check all fields are not empty
@@ -120,11 +130,9 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
           }
         })
     }
-
   }
   back() {
     this.location.back();
-
   }
   getCommodities() {
     this.commoditiesService.getAllCommodities()

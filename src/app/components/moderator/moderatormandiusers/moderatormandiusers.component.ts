@@ -5,6 +5,8 @@ import { UserService } from 'src/app/services/user/user.service';
 import { Apiresponse } from 'src/app/ratelist-models';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Mandi } from 'src/app/ratelist-models';
+import { MandiService } from 'src/app/services/mandi/mandi.service';
 @Component({
   selector: 'ratelist-moderatormandiusers',
   templateUrl: './moderatormandiusers.component.html',
@@ -14,10 +16,12 @@ export class ModeratormandiusersComponent implements OnInit {
   users: UserProfile[] = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  mandis: Mandi[] = [];
   constructor(
     private mandiusersService: MandiusersService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private mandiService: MandiService
 
   ) { }
   ngOnInit(): void {
@@ -27,10 +31,29 @@ export class ModeratormandiusersComponent implements OnInit {
       processing: true
     };
     this.getUserProfile();
+    this.getMandis();
+
   }
-  getUserProfile(){
+  getMandis() {
+    this.mandiService.
+      getallMandis()
+      .subscribe(
+        (data: Apiresponse) => {
+          this.mandis = data.data;
+        },
+        (error) => {
+          console.log(error);
+        })
+  }
+
+  getmandinamebyid(mandiId: number) {
+    let mandi = this.mandis.find(m => m.id == mandiId);
+    return mandi!.name;
+  }
+
+  getUserProfile() {
     this.userService.getUserProfile().subscribe(
-      (data:Apiresponse) => {
+      (data: Apiresponse) => {
         console.log(data.data.Profile.mandiId);
         this.getUsersProfileforMandi(data.data.Profile.mandiId);
       },
@@ -38,9 +61,9 @@ export class ModeratormandiusersComponent implements OnInit {
         console.log(error);
       })
   }
-  getUsersProfileforMandi(mandiId:number){
+  getUsersProfileforMandi(mandiId: number) {
     this.mandiusersService.getUsersProfileforMandi(mandiId).subscribe(
-      (data:any) => {
+      (data: any) => {
         this.users = data.data;
         this.dtTrigger.next(data.data);
       },
@@ -48,7 +71,7 @@ export class ModeratormandiusersComponent implements OnInit {
         console.log(error);
       })
   }
-  createMandiUser(){
-    this.router.navigate(['/moderator/mandiusers/editmandiuser',0]);
+  createMandiUser() {
+    this.router.navigate(['/moderator/mandiusers/editmandiuser', 0]);
   }
 }
