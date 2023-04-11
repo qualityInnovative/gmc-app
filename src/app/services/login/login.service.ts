@@ -15,6 +15,7 @@ export class LoginService {
     return localStorage.getItem('token');
   }
   login(email: string, password: string): Observable<Apiresponse> {
+    localStorage.clear();
     return this.http.post<Apiresponse>(`${environment.apiUrl}/user/login`, { email, password })
   }
   setToken(token: string): void {
@@ -24,11 +25,9 @@ export class LoginService {
     localStorage.setItem('user', JSON.stringify(user));
   }
   logout(): void {
-    localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     localStorage.clear();
-    localStorage.setItem('token', '');
-    localStorage.setItem('user', '');
   }
   isUserLoggedIn(): boolean {
     return !!this.getToken();

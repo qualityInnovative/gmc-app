@@ -50,6 +50,9 @@ export class ModeratormandicommoditypricingComponent implements OnInit {
       (data: any) => {
         console.log(data)
         this.mandicommoditypricing = data.data;
+        console.log(this.mandicommoditypricing);
+        this.dtTrigger.next(this.mandicommoditypricing);
+
       },
       (error) => {
         console.log(error);

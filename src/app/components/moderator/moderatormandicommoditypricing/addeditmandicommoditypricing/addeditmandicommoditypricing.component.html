@@ -19,37 +19,68 @@
                 <form #form="ngForm">
                     <div class="col-12 mb-4">
                         <div class="mb-3 form-group position-relative">
-                            <label for="name">Price</label>
+                            <label for="name">Commodity</label>
+                            <select class="form-control input_feild" id="Commodity" name="Commodity" placeholder=" "
+                                [(ngModel)]="mandicommoditypricing.commodityId"
+                                (ngModelChange)="onCommodityChange($event)" required>
+                                <option value="">Select Commodity</option>
+                                <option *ngFor="let commodity of commodities" [value]="commodity.id">
+                                    {{commodity.name}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Unit</label>
+                            <select class="form-control input_feild" id="unit" name="unit" placeholder=" "
+                                [(ngModel)]="mandicommoditypricing.unitId"
+                                (ngModelChange)="onUnitChange($event)"
+                                 required>
+                                <option value="">Select Unit</option>
+                                <option *ngFor="let unit of units" [value]="unit.id">{{unit.name}}</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Mandi Price</label>
                             <input type="text" class="form-control input_feild" id="mandicommoditypricing.price"
                                 name="mandicommoditypricing.price" placeholder="price"
-                                [(ngModel)]="mandicommoditypricing.price" required />
+                                (ngModelChange)="onPriceChange($event)" 
+                                [(ngModel)]="mandicommoditypricing.price"
+                                required />
                         </div>
+
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">retail price</label>
+                            <input type="text" class="form-control input_feild" id="retailprice" name="retailprice"
+                                placeholder="Retail Price" [(ngModel)]="mandicommoditypricing.retailPrice" required />
+                        </div>
+
                         <div class="mb-3 form-group  ">
-                          
                             <div class="form-check">
-                            <input class="form-check-input" 
-                                type="checkbox" 
-                                value="mandicommoditypricing.isApproved" 
-                                name="mandicommoditypricing.isApproved"
-                                id="mandicommoditypricing.isApproved"
-                                (ngModelChange)="onCheckboxChange($event)"
-                                    [(ngModel)]="mandicommoditypricing.isApproved"
-                                >
+                                <input class="form-check-input" type="checkbox" value="mandicommoditypricing.isApproved"
+                                    name="mandicommoditypricing.isApproved" id="mandicommoditypricing.isApproved"
+                                    (ngModelChange)="onCheckboxChange($event)"
+                                    [(ngModel)]="mandicommoditypricing.isApproved">
                                 <label class="form-check-label" for="mandicommoditypricing.isApproved">
-                                  is Approved
+                                    is Approved
                                 </label>
-                              </div>
+                            </div>
                         </div>
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Effective Start Date</label>
                             <input type="date" class="form-control input_feild" id="effectiveStartDate"
-                                name="effectiveStartDate" placeholder="start Date"
+                                name="effectiveStartDate" 
+                                placeholder="start Date"
+                                value="{{mandicommoditypricing.effectiveStartDate | date:'yyyy-MM-dd'}}"
                                 [(ngModel)]="mandicommoditypricing.effectiveStartDate" required />
+                                
                         </div>
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Effective End Date</label>
                             <input type="date" class="form-control input_feild" id="effectiveEndDate"
                                 name="effectiveEndDate" placeholder="End date"
+                                
                                 [(ngModel)]="mandicommoditypricing.effectiveEndDate" required />
                         </div>
                         <div class="mb-3 form-group position-relative">
@@ -64,26 +95,16 @@
                                 name="effectiveEndTime" placeholder=" "
                                 [(ngModel)]="mandicommoditypricing.effectiveEndTime" required />
                         </div>
-
+                        <!-- text box for remark -->
                         <div class="mb-3 form-group position-relative">
-                            <label for="name">Commodity</label>
-                            <select class="form-control input_feild" id="Commodity" name="Commodity" placeholder=" "
-                                [(ngModel)]="mandicommoditypricing.commodityId" required>
-                                <option value="">Select Commodity</option>
-                                <option *ngFor="let commodity of commodities" [value]="commodity.id">
-                                    {{commodity.name}}
-                                </option>
-                            </select>
+                            <label for="name">Remark</label>
+                            <input type="text" class="form-control input_feild" id="mandicommoditypricing.remark"
+                                name="mandicommoditypricing.remark" placeholder="remark"
+                                [(ngModel)]="mandicommoditypricing.remark" required />
                         </div>
 
-                        <div class="mb-3 form-group position-relative">
-                            <label for="name">Unit</label>
-                            <select class="form-control input_feild" id="unit" name="unit" placeholder=" "
-                                [(ngModel)]="mandicommoditypricing.unitId" required>
-                                <option value="">Select Unit</option>
-                                <option *ngFor="let unit of units" [value]="unit.id">{{unit.name}}</option>
-                            </select>
-                        </div>
+
+
                     </div>
 
                 </form>

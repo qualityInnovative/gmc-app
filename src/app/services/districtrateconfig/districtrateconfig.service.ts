@@ -29,4 +29,7 @@ export class DistrictrateconfigService {
   deleteDistrictconfig(id: number): Observable<Apiresponse> {
     return this.http.delete<Apiresponse>(`${environment.apiUrl}/districtrateconfig/delete/${id}`);
   }
+  getDistrictRateConfigurationforcommoditydistrict(commodityId: number, districtId: number): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(`${environment.apiUrl}/districtrateconfig/getDistrictRateConfigurationforcommodityyunitdistrict/${commodityId}/${districtId}`);
+  }
 }

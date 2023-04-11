@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 mt-5 mb-5">
-            <ratelist-adminmenu></ratelist-adminmenu>
+            <ratelist-departmentmenu></ratelist-departmentmenu>
         </div>
         <div *ngIf="loading" class="col-9">
             <div>
@@ -10,9 +10,9 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="!loading" class="col-9">
+        <div *ngIf="!loading" class="col-md-8">
             <form #form="ngForm" (ngSubmit)="saveUser()">
-                <div class="col-12 mt-4 mb-4">
+                <div class=" card shadow p-3 col-12 mt-5 mb-4">
                     <div class="mb-3 form-group position-relative">
                         <label for="name">First Name</label>
                         <input type="text" class="form-control input_feild" id="firstName" name="firstName"
@@ -36,36 +36,14 @@
                             <option *ngFor="let userrole of roles" [value]="userrole.id">{{userrole.name}}</option>
                         </select>
                     </div>
-                    <!-- select mandi -->
-
-                    <div class="mb-3 from-group position-relative">
-                        <label for="name">Assign Mandi </label>
-                        <select class="form-control input_feild" id="mandi" name="mandi"
-                            [(ngModel)]="userProfile.Profile.mandiId" required>
-                            <option *ngFor="let mandi of mandis" [value]="mandi.id">{{mandi.name}}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="mb-3 from-group position-relative">
-                        <label for="name">Assign state district </label>
-                        <select class="form-control input_feild"
-                        (ngModelChange)="getDistrictsofstate($event)"
-                         id="stateid" name="stateid" [(ngModel)]="
-                            userProfile.Profile.stateId" required>
-                            <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
-                        </select>
-                    </div>
-                    <div class="mb-3 from-group position-relative">
-                        <label for="name">District</label>
-                        <select class="form-control input_feild" 
-                        id="district" 
-                        name="district" [(ngModel)]="userProfile.Profile.districtId" required>
-                            <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
-                        </select>
-                    </div>
                 </div>
-                <div class="col-12 mt-4 mb-4">
-                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+                <div class="col-12 mb-3">
+                    <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
+                        save
+                    </button>
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                        cancel
+                    </button>
                 </div>
             </form>
         </div>

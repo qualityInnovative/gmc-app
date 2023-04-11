@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-            <ratelist-moderatormenu></ratelist-moderatormenu>
+            <ratelist-departmentmenu></ratelist-departmentmenu>
         </div>
-        <div class="col-8">
+        <div class="col-md-8">
             <div class="row">
                 <div class="col-6 manage-specialty mt-3">
                     <h3 *ngIf="edit" class="card-title">Edit RateList</h3>
@@ -21,8 +21,7 @@
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Commodity</label>
                             <select class="form-control input_feild" id="commodityId" name="commodityId"
-                                [(ngModel)]=" retailratelist.commodityId" 
-                                (change)="commoditySelected($event)" required>
+                                [(ngModel)]=" retailratelist.commodityId" (change)="commoditySelected($event)" required>
                                 <option value="">Select Commodity</option>
                                 <option *ngFor="let commodity of commodities" [value]="commodity.id">
                                     {{commodity.name}}
@@ -30,7 +29,7 @@
                             </select>
                         </div>
                     </div>
-                   
+                  
                     <!--districts-->
                     <div class="col-12 mb-4">
                         <div class="mb-3 form-group position-relative">

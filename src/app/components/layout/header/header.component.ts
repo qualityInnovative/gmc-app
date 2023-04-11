@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
     return this.route.url == "/login" ? false : true;
   }
   getUserRole(user: User) {
-    return user.roleId == Roles.admin ? "Admin" : user.roleId == Roles.moderator ? "Moderator" : user.roleId == Roles.user ? "User" : "User";
+    return user.roleId == Roles.admin ? "Admin" : user.roleId == Roles.mandiAdmin ? "mandiAdmin" : user.roleId == Roles.user ? "User" : user.roleId == Roles.departmentUser ? "Department User" : "User";
   }
   logout(): void {
     this.loginService.logout();
@@ -57,14 +57,12 @@ export class HeaderComponent implements OnInit {
   gotohome(): void {
     if (this.userProfile.roleId == Roles.admin) {
       this.route.navigate(['/admindashboard']);
-    } else if (this.userProfile.roleId == Roles.moderator) {
+    } else if (this.userProfile.roleId == Roles.mandiAdmin) {
       this.route.navigate(['/moderator']);
     } else if (this.userProfile.roleId == Roles.user) {
       this.route.navigate(['/home']);
+    }else if(this.userProfile.roleId == Roles.departmentUser){
+      this.route.navigate(['/department']);
     }
   }
-
-
-
-
 }

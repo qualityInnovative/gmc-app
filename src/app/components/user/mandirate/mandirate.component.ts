@@ -41,7 +41,6 @@ export class MandirateComponent implements OnInit {
 
   ) {
     this.commodityId = this.route.snapshot.params['commodityId'];
-
   }
   ngOnInit(): void {
     this.getUserProfile();

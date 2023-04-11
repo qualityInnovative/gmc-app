@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card sidebar_query">
+                <div class="card-body">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item mb-3">
+                            <a class="nav-link py-3" routerLinkActive="active" [routerLink]="['/department']"
+                                [routerLinkActiveOptions]=" {exact: true}" pathMatch="full">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item mb-3">
+                            <a class="nav-link py-3" routerLinkActive="active"
+                                [routerLinkActiveOptions]=" {exact: true}" [routerLink]="['/department/retailratelist']"
+                                pathMatch="full">
+                                Retail Rate List
+                            </a>
+                        </li>
+                        <li class="nav-item mb-3">
+                            <a class="nav-link py-3" [routerLinkActiveOptions]=" {exact: true}"
+                                routerLinkActive="active" [routerLink]="['/department/mandiuser']" pathMatch="full">
+                                mandi user
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

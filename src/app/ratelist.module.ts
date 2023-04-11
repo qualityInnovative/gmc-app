@@ -73,6 +73,13 @@ import { MandirateComponent } from './components/user/mandirate/mandirate.compon
 import { EditmandirateComponent } from './components/user/mandirate/editmandirate/editmandirate.component';
 import { CreatemandiuserComponent } from './components/moderator/moderatormandiusers/createmandiuser/createmandiuser.component';
 
+import { DepartmentmandiusersComponent } from './components/department/departmentmandiusers/departmentmandiusers.component';
+import { DepartmentretailrateComponent } from './components/department/departmentretailrate/departmentretailrate.component';
+import { DepartmentmenuComponent } from './components/misc/departmentmenu/departmentmenu.component';
+import { DeparmenthomeComponent } from './components/department/deparmenthome/deparmenthome.component';
+import { DeparmentaddretailratesComponent } from './components/department/departmentretailrate/deparmentaddretailrates/deparmentaddretailrates.component';
+import { EditmandiuserComponent } from './components/department/departmentmandiusers/editmandiuser/editmandiuser.component';
+
 
 
 @NgModule({
@@ -133,7 +140,7 @@ import { CreatemandiuserComponent } from './components/moderator/moderatormandiu
     ModeratormandiusersComponent, 
     MandicommoditiesComponent, 
     AddremovecommodityfrommandiComponent, 
-    AddeditmandicommoditypricingComponent, AddmoderatorratelistComponent, MandirateComponent, EditmandirateComponent, CreatemandiuserComponent,
+    AddeditmandicommoditypricingComponent, AddmoderatorratelistComponent, MandirateComponent, EditmandirateComponent, CreatemandiuserComponent, DepartmentmandiusersComponent, DepartmentretailrateComponent, DepartmentmenuComponent,DeparmenthomeComponent, DeparmentaddretailratesComponent, EditmandiuserComponent
   ],
   imports: [
     BrowserModule,

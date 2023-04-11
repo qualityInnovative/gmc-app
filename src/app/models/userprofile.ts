@@ -1,5 +1,4 @@
 import { Profile } from "./profile";
-import { AssignedDistrict } from "./assignedDistrict";
 export class UserProfile {
     id: number = 0;
     email: string = '';
@@ -8,5 +7,4 @@ export class UserProfile {
     token: string = '';
     profileId: number = 0;
     Profile: Profile = new Profile();
-    AssignedDistrict: AssignedDistrict = new AssignedDistrict();
 }

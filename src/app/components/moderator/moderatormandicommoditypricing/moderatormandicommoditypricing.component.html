@@ -7,9 +7,8 @@
             <div class="row mt-5 mb-5">
                 <div class="d-flex justify-content-between align-items-center manage-specialty">
                     <h3 class="card-title">Manage Commodity pricing</h3>
-                    <button
-                     (click)="moderatoraddcommoditypricing()"
-                     class="btn buttonFull"> Add commodity pricing </button>
+                    <button (click)="moderatoraddcommoditypricing()" class="btn buttonFull"> Add commodity pricing
+                    </button>
                 </div>
                 <div class="card shadow mt-5">
                     <div class="card-body">
@@ -18,27 +17,47 @@
                                 [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                                 <thead>
                                     <tr>
+                                        
                                         <th>Commodity Name</th>
                                         <th>Price</th>
+                                        <th>Retail Price</th>
                                         <th>Mandi</th>
-                                        <th>isApproved</th>
                                         <th>startDate</th>
                                         <th>endDate</th>
+                                        <th>Remark</th>
+                                        <th>IsApproved</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let mandipricing of mandicommoditypricing">
+                                       
                                         <td>{{(mandipricing.Commodity.name)}}</td>
+                                        <td>
+                                            {{ mandipricing.retailPrice }}
+                                        </td>
                                         <td>{{ mandipricing.price }}</td>
                                         <td>{{ (mandipricing.Mandi.name) }}</td>
-                                        <td>{{ mandipricing.isApproved }}</td>
-                                        <td>{{ mandipricing.effectiveStartDate | date }}</td>
-                                        <td>{{ mandipricing.effectiveEndDate | date }}</td>
+                                        <td>{{ mandipricing.effectiveStartDate | date }}
+                                            <br/>
+                                            {{ mandipricing.effectiveStartTime   }}
+                                        </td>
+                                        <td>{{ mandipricing.effectiveEndDate | date }}
+                                            <br/>
+                                            {{ (mandipricing.effectiveEndTime)  }}
+                                        </td>
+                                        <td>{{ mandipricing.remark }}</td>
+                                        <td>
+                                            <div class="dot"
+                                                [ngClass]="{'dot-approve': mandipricing.isApproved == true, 'dot-not-approve': mandipricing.isApproved == false}">
+                                            </div>
+                                        </td>
                                         <td class="text-center">
                                             <div class="table_icon">
-                                                <fa-icon (click)="editCommoditypricing(mandipricing.id)" [icon]="faPenToSquare" title="Edit commodity pricing"></fa-icon>
-                                                <fa-icon (click)="deleteCommodityPricining(mandipricing.id)" [icon]="faTrash" title="Delete commodity pricing"></fa-icon>
+                                                <fa-icon (click)="editCommoditypricing(mandipricing.id)"
+                                                    [icon]="faPenToSquare" title="Edit commodity pricing"></fa-icon>
+                                                <fa-icon (click)="deleteCommodityPricining(mandipricing.id)"
+                                                    [icon]="faTrash" title="Delete commodity pricing"></fa-icon>
                                             </div>
                                         </td>
                                     </tr>

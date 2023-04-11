@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { Mandi } from 'src/app/ratelist-models';
 import { MandiService } from 'src/app/services/mandi/mandi.service';
+import { Role } from 'src/app/ratelist-models';
 @Component({
   selector: 'ratelist-moderatormandiusers',
   templateUrl: './moderatormandiusers.component.html',
@@ -17,12 +18,12 @@ export class ModeratormandiusersComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   mandis: Mandi[] = [];
+  roles: Role[] = [];
   constructor(
     private mandiusersService: MandiusersService,
     private userService: UserService,
     private router: Router,
     private mandiService: MandiService
-
   ) { }
   ngOnInit(): void {
     this.dtOptions = {
@@ -32,7 +33,17 @@ export class ModeratormandiusersComponent implements OnInit {
     };
     this.getUserProfile();
     this.getMandis();
+    this.getAllRoles();
 
+  }
+  getAllRoles() {
+    this.userService.getUserRoles().subscribe(
+      (data: Apiresponse) => {
+        this.roles = data.data;
+      },
+      (error) => {
+        console.log(error);
+      })
   }
   getMandis() {
     this.mandiService.
@@ -44,6 +55,10 @@ export class ModeratormandiusersComponent implements OnInit {
         (error) => {
           console.log(error);
         })
+  }
+  getUserRoleName(roleId: number) {
+    let role = this.roles.find(r => r.id == roleId);
+    return role!.name;
   }
 
   getmandinamebyid(mandiId: number) {

@@ -13,23 +13,23 @@ import { MandiService } from 'src/app/services/mandi/mandi.service';
 import { UnitsService } from 'src/app/ratelist-services';
 import { LoginService } from 'src/app/ratelist-services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
+
 import { UserProfile } from 'src/app/ratelist-models';
 import { UserService } from 'src/app/ratelist-services';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'ratelist-addmoderatorratelist',
-  templateUrl: './addmoderatorratelist.component.html',
-  styleUrls: ['./addmoderatorratelist.component.scss']
+  selector: 'ratelist-deparmentaddretailrates',
+  templateUrl: './deparmentaddretailrates.component.html',
+  styleUrls: ['./deparmentaddretailrates.component.scss']
 })
-export class AddmoderatorratelistComponent implements OnInit {
+export class DeparmentaddretailratesComponent implements OnInit {
   edit:boolean = false;
   retailratelist: RetailRateList = new RetailRateList();
   retailratelistId: number = 0;
   loading = false;
   errorStatus = false;
   error = '';
-
   selectedCommodityId: number = 0;
   selectedDistrictId: number = 0;
   selectedMandiId: number = 0;
@@ -41,8 +41,6 @@ export class AddmoderatorratelistComponent implements OnInit {
   user: UserProfile = new UserProfile();
   mandiId: number = 0;
   loggedInUserId: number = 0;
-
-
   constructor(
     private location: Location,
     private retailratelistService: RetailratelistService,
@@ -53,7 +51,8 @@ export class AddmoderatorratelistComponent implements OnInit {
     private districtsService: DistrictsService,
     private unitsService: UnitsService,
     private loginService: LoginService,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) {
     this.route.params.subscribe(params => {
       this.retailratelistId = params['id'];
@@ -122,11 +121,17 @@ export class AddmoderatorratelistComponent implements OnInit {
   commoditySelected(event: HTMLSelectElement | any) {
     //console.log(event.target.value);
     let categoryId = 0;
-    debugger;
+
+    this.commodities.forEach((commodity) => {
+      if (commodity.id == event.target.value) {
+        categoryId = commodity.categoryId;
+      }
+    });
     console.log("commodities",this.commodities);
-    //this.retailratelist.categoryId = 
+    this.retailratelist.categoryId = categoryId;
     this.selectedCommodityId = event.target.value;
   }
+ 
   districtSelected(event: HTMLSelectElement | any) {
     console.log(event.target.value);
     this.selectedDistrictId = event.target.value;
@@ -158,12 +163,17 @@ export class AddmoderatorratelistComponent implements OnInit {
       });
   }
   saveRateList() {
+    this.retailratelist.mandiId = this.mandiId;
+    this.retailratelist.commodityId = this.selectedCommodityId;
+    this.retailratelist.districtId = this.selectedDistrictId;
+    this.retailratelist.unitId = this.selectedUnitId;
     if (this.edit) {
       console.log(this.retailratelist);
       this.retailratelistService.
         updateRetailRateList(this.retailratelistId, this.retailratelist).
         subscribe((res: Apiresponse) => {
-          console.log(res);
+          this.toastr.success('Retail Rate List Updated Successfully');
+          this.back();
         });
     } else {
       console.log(this.retailratelist);
@@ -171,7 +181,8 @@ export class AddmoderatorratelistComponent implements OnInit {
       this.retailratelist.createdBy= this.loginService.getLoggedInUser().id;
       this.retailratelistService.saveRetailRateList(this.retailratelist)
         .subscribe((res: Apiresponse) => {
-          console.log(res)
+          this.toastr.success('Retail Rate List Added Successfully');
+          this.back();
         });
     }
   }

@@ -54,6 +54,11 @@ import { AddmoderatorratelistComponent } from './components/moderator/moderatorr
 import { MandirateComponent } from './components/user/mandirate/mandirate.component';
 import { EditmandirateComponent } from './components/user/mandirate/editmandirate/editmandirate.component';
 import { CreatemandiuserComponent } from './components/moderator/moderatormandiusers/createmandiuser/createmandiuser.component';
+import { DeparmenthomeComponent } from './components/department/deparmenthome/deparmenthome.component';
+import { DepartmentretailrateComponent } from './components/department/departmentretailrate/departmentretailrate.component';
+import { DepartmentmandiusersComponent } from './components/department/departmentmandiusers/departmentmandiusers.component';
+import { DeparmentaddretailratesComponent } from './components/department/departmentretailrate/deparmentaddretailrates/deparmentaddretailrates.component';
+import { EditmandiuserComponent } from './components/department/departmentmandiusers/editmandiuser/editmandiuser.component';
 
 const routes: Routes = [
   {
@@ -191,16 +196,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path:"mandirate/:commodityId",
-    component:MandirateComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: "mandirate/:commodityId",
+    component: MandirateComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'mandirate/editmandirate/:id',
-    component:EditmandirateComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    component: EditmandirateComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
 
   },
   {
@@ -327,7 +332,7 @@ const routes: Routes = [
   },
   {
     path: "moderator/retailratelist/editretailratelist/:id",
-    component:AddmoderatorratelistComponent,
+    component: AddmoderatorratelistComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
@@ -339,7 +344,7 @@ const routes: Routes = [
   },
   {
     path: "moderator/mandiusers/editmandiuser/:id",
-    component:CreatemandiuserComponent,
+    component: CreatemandiuserComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
@@ -354,7 +359,36 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
-
+  ///// department routes
+  {
+    path: "department",
+    component: DeparmenthomeComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "department/retailratelist",
+    component: DepartmentretailrateComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "department/retailratelist/deparmentaddretailrate/:id",
+    component: DeparmentaddretailratesComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'department/mandiuser',
+    component: DepartmentmandiusersComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  }, {
+    path: 'department/mandiuser/editmandiuser/:id',
+    component: EditmandiuserComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
 ]
 
 @NgModule({

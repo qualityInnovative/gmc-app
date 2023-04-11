@@ -4,7 +4,6 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { UserProfile } from 'src/app/ratelist-models';
 import { UserService } from 'src/app/services/user/user.service';
 import { Roles } from 'src/app/ratelist-models';
-
 import { Mandi } from 'src/app/ratelist-models';
 import { MandiService } from 'src/app/services/mandi/mandi.service';
 @Component({
