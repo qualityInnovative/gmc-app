@@ -33,8 +33,31 @@
                                 </option>
                             </select>
                         </div>
-                        
                     </div>
+
+                    <!-- if edit show image  -->
+
+                    <div class="col-12 mb-4" *ngIf="edit || imageset" >
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Image</label>
+                            <img [src]="commodity.image" class="categoryimage" />
+                        </div>
+                    </div>
+
+                    <!-- upload image to category -->
+
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Upload Image</label>
+                            <!-- upload base64 image  -->
+                            <input type="file" class="form-control input_feild" id="image" name="image" placeholder=" "
+                                [(ngModel)]="commodity.image" required (change)="onFileChange($event)" />
+                        </div>
+                    </div>
+
+
+
+
                     <div class="col-12">
                         <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
                             save

@@ -77,6 +77,26 @@ export class EditcategoryComponent implements OnInit {
       }
     )
   }
+  onFileChange(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      console.log(event.target.files[0]);
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.category.image = (event.target as any).result as string
+        console.log(this.category.image)
+      }
+    }
+  }
+  
+  
+
+
+
+
+
+
+
 
 
 

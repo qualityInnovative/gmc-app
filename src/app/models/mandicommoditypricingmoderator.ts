@@ -7,8 +7,8 @@ export class Mandicommoditypricingmoderator{
     price: number = 0;
     isApproved: boolean = false;
     approvedUserId: number = 0;
-    effectiveStartDate: Date = new Date();
-    effectiveEndDate: Date = new Date();
+    effectiveStartDate:string='';
+    effectiveEndDate:string='';
     effectiveStartTime: Date = new Date();
     effectiveEndTime: Date = new Date();
     mandiId: number = 0;

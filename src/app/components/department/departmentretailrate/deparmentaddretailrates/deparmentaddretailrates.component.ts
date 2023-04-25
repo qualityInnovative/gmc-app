@@ -78,6 +78,8 @@ export class DeparmentaddretailratesComponent implements OnInit {
     this.retailratelistService.getRetailRateListById(id)
       .subscribe((res: Apiresponse) => {
         this.retailratelist = res.data;
+        this.retailratelist.effectiveStartDate = new Date(this.retailratelist.effectiveStartDate).toISOString().split('T')[0];
+        this.retailratelist.effectiveEndDate = new Date(this.retailratelist.effectiveEndDate).toISOString().split('T')[0];
         console.log(this.retailratelist);
       });
   }

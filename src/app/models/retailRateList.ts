@@ -1,8 +1,8 @@
 export class RetailRateList {
     id: number = 0;
     retailPrice: number = 0;
-    effectiveStartDate: Date = new Date();
-    effectiveEndDate: Date = new Date();
+    effectiveStartDate: string = '';
+    effectiveEndDate: string = '';
     commodityId: number = 0;
     mandiId: number = 0;
     approvedByUserId: number = 0;

@@ -61,6 +61,8 @@ export class EditmandirateComponent implements OnInit {
       .subscribe((data: Apiresponse) => {
         if (data.success) {
           this.mandicommoditypricing = data.data;
+          this.mandicommoditypricing.effectiveStartDate = this.mandicommoditypricing.effectiveStartDate.split('T')[0];
+          this.mandicommoditypricing.effectiveEndDate = this.mandicommoditypricing.effectiveEndDate.split('T')[0];
         }
       });
   }

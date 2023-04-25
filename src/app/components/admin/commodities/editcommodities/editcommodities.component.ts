@@ -19,6 +19,7 @@ export class EditcommoditiesComponent implements OnInit {
   edit: boolean = false;
   commodity: Commodity = new Commodity();
   categories: Category[] = [];
+  imageset: boolean = false;
 
   constructor(
     private router: Router,
@@ -104,5 +105,18 @@ export class EditcommoditiesComponent implements OnInit {
   back() {
     this.Location.back();
   }
+  onFileChange(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      this.imageset = true;
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      console.log(event.target.files[0]);
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.commodity.image = (event.target as any).result as string
+        console.log(this.commodity.image)
+      }
+    }
+  }
+  
 
 }

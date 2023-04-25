@@ -25,6 +25,24 @@
 
                         </div>
                     </div>
+                    <!-- if edit == true show image from base64string   -->
+
+                    <div class="col-12 mb-4" *ngIf="edit">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Image</label>
+                            <img [src]="category.image" class="categoryimage" />
+                        </div>
+                    </div>
+                    
+                    <!-- upload image to category -->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Upload Image</label>
+                            <!-- upload base64 image  -->
+                            <input type="file" class="form-control input_feild" id="image" name="image" placeholder=" "
+                                [(ngModel)]="category.image" required (change)="onFileChange($event)" />
+                        </div>
+                    </div>
                     <div class="col-12">
                         <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
                             save

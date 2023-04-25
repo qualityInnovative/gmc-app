@@ -43,7 +43,7 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
   commodityId: number = 0;
   unitId: number = 0;
   districtId: number = 0;
-  changeRetailprice:number=0
+  changeRetailprice: number = 0
 
   constructor(
     private commoditiesService: CommoditiesService,
@@ -71,8 +71,8 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
     this.getUnits();
     if (this.edit) {
       this.getMandiCommodityPricing(this.mandicommoditypricingId);
-      
-      
+
+
     }
   }
   onCheckboxChange(event: any) {
@@ -101,10 +101,10 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
   }
   onPriceChange(event: any) {
     console.log(event)
-    console.log(this.mandicommoditypricing.price,this.mandiRateFactor,this.mandicommoditypricing.retailPrice)
-    this.changeRetailprice= this.mandicommoditypricing.price;
+    console.log(this.mandicommoditypricing.price, this.mandiRateFactor, this.mandicommoditypricing.retailPrice)
+    this.changeRetailprice = this.mandicommoditypricing.price;
     this.changeRetailprice = Number(Number(this.changeRetailprice * Number(this.mandiRateFactor)) + this.changeRetailprice)
-    this.mandicommoditypricing.retailPrice = this.changeRetailprice; 
+    this.mandicommoditypricing.retailPrice = this.changeRetailprice;
     console.log(this.changeRetailprice)
   }
   onCommodityChange(event: any) {
@@ -121,10 +121,7 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
     this.retailratelistservice.getRetailandMandiPrice(commodityId, mandiId, unitId, this.districtId).subscribe((res: Apiresponse) => {
       console.log(res.data)
       this.mandiRateFactor = res.data.retailPriceFactor;
-    
-    }
-    )
-
+    })
   }
   getMandiCommodityPricing(id: number) {
     this.mandicommoditypricingservice.getMandiCommodityPricingById(id
@@ -132,8 +129,8 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
       console.log(res.data)
       console.log(this.mandicommoditypricing)
       this.mandicommoditypricing = res.data;
-      this.mandicommoditypricing.effectiveStartDate= new Date(this.mandicommoditypricing.effectiveStartDate).toISOString().slice(0,10);
-      this.mandicommoditypricing.effectiveEndDate= new Date(this.mandicommoditypricing.effectiveEndDate).toISOString().slice(0,10);
+      this.mandicommoditypricing.effectiveStartDate = new Date(this.mandicommoditypricing.effectiveStartDate).toISOString().slice(0, 10);
+      this.mandicommoditypricing.effectiveEndDate = new Date(this.mandicommoditypricing.effectiveEndDate).toISOString().slice(0, 10);
       console.log("dates ",
         this.mandicommoditypricing.effectiveStartDate,
         this.mandicommoditypricing.effectiveEndDate
@@ -144,7 +141,7 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
         this.mandicommoditypricing.mandiId,
         this.mandicommoditypricing.unitId,
         this.districtId
-        );
+      );
     })
   }
 
@@ -155,7 +152,7 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
   }
   save() {
     this.mandicommoditypricing.mandiId = this.mandiId;
-    this.mandicommoditypricing.createdBy = this.loggedInUserId;
+
     // check all fields are not empty
     if (this.mandicommoditypricing.price === 0) {
       alert("Please enter price");
@@ -180,6 +177,7 @@ export class AddeditmandicommoditypricingComponent implements OnInit {
           }
         })
     } else {
+      this.mandicommoditypricing.createdBy = this.loggedInUserId;
       this.mandicommoditypricingservice.saveMandiCommodityPricing(this.mandicommoditypricing)
         .subscribe((res: Apiresponse) => {
           if (res.success) {

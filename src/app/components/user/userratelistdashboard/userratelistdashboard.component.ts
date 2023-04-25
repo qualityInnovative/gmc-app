@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { MandicommoditypricingService } from 'src/app/services/mandicommoditypricing/mandicommoditypricing.service';
 import { Router } from '@angular/router';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
 @Component({
   selector: 'ratelist-userratelistdashboard',
   templateUrl: './userratelistdashboard.component.html',
@@ -23,6 +25,11 @@ export class UserratelistdashboardComponent implements OnInit {
   tehsils: Tehsil[] = [];
   selectedCategory: Category = new Category();
   mandiCommodityPricing: any[] = [];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  dtElement: DataTableDirective | undefined;
+  isDtInitialized: boolean = false;
+
   constructor(
     private categoryService: CategoryService,
     private toastr: ToastrService,
@@ -31,6 +38,14 @@ export class UserratelistdashboardComponent implements OnInit {
     private router: Router
   ) {
     this.userId = this.loginService.getLoggedInUser().id;
+    // DataTables warning: table id=DataTables_Table_0 - Cannot reinitialise DataTable. For more information about this error, please see http://datatables.net/tn/3
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+
+      destroy: true
+    };
+
   }
   ngOnInit(): void {
     this.getUserProfile(this.userId);
@@ -65,7 +80,17 @@ export class UserratelistdashboardComponent implements OnInit {
     this.mandiCommodityPricingService.getMandiCommodityPricingByCategoryAndUser(categoryId, createdBy).subscribe(
       (data: Apiresponse) => {
         this.mandiCommodityPricing = data.data;
-        console.log(this.mandiCommodityPricing);
+
+        if (this.isDtInitialized) {
+          this.dtElement?.dtInstance.then((dtInstance: DataTables.Api) => {
+            dtInstance.destroy();
+            this.dtTrigger.next(null);
+          });
+        } else {
+          this.dtTrigger.next(null);
+          this.isDtInitialized = true;
+        }
+
       }
     );
   }
