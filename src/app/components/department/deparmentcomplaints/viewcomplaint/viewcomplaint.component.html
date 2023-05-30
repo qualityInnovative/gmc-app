@@ -1,0 +1,148 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-departmentmenu></ratelist-departmentmenu>
+        </div>
+        <div class="col-8">
+            <div class="row mb-5">
+                <div class="col-6 manage-specialty mt-3">
+                    <h3 class="card-title">Complaint</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div *ngIf="loading" class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div *ngIf="!loading" class="row p-2 mb-5 card shadow">
+                <h2 class="title">User Profile</h2>
+                <div class="user-container">
+                    <div class="imgview">
+                        <img class="user-image" src="{{ complaint.User.Profile.image }}" alt="User Image">
+                    </div>
+                    <div class="profile-info">
+                        <div class="field">
+                            <label>Name:</label>
+                            <span>{{ complaint.User.Profile.firstName }} {{ complaint.User.Profile.lastName }}</span>
+                        </div>
+
+                        <div class="field">
+                            <label>State:</label>
+                            <span>{{getStatefromId(complaint.User.Profile.stateId) }}</span>
+                        </div>
+                        <div class="field">
+                            <label>District:</label>
+                            <span>{{
+                                getDistrictfromId(complaint.User.Profile.districtId) }}</span>
+                        </div>
+                        <div class="field">
+                            <label>user since:</label>
+                            <span>{{ complaint.User.Profile.createdAt | date }}</span>
+                        </div>
+
+                        <div class="field">
+                            <label>Mobile Number:</label>
+                            <span>{{ complaint.User.mobileNumber }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-4">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Complaint Description</label>
+                        <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                            [(ngModel)]="complaint.bussinessDescription" required disabled>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">bussinessName </label>
+                        <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                            [(ngModel)]="complaint.bussinessName" required disabled>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">bussinessAddress </label>
+                        <!-- textinput with 5 rows -->
+                        <textarea class="form-control input_feild" id="exampleFormControlTextarea1" rows="5"
+                            [(ngModel)]="complaint.bussinessAddress" disabled></textarea>
+
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">from district </label>
+                        <select class="form-control input_feild" id="exampleFormControlSelect1"
+                            [(ngModel)]="complaint.districtId" disabled>
+                            <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
+                        </select>
+                    </div>
+                    <!-- assign to user -->
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Assign to user </label>
+                        <select (change)="assignToUser($event)" class="form-control input_feild"
+                            id="exampleFormControlSelect1">
+                            <option value="0">Select User</option>
+                            <option *ngFor="let user of deparmentUsers" [value]="user.id">{{user.id}}
+                                {{user.Profile.firstName}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">complaint status </label>
+                        <select class="form-control input_feild" id="exampleFormControlSelect1"
+                            [(ngModel)]="complaint.ComplaintId" (change)="changeStatus($event)">
+                            <option *ngFor="let status of complaintStaus" [value]="status.id">{{status.status}}</option>
+                        </select>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <textarea class="form-control input_feild" 
+                        id="exampleFormControlTextarea1" rows="10"
+                            [(ngModel)]="assignComplaint.remarks"></textarea>
+                    </div>
+
+                     <button 
+                    (click)="submitcomplaint()"
+                    class="btn buttonFull buttonFull-transparent mb-3">
+                        Submit
+                    </button>
+                    
+                    <google-map [options]="options" height="400px" width="750px" [center]="center" [zoom]="zoom"
+                        (mapClick)="moveMap($event)" (mapMousemove)="move($event)">
+                        <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label"
+                            [title]="marker.title" [options]="marker.options"
+                            (markerClick)="clickedMarker(marker.label, marker)">
+                        </map-marker>
+                    </google-map>
+                    
+                    <div class="col-12 mb-3">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Media </label>
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-center align-items-center">
+                                    <video *ngIf="complaint.mediaType ==='video/mp4'" controls [src]="complaint.media"
+                                        class="video-element"></video>
+                                    <img *ngIf="complaint.media ==='image/jpg' || complaint.mediaType ==='image/png' || complaint.mediaType ==='image/jpeg'"
+                                        [src]="complaint.media" alt="media" class="image-element">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div class="col-12 mb-3">
+                    <ratelist-remarkhistory
+                    *ngIf = "complaint.ComplaintId > 0"
+                    [complaintId]="complaint.id"></ratelist-remarkhistory>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>

@@ -51,6 +51,7 @@ export class HeaderComponent implements OnInit {
     return user.roleId == Roles.admin ? "Admin" : user.roleId == Roles.mandiAdmin ? "mandiAdmin" : user.roleId == Roles.user ? "User" : user.roleId == Roles.departmentUser ? "Department User" : "User";
   }
   logout(): void {
+    localStorage.removeItem('user');
     this.loginService.logout();
     this.route.navigate(['/']);
   }
@@ -64,5 +65,8 @@ export class HeaderComponent implements OnInit {
     }else if(this.userProfile.roleId == Roles.departmentUser){
       this.route.navigate(['/department']);
     }
+  }
+  ngOnChanges() {
+    this.getUserProfile(this.userId);
   }
 }

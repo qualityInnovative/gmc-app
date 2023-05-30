@@ -9,13 +9,12 @@ import {faEye, faTrash, faEdit} from '@fortawesome/free-solid-svg-icons';
 import { ComplaintStatus } from 'src/app/models/complaintStatus';
 import { Apiresponse } from 'src/app/ratelist-models';
 import { Router } from '@angular/router';
-
 @Component({
-  selector: 'ratelist-deparmenthome',
-  templateUrl: './deparmenthome.component.html',
-  styleUrls: ['./deparmenthome.component.scss']
+  selector: 'ratelist-deparmentcomplaints',
+  templateUrl: './deparmentcomplaints.component.html',
+  styleUrls: ['./deparmentcomplaints.component.scss']
 })
-export class DeparmenthomeComponent implements OnInit {
+export class DeparmentcomplaintsComponent implements OnInit {
   assignComplaints: AssignComplaint[] = [];
   currentUserId: number = 0;
   complaintIds: number[] = [];
@@ -29,8 +28,6 @@ export class DeparmenthomeComponent implements OnInit {
   faTrash = faTrash;
   faEdit = faEdit;
   complaintStaus: ComplaintStatus[] = [];
-  typeCount: { type: number, count: number }[] = [];
-
   constructor(
     private complaintsService: ComplaintsService,
     private router: Router
@@ -40,7 +37,7 @@ export class DeparmenthomeComponent implements OnInit {
     this.getAllComplaintStatus();
     this.getCurrentUser();
     this.getAssignComplaints();
-  }
+   }
   getCurrentUser(): void {
     let user = localStorage.getItem('user') || '{}';
     this.currentUserId = JSON.parse(user).id;
@@ -71,16 +68,12 @@ export class DeparmenthomeComponent implements OnInit {
   }
   getComplaintsFromAcogs(complaintIds: number[]): void {
     this.loading = true;
-    this.complaintsService
-    .getComplaintsFromAcogs(complaintIds)
-    .subscribe(
+    this.complaintsService.getComplaintsFromAcogs(complaintIds).subscribe(
       (response) => {
         console.log(response);
         this.loading = false;
         this.complaints = response.data;
-        this.getComplaintsTypeCount(this.complaints);
-        this.dtTrigger.next(undefined);
-
+        console.log(this.complaints)
       },
       (error) => {
         console.log(error);
@@ -106,25 +99,15 @@ export class DeparmenthomeComponent implements OnInit {
         });
   }
   getComplaintStatus(id: number) {
+    console.log(id);
     return this.complaintStaus.find(x => x.id == id)?.status;
   }
   viewcomplain(id: number) {
     // department/complaints/complaindetail/:id
     this.router.navigate([`department/complaints/complaindetail/${id}`]);
   }
-  getComplaintsTypeCount(complaints: Complaint[]) {
-    console.log('count;',complaints);
-    complaints.forEach((complaint) => {
-      let type = complaint.ComplaintId;
-      let index = this.typeCount.findIndex((x) => x.type == type);
-      if (index == -1) {
-        this.typeCount.push({ type: type, count: 1 });
-      } else {
-        this.typeCount[index].count++;
-      }
-     
-    });
-    console.log('typeesjkdklsajd kjsak jdklaj  ',this.typeCount);
-  }
+
+
+
 
 }

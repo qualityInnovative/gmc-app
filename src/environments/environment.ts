@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://49.50.66.95:8085/api/v1'
+  apiUrl: 'http://49.50.66.95:8085/api/v1',
+  acogsApiUrl: 'http://49.50.66.95:8086/api'
 };
 
 /*

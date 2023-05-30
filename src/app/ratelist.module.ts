@@ -79,6 +79,14 @@ import { DepartmentmenuComponent } from './components/misc/departmentmenu/depart
 import { DeparmenthomeComponent } from './components/department/deparmenthome/deparmenthome.component';
 import { DeparmentaddretailratesComponent } from './components/department/departmentretailrate/deparmentaddretailrates/deparmentaddretailrates.component';
 import { EditmandiuserComponent } from './components/department/departmentmandiusers/editmandiuser/editmandiuser.component';
+import { CompaintsComponent } from './components/admin/compaints/compaints.component';
+import { ComplaintdetailComponent } from './components/admin/compaints/complaintdetail/complaintdetail.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { DeparmentcomplaintsComponent } from './components/department/deparmentcomplaints/deparmentcomplaints.component';
+import { ViewcomplaintComponent } from './components/department/deparmentcomplaints/viewcomplaint/viewcomplaint.component';
+import { RemarkhistoryComponent } from './components/misc/remarkhistory/remarkhistory.component';
+
+
 
 
 
@@ -140,7 +148,22 @@ import { EditmandiuserComponent } from './components/department/departmentmandiu
     ModeratormandiusersComponent, 
     MandicommoditiesComponent, 
     AddremovecommodityfrommandiComponent, 
-    AddeditmandicommoditypricingComponent, AddmoderatorratelistComponent, MandirateComponent, EditmandirateComponent, CreatemandiuserComponent, DepartmentmandiusersComponent, DepartmentretailrateComponent, DepartmentmenuComponent,DeparmenthomeComponent, DeparmentaddretailratesComponent, EditmandiuserComponent
+    AddeditmandicommoditypricingComponent, 
+    AddmoderatorratelistComponent, 
+    MandirateComponent, 
+    EditmandirateComponent, 
+    CreatemandiuserComponent, 
+    DepartmentmandiusersComponent, 
+    DepartmentretailrateComponent, 
+    DepartmentmenuComponent,
+    DeparmenthomeComponent, 
+    DeparmentaddretailratesComponent, 
+    EditmandiuserComponent, 
+    CompaintsComponent, 
+    ComplaintdetailComponent, 
+    DeparmentcomplaintsComponent,
+    ViewcomplaintComponent,
+    RemarkhistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -150,6 +173,7 @@ import { EditmandiuserComponent } from './components/department/departmentmandiu
     FontAwesomeModule,
     DataTablesModule,
     BrowserAnimationsModule,
+    GoogleMapsModule,
     NgMultiSelectDropDownModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 10000,

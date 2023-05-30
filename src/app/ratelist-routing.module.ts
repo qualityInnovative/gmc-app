@@ -59,7 +59,10 @@ import { DepartmentretailrateComponent } from './components/department/departmen
 import { DepartmentmandiusersComponent } from './components/department/departmentmandiusers/departmentmandiusers.component';
 import { DeparmentaddretailratesComponent } from './components/department/departmentretailrate/deparmentaddretailrates/deparmentaddretailrates.component';
 import { EditmandiuserComponent } from './components/department/departmentmandiusers/editmandiuser/editmandiuser.component';
-
+import { CompaintsComponent } from './components/admin/compaints/compaints.component';
+import { ComplaintdetailComponent } from './components/admin/compaints/complaintdetail/complaintdetail.component';
+import { DeparmentcomplaintsComponent } from './components/department/deparmentcomplaints/deparmentcomplaints.component';
+import { ViewcomplaintComponent } from './components/department/deparmentcomplaints/viewcomplaint/viewcomplaint.component';
 const routes: Routes = [
   {
     path: '',
@@ -389,8 +392,31 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
+  {
+    path: 'admin/complaints',
+    component: CompaintsComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/complaints/complaindetail/:id',
+    component: ComplaintdetailComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'department/complaints/complaindetail/:id',
+    component:ViewcomplaintComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'department/complaints',
+    component: DeparmentcomplaintsComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  }
 ]
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

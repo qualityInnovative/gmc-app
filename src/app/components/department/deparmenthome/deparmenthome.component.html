@@ -1,12 +1,29 @@
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3">
-        <ratelist-departmentmenu></ratelist-departmentmenu>
-      </div>
-      <div class="col-md-8">
-        <div class="row">
-          
+  <div class="row">
+    <div class="col-md-3">
+      <ratelist-departmentmenu></ratelist-departmentmenu>
+    </div>
+    <div class="col-md-8">
+      <div class="row mt-5">
+        <div class="col-md-3">
+          <div class="card shadow" >
+            <div class="card-body">
+              <h5 class="card-text">Total Complain received</h5>
+              <p class="card-text-count">{{complaints.length}}</p>
+            </div>
+          </div>
         </div>
+        <div *ngFor="let count of typeCount" class="col-md-3">
+          <div class="card shadow">
+            <div class="card-body">
+              <p class="card-text">{{
+                getComplaintStatus(count.type)
+                }}</p>
+              <p class="card-text-count">{{count.count}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
+</div>

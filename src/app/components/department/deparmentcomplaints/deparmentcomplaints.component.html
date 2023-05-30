@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <ratelist-departmentmenu></ratelist-departmentmenu>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div *ngIf="loading" class="col-12">
+          <div class="row">
+            <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+              <div class="spinner-border text-primary" role="status"></div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="errorStatus" class="col-12">
+          <div class="row">
+            <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!loading" class="col-12">
+          <div class="row mt-5 mb-5">
+            <div class="d-flex justify-content-between align-items-center manage-specialty">
+              <h3 class="card-title">Complaints</h3>
+            </div>
+            <div class="card shadow mt-5">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"
+                    [dtTrigger]="dtTrigger">
+                    <thead>
+                      <tr>
+                        <th>Complaints</th>
+                        <th>
+                          User Name
+                        </th>
+                        <th>
+                          Status
+                        </th>
+                        <th>createdAt</th>
+                        <th class="text-center">Action</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr *ngFor="let complaint of complaints">
+                        <td>{{ complaint.User.mobileNumber }}</td>
+                        <td>{{ complaint.User.Profile.firstName }}
+                          {{ complaint.User.Profile.lastName}}
+                        </td>
+                        <td>{{
+                          getComplaintStatus(complaint.ComplaintId) |
+                          titlecase
+                          }}</td>
+                        <td>{{ complaint.createdAt | date }}</td>
+                        <td class="text-center">
+                          <div class="table_icon">
+                            <fa-icon [icon]="faEye" (click)="viewcomplain(complaint.id)" title="Edit State"></fa-icon>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

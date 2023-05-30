@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UserProfile } from 'src/app/ratelist-models';
 import { environment } from 'src/environments/environment';
 import { Apiresponse } from 'src/app/ratelist-models';
+import { User } from 'src/app/ratelist-models';
 @Injectable({
   providedIn: 'root'
 })
@@ -39,5 +40,9 @@ export class UserService {
   }
   admindeleteUser(id: number): Observable<Apiresponse> {
     return this.http.delete<Apiresponse>(environment.apiUrl + '/user/admindeleteuser/' + id);
+  }
+  getCurrentUser(): User {
+    let user = localStorage.getItem('user') || '{}';
+    return JSON.parse(user);
   }
 }
