@@ -58,6 +58,7 @@ export class ViewcomplaintComponent implements OnInit {
     private notificationService: NotificationService
   ) { }
   ngOnInit(): void {
+    this.currentUserId = JSON.parse(localStorage.getItem('user') || '{}').id;
     this.getAllstates();
     this.getAlldistricts();
     this.getAllComplaintStatus();
@@ -203,7 +204,8 @@ export class ViewcomplaintComponent implements OnInit {
     window.history.back();
   }
   submitcomplaint() {
-    if (this.assignComplaint.assignedTo == null || this.assignComplaint.assignedTo == undefined || this.assignComplaint.assignedTo == "") {
+    console.log(this.currentUserId);
+    if (this.assignComplaint.assignedTo == "") {
       // If user is not selected assing to current user
       this.assignComplaint.assignedTo = String(this.currentUserId)
     }
@@ -231,6 +233,7 @@ export class ViewcomplaintComponent implements OnInit {
 
   }
   changeStatus(e: Event) {
+    console.log(e);
     // change the status of complaint.Complaint status is changed by admin
     let ComplaintStatusId = (e.target as HTMLSelectElement).value;
     this.complaintsService
@@ -254,13 +257,15 @@ export class ViewcomplaintComponent implements OnInit {
     this.notification.title = "Complaint Status Changed";
     this.notification.notificationUniqueId = this.complaint.id;
     this.notification.createdAt = new Date();
+    console.log(this.notification);
     this.notificationService
       .sendNotification(notification)
       .subscribe((res: Apiresponse) => {
+        console.warn(res);
         if (res.success) {
           console.log(res.message);
         } else {
-          console.log(res.message);
+          console.log(res);
         }
       });
   }

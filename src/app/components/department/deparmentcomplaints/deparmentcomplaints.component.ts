@@ -83,7 +83,6 @@ export class DeparmentcomplaintsComponent implements OnInit {
 
       });
   }
-
   getAllComplaintStatus() {
     this.complaintsService.getAllComplaintStatus()
       .subscribe((res: Apiresponse) => {
