@@ -46,6 +46,6 @@ jobs:
 
     - name: Publish to IIS server
       run: |
-        $destPath = "C:\inetpub\wwwroot\myapp"
+        $destPath = "C:\ratelistapp\dist\ratelistapp"
         Remove-Item -Recurse -Force $destPath -ErrorAction SilentlyContinue
         Copy-Item -Recurse -Force dist/ $destPath
