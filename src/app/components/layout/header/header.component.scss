@@ -463,3 +463,30 @@ hr {
 .home{
   cursor: pointer;
 }
+.brand-image{
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+// hide .brand-image on mobile
+
+@media only screen and (max-width: 900px) {
+  .brand-image{
+    display: none;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .brand-image{
+    display: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .brand-image{
+    display: none;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .brand-image{
+    display: none;
+  }
+}
