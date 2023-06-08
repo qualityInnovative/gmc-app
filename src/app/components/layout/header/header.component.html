@@ -3,13 +3,11 @@
         class="d-flex justify-content-between navbar navbar-expand-lg navbar-light bg-white headerNav">
         <div class="container CustomContainer">
             <a class="navbar-brand">
-                <img src="../../../../assets/images/logo.png" 
-                   class="brand-image" alt="" />
+                <img src="../../../../assets/images/logo.png" class="brand-image" alt="" />
             </a>
             <div *ngIf="userProfile?.email" class="d-inline-flex mt-2 mt-md-0 ms-md-auto px-3 align-items-center">
                 <div class="me-5 create-query-div">
-                    <a 
-                    class="py-2 text-decoration-none home" (click)="gotohome()">
+                    <a class="py-2 text-decoration-none home" (click)="gotohome()">
                         Home
                     </a>
                 </div>
@@ -45,8 +43,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="userinfo-name">
-                                            <span class="header-user-name">{{ userProfile.email }}
-                                            </span>
+                                          
                                             <span class="text-email role_org">{{ getUserRole(userProfile) }}
                                             </span>
                                             <span class="text-email"><fa-icon [icon]="faEnvelope"></fa-icon>
@@ -56,13 +53,11 @@
                                 </div>
                             </div>
                         </li>
-
                         <li>
                             <a [routerLink]="['/editprofile']" class="profileLink dropdown-item">
                                 <fa-icon [icon]="faPencil"></fa-icon> Edit Profile
                             </a>
                         </li>
-
                         <li>
                             <a [routerLink]="['/resetpassword']" class="profileLink dropdown-item">
                                 <fa-icon [icon]="faLock"></fa-icon> Change Password
