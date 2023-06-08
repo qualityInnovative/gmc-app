@@ -1,15 +1,16 @@
-.complaint-status-view{
+.complaint-status-view {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 0px;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
     width: 100%;
     height: 150px;
     margin-top: 20px;
-}
-.complaints-received{
+  }
+  
+  .complaints-received {
     width: 200px;
     height: 100%;
     padding: 10px 20px;
@@ -17,30 +18,81 @@
     cursor: pointer;
     border: 1px solid #f1eded;
     border-left: none;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-}
-.complaints-received:last-child{
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  }
+  
+  .complaints-received:last-child {
     border-radius: 0px 5px 5px 0px;
-}
-.complaints-received:first-child{
+  }
+  
+  .complaints-received:first-child {
     border-radius: 5px 0px 0px 5px;
-}
-.complaint-length-text{
+  }
+  
+  .complaint-length-text {
     font-size: 20px;
     font-weight: 600;
-}
-.complaints-received-text-p{
+  }
+  
+  .complaints-received-text-p {
     font-size: 20px;
     font-weight: 600;
-}
-.card{
+  }
+  
+  .card {
     padding-left: 0px;
     padding-right: 0px;
-}
-.show-complaints{
+  }
+  
+  .show-complaints {
     flex-direction: row;
-}
-.complaints-received-text-p{
-    font-size: 30px;
-    font-weight: 600;
-}
+  }
+  
+  /* Responsive Styles */
+  
+  @media (max-width: 576px) {
+    .complaint-status-view {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 10px;
+    }
+  
+    .complaints-received {
+      width: 100%;
+      height: auto;
+      margin-top: 10px;
+    }
+  
+    .complaints-received:last-child,
+    .complaints-received:first-child {
+      border-radius: 5px;
+    }
+  
+    .complaint-length-text,
+    .complaints-received-text-p {
+      font-size: 16px;
+    }
+  
+    .show-complaints {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .complaints-received {
+      width: 150px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .complaints-received {
+      width: 180px;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .complaints-received {
+      width: 190px;
+    }
+  }
+  
