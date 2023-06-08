@@ -65,4 +65,4 @@ jobs:
         run: |
           $destPath = "C:\ratelistapp\dist\ratelistapp"
           Remove-Item -Recurse -Force $destPath -ErrorAction SilentlyContinue
-          Copy-Item -Recurse -Force dist/ $destPath
+          Copy-Item -Recurse -Force $env:GITHUB_WORKSPACE/dist/ $destPath
