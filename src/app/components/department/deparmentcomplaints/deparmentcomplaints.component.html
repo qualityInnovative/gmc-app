@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
       <ratelist-departmentmenu></ratelist-departmentmenu>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-10">
       <div class="row">
         <div *ngIf="loading" class="col-12">
           <div class="row">
@@ -22,38 +22,43 @@
         <div *ngIf="!loading" class="col-12">
           <div class="row mt-5 mb-5">
             <div class="d-flex justify-content-between align-items-center manage-specialty">
-              <h3 class="card-title">Complaints</h3>
+              <h3 class="card-title">Complaints Received</h3>
             </div>
-            <div class="card shadow mt-5">
+            <div class="card shadow show-complaints">
+              <div (click)="filterComplaints(0)" class="complaints-received">
+                <p class="complaints-received-text">Complaints Received</p>
+                <h4 class="complaints-received-text-p">{{ complaints.length }}</h4>
+              </div>
+              <div *ngFor="let complaints of complaintStauses;let i = index" (click)="filterComplaints(i+1)"
+                class="complaints-received">
+                <h4 class="complaint-length-text">{{ getComplaintStatus(i+1)}}</h4>
+                <p class="complaints-received-text-p">{{ complaints }}</p>
+              </div>
+            </div>
+            <div class="card shadow mt-4">
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"
-                    [dtTrigger]="dtTrigger">
+                  <table id="complaintsTable" class="table table-bordered table-striped table-hover" datatable
+                    [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                     <thead>
                       <tr>
-                        <th>Complaints</th>
-                        <th>
-                          User Name
-                        </th>
-                        <th>
-                          Status
-                        </th>
-                        <th>createdAt</th>
+                        <th>Date Recevied</th>
+                        <th>Complaint</th>
+                        <th>User Name</th>
+                        <th>Complaint</th>
+                        <th>Status</th>
                         <th class="text-center">Action</th>
                       </tr>
                     </thead>
-
                     <tbody>
-                      <tr *ngFor="let complaint of complaints">
+                      <tr *ngFor="let complaint of filterdComplaints">
+                        <td>{{ complaint.createdAt | date }}</td>
                         <td>{{ complaint.User.mobileNumber }}</td>
                         <td>{{ complaint.User.Profile.firstName }}
                           {{ complaint.User.Profile.lastName}}
                         </td>
-                        <td>{{
-                          getComplaintStatus(complaint.ComplaintId) |
-                          titlecase
-                          }}</td>
-                        <td>{{ complaint.createdAt | date }}</td>
+                        <td>{{ complaint.bussinessDescription.slice(0,50)}}</td>
+                        <td>{{getComplaintStatus(complaint.ComplaintId)|titlecase}}</td>
                         <td class="text-center">
                           <div class="table_icon">
                             <fa-icon [icon]="faEye" (click)="viewcomplain(complaint.id)" title="Edit State"></fa-icon>

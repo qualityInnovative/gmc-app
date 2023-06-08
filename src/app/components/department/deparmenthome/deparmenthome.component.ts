@@ -39,58 +39,27 @@ export class DeparmenthomeComponent implements OnInit {
   ngOnInit(): void {
     this.getAllComplaintStatus();
     this.getCurrentUser();
-    this.getAssignComplaints();
   }
   getCurrentUser(): void {
     let user = localStorage.getItem('user') || '{}';
     this.currentUserId = JSON.parse(user).id;
+    this.getAssignComplaintsAssignedToCurrentUser(this.currentUserId);
   }
-  getAssignComplaints(): void {
-    this.complaintsService.getAssignComplaints(this.currentUserId).subscribe(
-      async (response) => {
-        this.assignComplaints = response.data;
-        let s = await this.getAllComplaintId();
-        console.log(s);
-        // remove duplicate complaint ids
-        s= [...new Set(s)];
-        console.log('duplicates removed',s);
-       this.getComplaintsFromAcogs(s);
-       
-      },
-      (error) => {
-        console.log(error);
-      });
+  getAssignComplaintsAssignedToCurrentUser(id: number) {
+    this.complaintsService.getAssignComplaintsAssignedToCurrentUser(id)
+      .subscribe((res: Apiresponse) => {
+        if (res.success) {
+          this.complaints = res.data;
+          console.log('assign complaint', this.assignComplaints);
+          this.getComplaintsTypeCount(this.complaints);
+        } else {
+          console.log(res);
+        }
+      }
+        , (err) => {
+          console.log(err);
+        });
   }
-   getAllComplaintId(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.assignComplaints.forEach((assignComplaint) => {
-        this.complaintIds.push(assignComplaint.complaintId);
-      });
-      resolve(this.complaintIds);
-    });
-  }
-  getComplaintsFromAcogs(complaintIds: number[]): void {
-    this.loading = true;
-    this.complaintsService
-    .getComplaintsFromAcogs(complaintIds)
-    .subscribe(
-      (response) => {
-        console.log(response);
-        this.loading = false;
-        this.complaints = response.data;
-        this.getComplaintsTypeCount(this.complaints);
-        this.dtTrigger.next(undefined);
-
-      },
-      (error) => {
-        console.log(error);
-        this.loading = false;
-        this.errorStatus = true;
-        this.error = error.message;
-
-      });
-  }
-
   getAllComplaintStatus() {
     this.complaintsService.getAllComplaintStatus()
       .subscribe((res: Apiresponse) => {

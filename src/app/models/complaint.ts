@@ -16,6 +16,7 @@ export class Complaint{
     longitude: string = '';
     User:AcogsUser = new AcogsUser();
     districtId: number = 0;
+    assignedTo: number = 0;
 }
 class AcogsUser {
     id: number = 0;

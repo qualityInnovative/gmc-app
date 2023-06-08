@@ -83,16 +83,7 @@
                             <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
                         </select>
                     </div>
-                    <!-- assign to user -->
-                    <div class="mb-3 form-group position-relative">
-                        <label for="name">Assign to user </label>
-                        <select (change)="assignToUser($event)" class="form-control input_feild"
-                            id="exampleFormControlSelect1">
-                            <option value="0">Select User</option>
-                            <option *ngFor="let user of deparmentUsers" [value]="user.id">{{user.id}}
-                                {{user.Profile.firstName}}</option>
-                        </select>
-                    </div>
+
                     <div class="mb-3 form-group position-relative">
                         <label for="name">complaint status </label>
                         <select class="form-control input_feild" id="exampleFormControlSelect1"
@@ -100,18 +91,32 @@
                             <option *ngFor="let status of complaintStaus" [value]="status.id">{{status.status}}</option>
                         </select>
                     </div>
+                    <!-- assign to user -->
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Assign to user </label>
+                        <select (change)="assignToUser($event)" class="form-control input_feild"
+                            id="exampleFormControlSelect1" [(ngModel)]="complaint.assignedTo">
+                            <option value="0">Select User</option>
+                            <option *ngFor="let user of deparmentUsers" [value]="user.id">{{user.id}}
+                                {{user.Profile.firstName}}</option>
+                        </select>
+                    </div>
                     <div class="col-12 mb-3">
-                        <textarea class="form-control input_feild" 
-                        id="exampleFormControlTextarea1" rows="10"
-                            [(ngModel)]="assignComplaint.remarks"></textarea>
+                        <ratelist-remarkhistory *ngIf="complaint.ComplaintId > 0" [complaintId]="complaint.id"
+                            [districtId]="complaint.districtId"></ratelist-remarkhistory>
+                    </div>
+                    <div class="col-12 mb-3 d-flex justify-content-center">
+                        <textarea class="form-control input_feild text-area" id="exampleFormControlTextarea1"
+                            [(ngModel)]="assignComplaint.remarks">
+                        </textarea>
+
+                    </div>
+                    <div class="col-12 mb-3 d-flex justify-content-end">
+                        <button (click)="submitRemark()" class="mt-3 btn buttonFull buttonFull-transparent mb-3 mx-3">
+                            Submit
+                        </button>
                     </div>
 
-                     <button 
-                    (click)="submitcomplaint()"
-                    class="btn buttonFull buttonFull-transparent mb-3">
-                        Submit
-                    </button>
-                    
                     <google-map [options]="options" height="400px" width="750px" [center]="center" [zoom]="zoom"
                         (mapClick)="moveMap($event)" (mapMousemove)="move($event)">
                         <map-marker *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label"
@@ -119,7 +124,7 @@
                             (markerClick)="clickedMarker(marker.label, marker)">
                         </map-marker>
                     </google-map>
-                    
+
                     <div class="col-12 mb-3">
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Media </label>
@@ -135,13 +140,9 @@
 
                     </div>
                 </div>
-                
-                <div class="col-12 mb-3">
-                    <ratelist-remarkhistory
-                    *ngIf = "complaint.ComplaintId > 0"
-                    [complaintId]="complaint.id"></ratelist-remarkhistory>
-                </div>
-               
+
+
+
             </div>
         </div>
     </div>

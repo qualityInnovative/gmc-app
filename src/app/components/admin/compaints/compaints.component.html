@@ -26,8 +26,10 @@
                 <div class="card shadow mt-5">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover" datatable
-                                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                            <table class="table table-bordered table-striped table-hover" 
+                                datatable
+                                [dtOptions]="dtOptions" 
+                                [dtTrigger]="dtTrigger">
                                 <thead>
                                     <tr>
                                         <th>Complaints</th>
@@ -37,6 +39,7 @@
                                         <th>
                                             Status
                                         </th>
+                                        <th>assigned to </th>
                                         <th>createdAt</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -51,6 +54,7 @@
                                             getComplaintStatus(complaint.ComplaintId) |
                                             titlecase
                                             }}</td>
+                                        <th>{{getUserById(complaint.assignedTo)}}</th>
                                         <td>{{ complaint.createdAt | date }}</td>
                                         <td class="text-center">
                                             <div class="table_icon">

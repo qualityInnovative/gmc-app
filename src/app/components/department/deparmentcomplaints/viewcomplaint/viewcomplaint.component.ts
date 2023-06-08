@@ -16,6 +16,7 @@ import { RemarkhistoryComponent } from 'src/app/components/misc/remarkhistory/re
 import { Notification } from 'src/app/models/notification';
 import { NotificationService } from 'src/app/services/notification/notification.service';
  import { NotificationType } from 'src/app/models/enums/notificationType';
+ import { Location } from '@angular/common';
 @Component({
   selector: 'ratelist-viewcomplaint',
   templateUrl: './viewcomplaint.component.html',
@@ -49,13 +50,15 @@ export class ViewcomplaintComponent implements OnInit {
   markers: any = [];
   deparmentUsers: UserProfile[] = [];
   notification: Notification = new Notification();
+  shouldGoBack: boolean = false;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private complaintsService: ComplaintsService,
     private statesService: StatesService,
     private districtsService: DistrictsService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private location: Location
   ) { }
   ngOnInit(): void {
     this.currentUserId = JSON.parse(localStorage.getItem('user') || '{}').id;
@@ -99,6 +102,7 @@ export class ViewcomplaintComponent implements OnInit {
         if (res.success) {
           this.complaint = res.data;
           this.assignComplaint.complaintId = this.complaint.id;
+          this.assignComplaint.complaintStatusId = this.complaint.ComplaintId;
           this.markers = [
             {
               position: {
@@ -193,7 +197,8 @@ export class ViewcomplaintComponent implements OnInit {
       .getAllDeparmentUserFromComplainDistrict(districtId)
       .subscribe((res: Apiresponse) => {
         if (res.success) {
-          this.deparmentUsers = res.data;
+          this.deparmentUsers = res.data
+          //.filter((x:any) => x.id != this.currentUserId);
         } else {
           console.log(res.message);
         }
@@ -203,8 +208,11 @@ export class ViewcomplaintComponent implements OnInit {
   back() {
     window.history.back();
   }
-  submitcomplaint() {
-    console.log(this.currentUserId);
+  submitRemark() {
+    if(this.assignComplaint.remarks == ""){
+      alert("Please enter the remarks");
+      return;
+    }
     if (this.assignComplaint.assignedTo == "") {
       // If user is not selected assing to current user
       this.assignComplaint.assignedTo = String(this.currentUserId)
@@ -213,6 +221,7 @@ export class ViewcomplaintComponent implements OnInit {
       alert("Please select the complaint");
       return;
     }
+    this.assignComplaint.createdBy = this.currentUserId;
     this.complaintsService
       .submitComplain(this.assignComplaint)
       .subscribe((res: Apiresponse) => {
@@ -221,6 +230,9 @@ export class ViewcomplaintComponent implements OnInit {
           this.assignComplaint.remarks = "";
           // @ts-ignore
           this.remarkHistoryComponent.gettheRemarkHistory() 
+          if(this.shouldGoBack){
+            this.location.back();
+          }
         } else {
           console.log(res.message);
         }
@@ -230,18 +242,29 @@ export class ViewcomplaintComponent implements OnInit {
     // Assign the complain to user
     let userId = (e.target as HTMLSelectElement).value;
     this.assignComplaint.assignedTo = userId;
-
+    this.shouldGoBack = true;
+   // console.warn(this.assignComplaint);
+    this.complaintsService
+      .assignComplaintinacogs(userId, this.complainId)
+      .subscribe((res: Apiresponse) => {
+        if (res.success) {
+          console.log(res.message);
+          alert(res.message);
+        } else {
+          console.log(res.message);
+        }
+      });
   }
   changeStatus(e: Event) {
-    console.log(e);
     // change the status of complaint.Complaint status is changed by admin
     let ComplaintStatusId = (e.target as HTMLSelectElement).value;
+    this.assignComplaint.complaintStatusId = ComplaintStatusId;
+    console.warn(this.assignComplaint.complaintStatusId);
     this.complaintsService
       .changeComplaintStatus(ComplaintStatusId, this.complainId)
       .subscribe((res: Apiresponse) => {
         if (res.success) {
           console.log(res.message);
-          //  code to send notification to user
           this.sendNotification(this.notification,ComplaintStatusId);
         } else {
           console.log(res.message);
@@ -250,6 +273,7 @@ export class ViewcomplaintComponent implements OnInit {
   }
   sendNotification(notification: Notification,ComplaintStatusId:any) {
     // Send notification to user
+    console.log(notification);
     let complaintStatus = this.complaintStaus.find(x => x.id == ComplaintStatusId);
     this.notification.UserId = this.complaint.User.id;
     this.notification.type = NotificationType.Complaint;
@@ -264,6 +288,8 @@ export class ViewcomplaintComponent implements OnInit {
         console.warn(res);
         if (res.success) {
           console.log(res.message);
+          console.log(res.data,this.shouldGoBack);
+         
         } else {
           console.log(res);
         }

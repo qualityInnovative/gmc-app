@@ -43,5 +43,11 @@ export class ComplaintsService {
   getComplaintRemarkHistory(complaintId: number): Observable<any> {
     return  this.http.get(`${environment.apiUrl}/complaint/getcomplaintremarkhistory/${complaintId}`);
   }
+  assignComplaintinacogs(userId: string,complaintId:number): Observable<any> {
+    return  this.http.post(`${environment.acogsApiUrl}/complaint/assigncomplaintinacogs`, {userId,complaintId});
+  }
+  getAssignComplaintsAssignedToCurrentUser(id: number): Observable<any> {
+    return  this.http.get(`${environment.acogsApiUrl}/complaint/getassigncomplaintsassignedtouser/${id}`);
+  }
     
 }

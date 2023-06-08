@@ -7,6 +7,8 @@ import { Apiresponse } from 'src/app/ratelist-models';
 import { Complaint } from 'src/app/models/complaint';
 import { ComplaintStatus } from "src/app/models/complaintStatus"
 import { Router } from '@angular/router';
+import { UserProfile } from 'src/app/ratelist-models';
+import { UserService } from 'src/app/ratelist-services';
 @Component({
   selector: 'ratelist-compaints',
   templateUrl: './compaints.component.html',
@@ -23,21 +25,42 @@ export class CompaintsComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   complaints: Complaint[] = [];
   complaintStaus: ComplaintStatus[] = [];
+  Users: UserProfile[] = [];
 
   constructor(
     private complaintsService: ComplaintsService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 20,
-      processing: true
+      processing: true,
+      
     };
     this.getAllComplaintStatus();
     this.getAllComplaints();
+    this.getAllUsers();
+
+
   }
+  getAllUsers() {
+    this.userService.getAllUsers()
+      .subscribe((res: Apiresponse) => {
+        if (res.success) {
+          this.Users = res.data;
+        }
+      }, (err) => {
+        console.log(err);
+      });
+  }
+  getUserById(id: number) {
+    return this.Users.find(x => x.id == id)?.Profile?.firstName + ' ' + this.Users.find(x => x.id == id)?.Profile?.lastName;
+  }
+
+
   log() {
     console.log('log');
   }
@@ -65,7 +88,7 @@ export class CompaintsComponent implements OnInit {
         this.loading = false;
         if (res.success) {
           this.complaints = res.data;
-          console.log(this.complaints);
+          console.log(this.complaints, 'dsdsdsds');
           this.dtTrigger.next(undefined);
         } else {
           this.errorStatus = true;
@@ -82,7 +105,7 @@ export class CompaintsComponent implements OnInit {
       .subscribe((res: Apiresponse) => {
         if (res.success) {
           this.complaintStaus = res.data;
-          console.log('complaint status',this.complaintStaus);
+          console.log('complaint status', this.complaintStaus);
         } else {
           console.log(res);
         }

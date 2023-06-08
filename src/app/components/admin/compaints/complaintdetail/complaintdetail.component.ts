@@ -37,6 +37,7 @@ export class ComplaintdetailComponent implements OnInit {
   complaintStaus: ComplaintStatus[] = [];
   deparmentUsers: UserProfile[] = [];
   assignComplaint: AssignComplaint = new AssignComplaint();
+  currentUser: UserProfile = new UserProfile();
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -46,6 +47,7 @@ export class ComplaintdetailComponent implements OnInit {
     private notificationService: NotificationService
   ) { }
   ngOnInit(): void {
+    this.currentUser = JSON.parse(localStorage.getItem('user') || '{}');
     this.getAllstates();
     this.getAlldistricts();
     this.getAllComplaintStatus();
@@ -166,7 +168,7 @@ export class ComplaintdetailComponent implements OnInit {
     let district = this.districts.find(x => x.id == id);
     return district?.name;
   }
-  getAllDeparmentUserFromComplainDistrict(districtId:number) {
+  getAllDeparmentUserFromComplainDistrict(districtId: number) {
     console.warn(districtId);
     // Get all department user from complain district
     this.complaintsService
@@ -187,14 +189,15 @@ export class ComplaintdetailComponent implements OnInit {
   saveComplaint() {
     // Save the complain
     console.log(this.assignComplaint);
-    if(this.assignComplaint.assignedTo == null || this.assignComplaint.assignedTo == undefined || this.assignComplaint.assignedTo == ""){
+    if (this.assignComplaint.assignedTo == null || this.assignComplaint.assignedTo == undefined || this.assignComplaint.assignedTo == "") {
       alert("Please assign the complaint to user");
       return;
     }
-    if(this.assignComplaint.complaintId == null || this.assignComplaint.complaintId == undefined || this.assignComplaint.complaintId == 0){
+    if (this.assignComplaint.complaintId == null || this.assignComplaint.complaintId == undefined || this.assignComplaint.complaintId == 0) {
       alert("Please select the complaint");
       return;
     }
+    this.assignComplaint.createdBy = this.currentUser.id;
     this.complaintsService
       .submitComplain(this.assignComplaint)
       .subscribe((res: Apiresponse) => {
@@ -212,24 +215,33 @@ export class ComplaintdetailComponent implements OnInit {
     // Assign the complain to user
     let userId = (e.target as HTMLSelectElement).value;
     this.assignComplaint.assignedTo = userId;
-    console.log(this.assignComplaint);
-  }
-  changeStatus(e: Event) {
-    // change the status of complaint.Complaint status is changed by admin
-    let ComplaintStatusId = (e.target as HTMLSelectElement).value;
-    console.log(ComplaintStatusId, this.complainId);
+    console.log(userId);
     this.complaintsService
-      .changeComplaintStatus(ComplaintStatusId,this.complainId)
+      .assignComplaintinacogs(userId, this.complainId)
       .subscribe((res: Apiresponse) => {
         if (res.success) {
-          this.sendNotification(this.notification,ComplaintStatusId);
           console.log(res.message);
         } else {
           console.log(res.message);
         }
       });
   }
-  sendNotification(notification: Notification,ComplaintStatusId:any) {
+  changeStatus(e: Event) {
+    // change the status of complaint.Complaint status is changed by admin
+    let ComplaintStatusId = (e.target as HTMLSelectElement).value;
+    console.log(ComplaintStatusId, this.complainId);
+    this.complaintsService
+      .changeComplaintStatus(ComplaintStatusId, this.complainId)
+      .subscribe((res: Apiresponse) => {
+        if (res.success) {
+          this.sendNotification(this.notification, ComplaintStatusId);
+          console.log(res.message);
+        } else {
+          console.log(res.message);
+        }
+      });
+  }
+  sendNotification(notification: Notification, ComplaintStatusId: any) {
     // Send notification to user
     let complaintStatus = this.complaintStaus.find(x => x.id == ComplaintStatusId);
     this.notification.UserId = this.complaint.User.id;

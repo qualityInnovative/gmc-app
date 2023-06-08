@@ -1,12 +1,19 @@
 <div class="container">
-    <h1> Remark History</h1>
-    <div class="remark-history" *ngFor="let complaint of assignComplaints;">
-        <ul *ngIf="complaint.remarks.length > 1"  class="remark-history-remark-list">
+    <h1 class="title"> Complaint History</h1>
+    <div class="remark-history" *ngFor="let complaint of remarkhistory;">
+        <ul *ngIf="complaint.remarks.length > 1" class="remark-history-remark-list">
             <li class="remark-history-remark-list-item">
                 <div class="remark-history-remark">
-                    <p class="remark-history-remark-text">{{complaint.remarks}}</p>
+                    <p class="remark-history-remark-text">Action : {{complaint.description}}</p>
+                    <p class="remark-history-remark-text">Remark :{{complaint.remarks}}</p>
+                    <p class="remark-history-remark-text">Complaint Status :{{
+                        getComplaintStatusFromId(complaint.complaintStatusId )}}</p>
                     <p class="remark-history-remark-date">{{complaint.createdAt | date:'medium'}}</p>
                 </div>
+
+                <fa-icon 
+                *ngIf="complaint.createdBy ===currentUserId"
+                [icon]="faTrash" (click)="deleteRemark(complaint.id)" title="Delete State"></fa-icon>
             </li>
         </ul>
     </div>
