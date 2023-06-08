@@ -1,33 +1,68 @@
-deploy:
-  needs: build
-  runs-on: windows-latest
+name: CI/CD Pipeline
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+on:
+  push:
+    branches:
+      - main
 
-    - name: Download artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: dist
-        path: dist/
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 16
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
 
-    - name: Install Angular CLI
-      run: npm install -g @angular/cli
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Build Angular app
-      run: ng build --configuration=production
+      - name: Build Angular app
+        run: npx ng build --configuration=production
 
-    - name: Publish to IIS server
-      run: |
-        $destPath = "C:\ratelistapp\dist\ratelistapp"
-        Remove-Item -Recurse -Force $destPath -ErrorAction SilentlyContinue
-        Copy-Item -Recurse -Force dist/ $destPath
+      - name: Publish artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist/
+
+  deploy:
+    needs: build
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist/
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular app
+        run: ng build --configuration=production
+
+      - name: Publish to IIS server
+        run: |
+          $destPath = "C:\ratelistapp\dist\ratelistapp"
+          Remove-Item -Recurse -Force $destPath -ErrorAction SilentlyContinue
+          Copy-Item -Recurse -Force dist/ $destPath
