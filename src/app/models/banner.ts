@@ -9,6 +9,7 @@ export class Banner {
     stateId: number = 0;
     startDate!: string;
     endDate: string="";
+    view: number = 0;
     createdAt!: Date;
     updatedAt!: Date;
 }
