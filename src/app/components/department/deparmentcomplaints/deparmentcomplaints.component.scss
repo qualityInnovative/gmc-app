@@ -66,7 +66,7 @@
   .complaints-received {
     height: auto;
     margin-top: 10px;
-    height: 60px;
+    height: 100px;
 
 
 
@@ -85,8 +85,9 @@
   .show-complaints {
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 10px;
+   
     padding: 10px;
+    gap: 20px;
 
 
   }
@@ -121,7 +122,7 @@
   }
 
   .show-complaints {
-    flex-direction: column;
+    flex-direction: row;
   }
 }
 

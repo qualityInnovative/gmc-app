@@ -85,6 +85,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { DeparmentcomplaintsComponent } from './components/department/deparmentcomplaints/deparmentcomplaints.component';
 import { ViewcomplaintComponent } from './components/department/deparmentcomplaints/viewcomplaint/viewcomplaint.component';
 import { RemarkhistoryComponent } from './components/misc/remarkhistory/remarkhistory.component';
+import { BannersComponent } from './components/admin/banners/banners.component';
+import { EditbannerComponent } from './components/admin/banners/editbanner/editbanner.component';
+import { UnauthorizedComponent } from './components/misc/unauthorized/unauthorized.component';
 
 
 
@@ -163,7 +166,10 @@ import { RemarkhistoryComponent } from './components/misc/remarkhistory/remarkhi
     ComplaintdetailComponent, 
     DeparmentcomplaintsComponent,
     ViewcomplaintComponent,
-    RemarkhistoryComponent
+    RemarkhistoryComponent,
+    BannersComponent,
+    EditbannerComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

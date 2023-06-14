@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 mb-5">
+        <ratelist-adminmenu></ratelist-adminmenu>
+      </div>
+      <div *ngIf="loading" class="col-9">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+            <div class="spinner-border text-primary" role="status"></div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="errorStatus" class="col-8">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!loading" class="col-md-9 mt-5 mb-5">
+        <div class="d-flex justify-content-between align-items-center manage-specialty">
+          <h3 class="card-title">Manage Categories</h3>
+          <button class="btn buttonFull" (click)="editBanner(0)"> Add Banner </button>
+  
+        </div>
+        <div class="card shadow mt-5">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover" datatable>
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">createdAt</th>
+                    <th scope="col">start date</th>
+                    <th scope="col">end date</th>
+                    <th scope="col">status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let banner of banners">
+                    <td>{{banner.title}}</td>
+                    <td>{{banner.description}}</td>
+                    <td>{{banner.createdAt | date :'short'  }}</td>
+                    <td>{{banner.startDate | date }}</td>
+                    <td>{{banner.endDate | date}}</td>
+                    <td>{{banner.status}}</td>
+                    <td>
+                      <fa-icon [icon]="faEdit" (click)="editBanner(banner.id)"></fa-icon>
+                      <fa-icon [icon]="faTrash" (click)="deleteBanner(banner.id)"></fa-icon>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

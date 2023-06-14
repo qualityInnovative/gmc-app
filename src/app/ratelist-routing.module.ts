@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AdminauthGuard } from './gaurds/adminauth/adminauth.guard';
+
 import { LoginComponent } from './components/user/login/login.component';
 import { AdminhomeComponent } from './components/admin/adminhome/adminhome.component';
 import { OfflinehomeComponent } from './components/offline/offlinehome/offlinehome.component';
@@ -63,6 +65,9 @@ import { CompaintsComponent } from './components/admin/compaints/compaints.compo
 import { ComplaintdetailComponent } from './components/admin/compaints/complaintdetail/complaintdetail.component';
 import { DeparmentcomplaintsComponent } from './components/department/deparmentcomplaints/deparmentcomplaints.component';
 import { ViewcomplaintComponent } from './components/department/deparmentcomplaints/viewcomplaint/viewcomplaint.component';
+import { BannersComponent } from './components/admin/banners/banners.component';
+import { EditbannerComponent } from './components/admin/banners/editbanner/editbanner.component';
+import { UnauthorizedComponent } from './components/misc/unauthorized/unauthorized.component';
 const routes: Routes = [
   {
     path: '',
@@ -406,7 +411,7 @@ const routes: Routes = [
   },
   {
     path: 'department/complaints/complaindetail/:id',
-    component:ViewcomplaintComponent,
+    component: ViewcomplaintComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
@@ -415,7 +420,25 @@ const routes: Routes = [
     component: DeparmentcomplaintsComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard]
-  }
+  },
+  {
+    path: "admin/banners",
+    component: BannersComponent,
+    pathMatch: "full",
+    canActivate: [AuthGuard,AdminauthGuard],
+  },
+  {
+    path: "admin/banners/editbanner/:id",
+    component: EditbannerComponent,
+    pathMatch: "full",
+    canActivate: [AuthGuard,AdminauthGuard]
+  },
+  {
+    path:"unauthorized",
+    component:UnauthorizedComponent,
+    pathMatch:"full",
+  },
+  
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -21,7 +21,6 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./complaintdetail.component.scss']
 })
 export class ComplaintdetailComponent implements OnInit {
-
   complainId: number = 0;
   notificationType = NotificationType;
   notification: Notification = new Notification();

@@ -85,23 +85,22 @@
                     <div class="mb-3 form-group position-relative">
                         <label for="name">from district </label>
                         <select class="form-control input_feild" id="exampleFormControlSelect1"
-                            [(ngModel)]="complaint.districtId" 
-                            disabled>
+                            [(ngModel)]="complaint.districtId" disabled>
                             <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
                         </select>
                     </div>
                     <!-- assign to user -->
                     <div class="mb-3 form-group position-relative">
                         <label for="name">Assign to user </label>
-                        <select (change)="assignToUser($event)" class="form-control input_feild" id="exampleFormControlSelect1">
+                        <select (change)="assignToUser($event)" class="form-control input_feild"
+                            id="exampleFormControlSelect1">
                             <option value="0">Select User</option>
-                            <option *ngFor="let user of deparmentUsers" [value]="user.id">{{user.id}} {{user.Profile.firstName}}</option>
+                            <option *ngFor="let user of deparmentUsers" [value]="user.id">{{user.id}}
+                                {{user.Profile.firstName}}</option>
                         </select>
                     </div>
 
-                    <button 
-                    (click)="saveComplaint()"
-                    class="btn buttonFull buttonFull-transparent mb-3">
+                    <button (click)="saveComplaint()" class="btn buttonFull buttonFull-transparent mb-3">
                         Assign
                     </button>
                     <google-map [options]="options" height="400px" width="750px" [center]="center" [zoom]="zoom"
@@ -133,11 +132,10 @@
 
             </div>
             <div class="col-12 mb-3">
-                <ratelist-remarkhistory
-                *ngIf = "complaint.ComplaintId > 0"
-                [complaintId]="complaint.id"></ratelist-remarkhistory>
+                <ratelist-remarkhistory *ngIf="complaint.ComplaintId > 0"
+                    [complaintId]="complaint.id"></ratelist-remarkhistory>
             </div>
-            
+
         </div>
     </div>
 </div>

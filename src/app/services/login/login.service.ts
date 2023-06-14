@@ -4,10 +4,12 @@ import { User, Apiresponse } from '../../ratelist-models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Roles } from  './../../models/enums/roles'
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  roles = Roles;
   constructor(
     private http: HttpClient
   ) { }
@@ -43,6 +45,10 @@ export class LoginService {
   }
   reloadHeaderComponent(): void {
     window.location.reload();
+  }
+  isAdminUser(): boolean {
+    const user = this.getLoggedInUser();
+    return user.roleId  === this.roles.admin;
   }
 
 }
