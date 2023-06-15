@@ -61,7 +61,7 @@ jobs:
       - name: Build Angular app
         run: ng build --configuration=production
 
-     - name: Publish to IIS server
+      - name: Publish to IIS server
         uses: webfactory/ssh-agent@v0.5.1
         with:
           ssh-private-key: ${{ secrets.KEY }}
