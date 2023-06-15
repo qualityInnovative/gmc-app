@@ -61,19 +61,15 @@ jobs:
       - name: Build Angular app
         run: npx ng build --configuration=production
 
-      - name: Deploy to IIS server
+      - name : Deploy to IIS server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.KEY }}
+          key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          debug: true
           script: |
             cd ratelistapp
             git pull
             npm install
             ng build --configuration=production
-            cd ..
-            cp -r ratelistapp/dist/ratelistapp/* /var/www/html/ratelistapp
-            
