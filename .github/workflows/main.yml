@@ -61,17 +61,10 @@ jobs:
       - name: Build Angular app
         run: ng build --configuration=production
 
-      - name: Publish to IIS server
-        uses: appleboy/ssh-action@master
+     - name: Publish to IIS server
+        uses: webfactory/ssh-agent@v0.5.1
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          shell: |
-            cd ratelistapp
-            git pull
-            npm install
-            ng build --configuration=production
-            cd ..
-            cp -r ratelistapp/dist/ratelistapp/* /var/www/html/ratelistapp
+          ssh-private-key: ${{ secrets.KEY }}
+          ssh-auth-sock: ${{ github.workspace }}/ssh-auth.sock
+          run: |
+            ssh -p ${{ secrets.PORT }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd ratelistapp && git pull && npm install && ng build --configuration=production && cd .. && cp -r ratelistapp/dist/ratelistapp/* /var/www/html/ratelistapp"
