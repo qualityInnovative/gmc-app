@@ -4,8 +4,8 @@ import { LoginService } from 'src/app/ratelist-services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { faSpinner, faBars, faAngleDown, faUserGear, faEnvelope, faPencil, faLock, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Roles } from 'src/app/ratelist-models';
-// change detection strategy
 import { ChangeDetectionStrategy } from '@angular/core';
+
 @Component({
   selector: 'ratelist-header',
   templateUrl: './header.component.html',
@@ -35,6 +35,11 @@ export class HeaderComponent implements OnInit {
   ) {
     this.dontShowHeaderinLogin();
     this.userId = this.loginService.getLoggedInUser().id;
+    this.loginService._authState.subscribe((user: User) => {
+      if (user) {
+        this.getUserProfile(user.id);
+      }
+    })
   }
   ngOnInit(): void {
     this.getUserProfile(this.userId);
@@ -62,11 +67,13 @@ export class HeaderComponent implements OnInit {
       this.route.navigate(['/moderator']);
     } else if (this.userProfile.roleId == Roles.user) {
       this.route.navigate(['/home']);
-    }else if(this.userProfile.roleId == Roles.departmentUser){
+    } else if (this.userProfile.roleId == Roles.departmentUser) {
       this.route.navigate(['/department']);
     }
   }
   ngOnChanges() {
     this.getUserProfile(this.userId);
   }
+
+
 }

@@ -12,10 +12,8 @@ import { Unit } from 'src/app/ratelist-models';
 import { UnitsService } from 'src/app/ratelist-services';
 import { DistrictsService } from 'src/app/ratelist-services';
 import { District } from 'src/app/ratelist-models';
-
 import { MandiService } from 'src/app/services/mandi/mandi.service';
 import { Mandi } from 'src/app/models/mandi';
-
 import { LoginService } from 'src/app/ratelist-services';
 @Component({
   selector: 'ratelist-editadmin-retailratelist',
@@ -37,12 +35,10 @@ export class EditadminRetailratelistComponent implements OnInit {
   faTrash = faTrash;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-
   selectedCommodityId: number = 0;
   selectedDistrictId: number = 0;
   selectedMandiId: number = 0;
   selectedUnitId: number = 0;
-
   constructor(
     private retailratelistService: RetailratelistService,
     private router: Router,
@@ -53,7 +49,6 @@ export class EditadminRetailratelistComponent implements OnInit {
     private districtsService: DistrictsService,
     private unitsService: UnitsService,
     private loginService: LoginService
-    
   ) {
     this.retailratelistId = this.route.snapshot.params['id'];
   }
@@ -68,33 +63,29 @@ export class EditadminRetailratelistComponent implements OnInit {
     this.commoditiesService.getAllCommodities()
       .subscribe((res: Apiresponse) => {
         this.commodities = res.data;
-        console.log(this.commodities);
+
       });
   }
   getAllMandis() {
     this.mandiService.getallMandis()
       .subscribe((res: Apiresponse) => {
         this.mandis = res.data;
-        console.log(this.mandis);
       });
   }
   getAllDistricts() {
     this.districtsService.getAllDistricts()
       .subscribe((res: Apiresponse) => {
         this.districts = res.data;
-        console.log(this.districts);
       });
   }
   getAllUnits() {
     this.unitsService.getUnits()
       .subscribe((res: Apiresponse) => {
         this.units = res.data;
-        console.log(this.units);
-        
       });
   }
   getRetailandMandiPrice(commodityId: number, districtId: number, mandiId: number, unitId: number) {
-    if(commodityId==0 || districtId==0 || mandiId==0 || unitId==0){
+    if (commodityId == 0 || districtId == 0 || mandiId == 0 || unitId == 0) {
       return;
     }
     this.retailratelistService.getRetailandMandiPrice(
@@ -105,35 +96,33 @@ export class EditadminRetailratelistComponent implements OnInit {
     )
       .subscribe((res: Apiresponse) => {
         this.retailratelist.mandiPrice = res.data.mandiPrice;
-        this.retailratelist.retailPrice = (this.retailratelist.mandiPrice * res.data.retailPriceFactor)+this.retailratelist.mandiPrice;
-        console.log(this.retailratelist);
+        this.retailratelist.retailPrice = (this.retailratelist.mandiPrice * res.data.retailPriceFactor) + this.retailratelist.mandiPrice;
+
       });
   }
-
   isEdit() {
     if (this.retailratelistId > 0) {
       this.edit = true;
       this.getRetailRateList();
-    }else{
-      this.retailratelist.mandiPrice=0;
-      this.retailratelist.retailPrice=0;
+    } else {
+      this.retailratelist.mandiPrice = 0;
+      this.retailratelist.retailPrice = 0;
     }
   }
   commoditySelected(event: HTMLSelectElement | any) {
-    console.log(event.target.value);
+    let catgegory: Commodity | undefined = undefined;
+    catgegory = this.commodities.find(x => x.id == event.target.value);
+    this.retailratelist.categoryId = catgegory?.categoryId as number;
     this.selectedCommodityId = event.target.value;
   }
   mandiSelected(event: HTMLSelectElement | any) {
-    console.log(event.target.value);
     this.selectedMandiId = event.target.value;
   }
   districtSelected(event: HTMLSelectElement | any) {
-    console.log(event.target.value);
     this.selectedDistrictId = event.target.value;
   }
   unitSelected(event: HTMLSelectElement | any) {
-    this.selectedUnitId=event.target.value;
-    console.log(event.target.value);
+    this.selectedUnitId = event.target.value;
     this.getRetailandMandiPrice(
       this.selectedCommodityId,
       this.selectedDistrictId,
@@ -145,22 +134,23 @@ export class EditadminRetailratelistComponent implements OnInit {
     this.retailratelistService.getRetailRateListById(this.retailratelistId)
       .subscribe((res: Apiresponse) => {
         this.retailratelist = res.data;
-        console.log(this.retailratelist);
+
       });
   }
   saveRateList() {
     if (this.edit) {
-      console.log(this.retailratelist);
+
       this.retailratelistService.
         updateRetailRateList(this.retailratelistId, this.retailratelist).
         subscribe((res: Apiresponse) => {
           this.router.navigate(['admin/adminretailratelist']);
         });
     } else {
-      console.log(this.retailratelist);
-      this.retailratelist.approvedByUserId= this.loginService.getLoggedInUser().id;
-      this.retailratelist.createdBy= this.loginService.getLoggedInUser().id;
-      this.retailratelistService.saveRetailRateList(this.retailratelist)
+
+      this.retailratelist.approvedByUserId = this.loginService.getLoggedInUser().id;
+      this.retailratelist.createdBy = this.loginService.getLoggedInUser().id;
+      this.retailratelistService
+        .saveRetailRateList(this.retailratelist)
         .subscribe((res: Apiresponse) => {
           this.router.navigate(['admin/adminretailratelist']);
         });

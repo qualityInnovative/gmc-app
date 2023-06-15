@@ -55,8 +55,10 @@ export class LoginComponent implements OnInit {
         this.busy = false;
         if (res.success) {
           console.log("res", res);
+          this.loginService._authState.next(res.data.user);
           this.loginService.setToken(res.data.token);
           this.loginService.setUser(res.data.user);
+          
           if (res.data.user.roleId == Roles.admin) {
             this.router.navigate(['/admin/states']);
           } else if (res.data.user.roleId == Roles.mandiAdmin) {

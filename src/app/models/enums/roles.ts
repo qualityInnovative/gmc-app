@@ -5,5 +5,4 @@ export enum Roles {
     departmentUser = 4,
     departmentHod=5,
     departmentOfficer=6,
-
 }

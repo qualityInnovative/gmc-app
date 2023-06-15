@@ -17,14 +17,12 @@
             </div>
             <div class="row mt-5">
                 <form #form="ngForm" (ngSubmit)="saveRateList()">
-
-
-
                     <div class="col-12 mb-4">
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Commodity</label>
                             <select class="form-control input_feild" id="commodityId" name="commodityId"
-                                [(ngModel)]=" retailratelist.commodityId" (change)="commoditySelected($event)" required>
+                                [(ngModel)]=" retailratelist.commodityId" 
+                                (change)="commoditySelected($event)" required>
                                 <option value="">Select Commodity</option>
                                 <option *ngFor="let commodity of commodities" [value]="commodity.id">
                                     {{commodity.name}}
@@ -45,13 +43,13 @@
                             </select>
                         </div>
                     </div>
-
                     <!--districts-->
                     <div class="col-12 mb-4">
                         <div class="mb-3 form-group position-relative">
                             <label for="name">District</label>
                             <select class="form-control input_feild" id="districtId" name="districtId"
-                                (change)="districtSelected($event)" [(ngModel)]=" retailratelist.districtId" required>
+                                (change)="districtSelected($event)" 
+                                [(ngModel)]="retailratelist.districtId" required>
                                 <option value="">Select District</option>
                                 <option *ngFor="let district of districts" [value]="district.id">
                                     {{district.name}}
@@ -59,8 +57,6 @@
                             </select>
                         </div>
                     </div>
-
-
                     <!-- units -->
                     <div class="col-12 mb-4">
                         <div class="mb-3 form-group position-relative">
@@ -74,8 +70,6 @@
                             </select>
                         </div>
                     </div>
-
-
                     <div class="col-12 mb-4">
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Retail Price</label>

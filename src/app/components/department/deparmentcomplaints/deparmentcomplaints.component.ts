@@ -54,7 +54,8 @@ export class DeparmentcomplaintsComponent implements OnInit {
     this.getAssignComplaintsAssignedToCurrentUser(this.currentUserId);
   }
   getAssignComplaintsAssignedToCurrentUser(id: number) {
-    this.complaintsService.getAssignComplaintsAssignedToCurrentUser(id)
+    this.complaintsService
+    .getAssignComplaintsAssignedToCurrentUser(id)
       .subscribe((res: Apiresponse) => {
         if (res.success) {
           this.complaints = res.data;
@@ -90,8 +91,7 @@ export class DeparmentcomplaintsComponent implements OnInit {
         } else {
           console.log(res);
         }
-      }
-        , (err) => {
+      },(err) => {
           console.log(err);
         });
   }
@@ -110,10 +110,5 @@ export class DeparmentcomplaintsComponent implements OnInit {
       this.filterdComplaints = this.complaints.filter(x => x.ComplaintId == status);
     }
   }
-  showLengthofComplaints() {
-
-
-  }
-
-
+  showLengthofComplaints() {}
 }

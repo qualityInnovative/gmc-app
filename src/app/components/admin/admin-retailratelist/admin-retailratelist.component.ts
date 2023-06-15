@@ -7,17 +7,12 @@ import { Subject } from 'rxjs';
 import {faPenToSquare, faTrash} from '@fortawesome/free-solid-svg-icons';
 import { CommoditiesService } from 'src/app/ratelist-services';
 import { Commodity } from 'src/app/ratelist-models';
-
 import { MandiService } from 'src/app/services/mandi/mandi.service';
 import { Mandi } from 'src/app/models/mandi';
-
 import { DistrictsService } from 'src/app/ratelist-services';
 import { District } from 'src/app/ratelist-models';
-
 import { Unit } from 'src/app/ratelist-models';
 import { UnitsService } from 'src/app/ratelist-services';
-
-
 @Component({
   selector: 'ratelist-admin-retailratelist',
   templateUrl: './admin-retailratelist.component.html',
@@ -36,8 +31,6 @@ export class AdminRetailratelistComponent implements OnInit {
   districts: District[] = [];
   mandis: Mandi[] = [];
   units: Unit[] = [];
-
-
   constructor(
     private retailratelistService: RetailratelistService,
     private router: Router,
@@ -63,7 +56,6 @@ export class AdminRetailratelistComponent implements OnInit {
     .getAllDistricts()
     .subscribe((res: Apiresponse) => {
       this.districts = res.data;
-      console.log(this.districts);
     });
   }
   getMandis() {
@@ -71,7 +63,7 @@ export class AdminRetailratelistComponent implements OnInit {
     .getallMandis()
     .subscribe((res: Apiresponse) => {
       this.mandis = res.data;
-      console.log(this.mandis);
+     
     });
   }
   getUnits() {
@@ -79,7 +71,7 @@ export class AdminRetailratelistComponent implements OnInit {
     .getUnits()
     .subscribe((res: Apiresponse) => {
       this.units = res.data;
-      console.log(this.units);
+     
     });
   }
   getUnitName(id: number) {
@@ -99,7 +91,7 @@ export class AdminRetailratelistComponent implements OnInit {
     .getAllCommodities()
     .subscribe((res: Apiresponse) => {
       this.commodities = res.data;
-      console.log(this.commodities);
+    
     });
   }
   getRetailRateList() {
@@ -107,7 +99,7 @@ export class AdminRetailratelistComponent implements OnInit {
     .getRetailRateList()
     .subscribe((res: Apiresponse) => {
       this.retailratelist = res.data;
-      console.log(this.retailratelist);
+      this.dtTrigger.next(null);
     });
   }
   getCommodityName(id: number) {

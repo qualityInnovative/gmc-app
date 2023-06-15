@@ -61,8 +61,17 @@ jobs:
       - name: Build Angular app
         run: ng build --configuration=production
 
-      - name: Publish to IIS server
-        run: |
-          $destPath = "C:\ratelistapp\dist\ratelistapp"
-          Remove-Item -Recurse -Force $destPath -ErrorAction SilentlyContinue
-          Copy-Item -Recurse -Force $env:GITHUB_WORKSPACE/dist/ $destPath
+      - name : Publish to IIS server
+        uses : appleboy/ssh-action@master
+        with :
+          host : ${{ secrets.HOST }}
+          username : ${{ secrets.USERNAME }}
+          key : ${{ secrets.KEY }}
+          port : ${{ secrets.PORT }}
+          script : |
+            cd ratelistapp
+            git pull
+            npm install
+            ng build --configuration=production
+            cd ..
+            cp -r ratelistapp/dist/ratelistapp/* /var/www/html/ratelistapp
