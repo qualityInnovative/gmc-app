@@ -68,6 +68,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          debug: true
           script: |
             cd ratelistapp
             git pull
