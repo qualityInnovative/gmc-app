@@ -63,9 +63,7 @@ jobs:
 
       - name: Build Angular app
         run: npx ng build --configuration=production
-
-      - name: Log SSH_KEY
-        run: echo ${{ secrets.SSH_KEY }}
+ 
      
       - name: Publish to IIS server
         uses: appleboy/ssh-action@master
