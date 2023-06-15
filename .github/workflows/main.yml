@@ -62,7 +62,7 @@ jobs:
         run: ng build --configuration=production
 
       - name : Publish to IIS server
-        uses : fabpot/ssh@v0.2.0
+        uses : webfactory/ssh-agent@v0.5.1
         with :
           host : ${{ secrets.HOST }}
           username : ${{ secrets.USERNAME }}
