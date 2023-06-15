@@ -62,7 +62,7 @@ jobs:
         run: ng build --configuration=production
 
       - name : Publish to IIS server
-        uses : appleboy/ssh-action@v0.1.2
+        uses : fabpot/ssh@v0.2.0
         with :
           host : ${{ secrets.HOST }}
           username : ${{ secrets.USERNAME }}
