@@ -61,14 +61,14 @@ jobs:
       - name: Build Angular app
         run: ng build --configuration=production
 
-      - name : Publish to IIS server
-        uses : webfactory/ssh-agent@v0.5.1
-        with :
-          host : ${{ secrets.HOST }}
-          username : ${{ secrets.USERNAME }}
-          key : ${{ secrets.KEY }}
-          port : ${{ secrets.PORT }}
-          script : |
+      - name: Publish to IIS server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          shell: |
             cd ratelistapp
             git pull
             npm install
