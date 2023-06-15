@@ -1,71 +1,35 @@
-name: CI/CD Pipeline
+deploy:
+  needs: build
+  runs-on: ubuntu-latest
 
-on:
-  push:
-    branches:
-      - main
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
+    - name: Download artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: dist
+        path: dist/
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli
 
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
+    - name: Install dependencies
+      run: npm ci
 
-      - name: Install dependencies
-        run: npm ci
+    - name: Build Angular app
+      run: npx ng build --configuration=production
 
-      - name: Build Angular app
-        run: npx ng build --configuration=production
-
-      - name: Publish artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: dist
-          path: dist/
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: dist
-          path: dist/
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
-
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Angular app
-        run: npx ng build --configuration=production
-
-      - name: Publish to IIS server
-        uses: webfactory/ssh-agent@v0.5.1
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY }}
-          ssh-auth-sock: ${{ github.workspace }}/ssh-auth.sock
-          run: |
-            ssh -p ${{ secrets.PORT }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd ratelistapp && git pull && npm install && ng build --configuration=production && cd .. && cp -r ratelistapp/dist/ratelistapp/* /var/www/html/ratelistapp"
+    - name: Publish to IIS server
+      uses: webfactory/ssh-agent@v0.5.1
+      with:
+        ssh-private-key: ${{ secrets.SSH_KEY }}
+        ssh-auth-sock: ${{ github.workspace }}/ssh-auth.sock
+        run: |
+          ssh -p ${{ secrets.PORT }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd ratelistapp && git pull && npm install && ng build --configuration=production && cd .. && cp -r ratelistapp/dist/ratelistapp/* /var/www/html/ratelistapp"
