@@ -37,13 +37,12 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps:
-      - name: Log SSH_KEY
-        run: echo ${{ secrets.SSH_KEY }}
+    
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
 
       - name: Download artifacts
         uses: actions/download-artifact@v2
@@ -64,8 +63,10 @@ jobs:
 
       - name: Build Angular app
         run: npx ng build --configuration=production
-     
 
+      - name: Log SSH_KEY
+        run: echo ${{ secrets.SSH_KEY }}
+     
       - name: Publish to IIS server
         uses: webfactory/ssh-agent@v0.5.1
         with:
