@@ -35,7 +35,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
@@ -59,7 +59,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular app
-        run: ng build --configuration=production
+        run: npx ng build --configuration=production
 
       - name: Publish to IIS server
         uses: webfactory/ssh-agent@v0.5.1
