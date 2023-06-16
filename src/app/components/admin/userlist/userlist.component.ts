@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { Roles } from 'src/app/ratelist-models';
 import { Mandi } from 'src/app/ratelist-models';
 import { MandiService } from 'src/app/services/mandi/mandi.service';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'ratelist-userlist',
   templateUrl: './userlist.component.html',
@@ -20,12 +21,19 @@ export class UserlistComponent implements OnInit {
   faTrash = faTrash;
   users: UserProfile[] = [];
   mandis: Mandi[] = [];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
   constructor(
     private router: Router,
     private userService: UserService,
     private mandiService: MandiService
   ) { }
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      processing: true
+    };
     this.loading = true;
     this.getAllUsers();
     this.getAllMandis();
@@ -49,6 +57,7 @@ export class UserlistComponent implements OnInit {
         this.users = data.data.filter((user: UserProfile) => user.roleId !== Roles.admin);
         this.loading = false;
         console.log(this.users)
+        this.dtTrigger.next(undefined);
       },
       (err) => {
         this.error = err.error.message;

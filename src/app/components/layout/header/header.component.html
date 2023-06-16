@@ -1,5 +1,4 @@
 <ng-container *ngIf="dontShowHeaderinLogin()">
-  
     <nav *ngIf="loginService.isUserLoggedIn()"
         class="d-flex justify-content-between navbar navbar-expand-lg navbar-light bg-white headerNav">
         <div class="container CustomContainer">
@@ -16,63 +15,66 @@
                     <a class="me-5 text-dark text-decoration-none adminDashboard" [routerLink]="['/admin/states']">
                         Admin</a>
                 </div>
-            </div>
-            <div class="nameandbutton" *ngIf="userProfile?.email">
-                <div class="dropdown text-end">
-                    <a class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img [src]="userProfile.Profile.image" alt="" class="rounded-circle"
-                            style="height: 35px; width: 35px; object-fit: cover" />&nbsp;&nbsp;
-                        <span class="pe-1 nameandemail">
-                            <span>
-                                {{ userProfile.Profile.firstName }} {{ userProfile.Profile.lastName }}
+                <div class="nameandbutton" *ngIf="userProfile?.email">
+                    <div class="dropdown text-end">
+                        <a class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img [src]="userProfile.Profile.image" alt="" class="rounded-circle"
+                                style="height: 35px; width: 35px; object-fit: cover" />&nbsp;&nbsp;
+                            <span class="pe-1 nameandemail">
+                                <span>
+                                    {{ userProfile.Profile.firstName }} {{ userProfile.Profile.lastName }}
+                                </span>
+                                <span class="text-email"> {{ getUserRole(userProfile) }}</span>
                             </span>
-                            <span class="text-email"> {{ getUserRole(userProfile) }}</span>
-                        </span>
-                        <fa-icon [icon]="faAngleDown" style="margin-left: 5px; font-size: 18px"></fa-icon>
-                        <span class="nav-username"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdownTop userprofileDropDown text-small"
-                        aria-labelledby="dropdownUser1">
-                        <li class="mb-2">
-                            <div class="userinfo">
-                                <div class="row">
-                                    <div class="col-sm-4 d-flex align-items-center">
-                                        <div routerLink="/profile" class="userinfo-image">
-                                            <img [src]="userProfile.Profile.image" alt="" class="rounded-circle" />
+                            <fa-icon [icon]="faAngleDown" style="margin-left: 5px; font-size: 18px"></fa-icon>
+                            <span class="nav-username"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdownTop userprofileDropDown text-small"
+                            aria-labelledby="dropdownUser1">
+                            <li class="mb-2">
+                                <div class="userinfo">
+                                  
+                                        <div class="row">
+                                            <div class="col-md-4 d-flex align-items-center">
+                                                <div routerLink="/profile" class="userinfo-image">
+                                                    <img [src]="userProfile.Profile.image" alt=""
+                                                        class="rounded-circle" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="userinfo-name">
+                                                    <span class="text-email role_org">{{ getUserRole(userProfile) }}
+                                                    </span>
+                                                    <span class="text-email"><fa-icon [icon]="faEnvelope"></fa-icon>
+                                                        {{ userProfile.email }}</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="userinfo-name">
-
-                                            <span class="text-email role_org">{{ getUserRole(userProfile) }}
-                                            </span>
-                                            <span class="text-email"><fa-icon [icon]="faEnvelope"></fa-icon>
-                                                {{ userProfile.email }}</span>
-                                        </div>
-                                    </div>
+                                  
                                 </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/editprofile']" class="profileLink dropdown-item">
-                                <fa-icon [icon]="faPencil"></fa-icon> Edit Profile
-                            </a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/resetpassword']" class="profileLink dropdown-item">
-                                <fa-icon [icon]="faLock"></fa-icon> Change Password
-                            </a>
-                        </li>
-                        <hr />
-                        <li class="d-flex justify-content-center">
-                            <a (click)="logout()" style="cursor: pointer"
-                                class="dropdown-item text-center mb-3 mt-3 button">
-                                <fa-icon [icon]="faArrowRightFromBracket"></fa-icon> Sign out</a>
-                        </li>
-                    </ul>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/editprofile']" class="profileLink dropdown-item">
+                                    <fa-icon [icon]="faPencil"></fa-icon> Edit Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/resetpassword']" class="profileLink dropdown-item">
+                                    <fa-icon [icon]="faLock"></fa-icon> Change Password
+                                </a>
+                            </li>
+                            <hr />
+                            <li class="d-flex justify-content-center">
+                                <a (click)="logout()" style="cursor: pointer"
+                                    class="dropdown-item text-center mb-3 mt-3 button">
+                                    <fa-icon [icon]="faArrowRightFromBracket"></fa-icon> Sign out</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
         </div>
     </nav>
     <nav *ngIf="!loginService.isUserLoggedIn()"

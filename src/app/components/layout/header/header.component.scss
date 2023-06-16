@@ -9,8 +9,8 @@
 }
 .nameandbutton {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content:flex-end;
+  align-items: flex-end;
 }
 .create-query-div > a {
   font-weight: 500;
