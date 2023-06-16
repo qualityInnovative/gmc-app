@@ -70,7 +70,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
             cd ratelistapp
@@ -79,4 +79,3 @@ jobs:
             ng build --configuration=production
             cd ..
             cp -r ratelistapp/dist/ratelistapp/* /var/www/html/ratelistapp/
-            
