@@ -76,4 +76,3 @@ jobs:
             ng build --configuration=production
             cd ..
             cp -r ratelistapp/dist/ratelistapp/* /var/www/html/ratelistapp/
-            
