@@ -65,10 +65,10 @@ jobs:
       - name: Publish to IIS server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
+          host: 49.50.66.95
+          username: administrator
           password: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
+          port: 9007
           script: |
             cd ratelistapp
             git pull
