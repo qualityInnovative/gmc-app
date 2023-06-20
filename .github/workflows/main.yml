@@ -67,7 +67,7 @@ jobs:
         with:
           host: 49.50.66.95
           username: administrator
-          password: ${{ secrets.KEY }}
+          password: fHg%2!gtiQ
           port: 9007
           script: |
             cd ratelistapp
