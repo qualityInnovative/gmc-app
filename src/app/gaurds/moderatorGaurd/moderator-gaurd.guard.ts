@@ -12,7 +12,7 @@ export class ModeratorGaurdGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.loginService.isAdminUser()){
+      if(this.loginService.isModeratorUser()){
         return true;
       }else{
         this.router.navigate(['unauthorized'], { queryParams: { returnUrl: state.url } });
