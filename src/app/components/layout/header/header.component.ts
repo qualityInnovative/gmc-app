@@ -52,8 +52,24 @@ export class HeaderComponent implements OnInit {
   dontShowHeaderinLogin(): boolean {
     return this.route.url == "/login" ? false : true;
   }
+
   getUserRole(user: User) {
-    return user.roleId == Roles.admin ? "Admin" : user.roleId == Roles.mandiAdmin ? "mandiAdmin" : user.roleId == Roles.user ? "User" : user.roleId == Roles.departmentUser ? "Department User" : "User";
+    switch (user.roleId) {
+      case Roles.admin:
+        return "Admin";
+      case Roles.mandiAdmin:
+        return "mandiAdmin";
+      case Roles.user:
+        return "User";
+      case Roles.departmentUser:
+        return "Department User";
+      case Roles.departmentHod:
+        return "Department HOD";
+      case Roles.departmentOfficer:
+        return "Department Officer";
+      default:
+        return "User";
+    }
   }
   logout(): void {
     localStorage.removeItem('user');
