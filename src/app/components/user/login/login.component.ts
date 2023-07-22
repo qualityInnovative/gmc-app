@@ -63,9 +63,9 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/admin/states']);
           } else if (res.data.user.roleId == Roles.mandiAdmin) {
             this.router.navigate(['/moderator']);
-          } else if (res.data.user.roleId == Roles.user) {
+          } else if (res.data.user.roleId == Roles.mandiUser) {
             this.router.navigate(['/home']);
-          } else if (res.data.user.roleId >= Roles.departmentUser) {
+          } else if (res.data.user.roleId == Roles.departmentUser || res.data.user.roleId == Roles.departmentHod || res.data.user.roleId == Roles.departmentOfficer) {
             this.router.navigate(['/department']);
           } else {
             this.router.navigate(['/']);

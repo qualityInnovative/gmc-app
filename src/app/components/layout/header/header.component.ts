@@ -58,9 +58,9 @@ export class HeaderComponent implements OnInit {
       case Roles.admin:
         return "Admin";
       case Roles.mandiAdmin:
-        return "mandiAdmin";
-      case Roles.user:
-        return "User";
+        return "mandi Admin";
+      case Roles.mandiUser:
+        return "Mandi User";
       case Roles.departmentUser:
         return "Department User";
       case Roles.departmentHod:
@@ -81,7 +81,7 @@ export class HeaderComponent implements OnInit {
       this.route.navigate(['/admindashboard']);
     } else if (this.userProfile.roleId == Roles.mandiAdmin) {
       this.route.navigate(['/moderator']);
-    } else if (this.userProfile.roleId == Roles.user) {
+    } else if (this.userProfile.roleId == Roles.mandiUser) {
       this.route.navigate(['/home']);
     } else if (this.userProfile.roleId == Roles.departmentUser) {
       this.route.navigate(['/department']);

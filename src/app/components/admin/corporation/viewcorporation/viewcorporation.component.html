@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-6 manage-specialty mt-3">
+                    <h3 *ngIf="edit" class="card-title">Edit Corporation</h3>
+                    <h3 *ngIf="!edit" class="card-title">Add Corporation</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <form #form="ngForm" (ngSubmit)="saveCorporation()">
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name"> Name</label>
+                            <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                                [(ngModel)]="corporation.name" required />
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name"> Address</label>
+                            <input type="text" class="form-control input_feild" id="address" name="address" placeholder=" "
+                                [(ngModel)]="corporation.address" required />
+                        </div>
+
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name"> Contact</label>
+                            <input type="text" class="form-control input_feild" id="contact" name="contact" placeholder=" "
+                                [(ngModel)]="corporation.contact" required />
+                        </div>
+
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name"> Email</label>
+                            <input type="text" class="form-control input_feild" id="email" name="email" placeholder=" "
+                                [(ngModel)]="corporation.email" required />
+                        </div>
+                      
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Select State</label>
+                            <select class="form-control input_feild" id="state" name="state" [(ngModel)]="corporation.stateId"
+                                required (change)="getDistrictsByStateId($event)">
+                                <option value="">Select State</option>
+                                <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+                            </select>
+                        </div>
+                        <!-- select district -->
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Select District</label>
+                            <select class="form-control input_feild" id="district" name="district"
+                                [(ngModel)]="corporation.districtId" required>
+                                <option value="">Select District</option>
+                                <option *ngFor="let district of districts" [value]="district.id">
+                                    {{district.name}}</option>
+                            </select>
+                        </div>
+                        <!-- save Corporation -->
+                    </div>
+                    <div class="col-12 mb-3 d-flex justify-content-end">
+                        <button type="submit" class="btn buttonFull buttonFull-primary">Save</button>
+                        <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

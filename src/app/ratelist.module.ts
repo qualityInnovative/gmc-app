@@ -88,6 +88,10 @@ import { RemarkhistoryComponent } from './components/misc/remarkhistory/remarkhi
 import { BannersComponent } from './components/admin/banners/banners.component';
 import { EditbannerComponent } from './components/admin/banners/editbanner/editbanner.component';
 import { UnauthorizedComponent } from './components/misc/unauthorized/unauthorized.component';
+import { RolesComponent } from './components/admin/roles/roles.component';
+import { ViewrolesComponent } from './components/admin/roles/viewroles/viewroles.component';
+import { CorporationComponent } from './components/admin/corporation/corporation.component';
+import { ViewcorporationComponent } from './components/admin/corporation/viewcorporation/viewcorporation.component';
 
 
 
@@ -169,7 +173,11 @@ import { UnauthorizedComponent } from './components/misc/unauthorized/unauthoriz
     RemarkhistoryComponent,
     BannersComponent,
     EditbannerComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    RolesComponent,
+    ViewrolesComponent,
+    CorporationComponent,
+    ViewcorporationComponent
   ],
   imports: [
     BrowserModule,
