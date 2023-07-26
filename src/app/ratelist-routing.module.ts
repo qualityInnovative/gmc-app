@@ -80,6 +80,11 @@ import { ViewcorporatepriceadminComponent } from './components/corporate/corpora
 import { AddcorporateuserComponent } from './components/corporate/addcorporateuser/addcorporateuser.component';
 import { CorporateaddretailrateComponent } from './components/corporate/corporateaddretailrate/corporateaddretailrate.component';
 import { ViewcorporateretailrateComponent } from './components/corporate/corporateaddretailrate/viewcorporateretailrate/viewcorporateretailrate.component';
+
+import { CoprativecategoryComponent } from './components/admin/coprativecategory/coprativecategory.component';
+import { ViewcoprativecategoryComponent } from './components/admin/coprativecategory/viewcoprativecategory/viewcoprativecategory.component';
+import { CorporatecommoditiesComponent } from './components/corporate/corporatecommodities/corporatecommodities.component';
+import { ViewcorporatecommoditiesComponent } from './components/corporate/corporatecommodities/viewcorporatecommodities/viewcorporatecommodities.component';
 const routes: Routes = [
   {
     path: '',
@@ -471,58 +476,82 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminauthGuard]
   },
   {
-    path:'corporate',
-    component:CorporatehomeComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate',
+    component: CorporatehomeComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
-    path:'corporate/corporatepricefactor',
-    component:CorporatepricefactorComponent ,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate/corporatepricefactor',
+    component: CorporatepricefactorComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
-    path:'corporate/corporatepricefactor/viewpricefactor/:id',
-    component:ViewcorporatefactorComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate/corporatepricefactor/viewpricefactor/:id',
+    component: ViewcorporatefactorComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
 
   },
   {
-    path:'corporate/addcorporateuser/viewcorporateretailrate/:id',
-    component:ViewcorporateretailrateComponent,
+    path: 'admin/coprativecategory',
+    component: CoprativecategoryComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "admin/coprativecategory/editcoprativecategory/:id",
+    component: ViewcoprativecategoryComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'corporate/corporatecommodities',
+    component:CorporatecommoditiesComponent,
     pathMatch:'full',
     canActivate:[AuthGuard]
   },
   {
-    path:'corporate/addcorporateuser/:id',
-    component:AddcorporateuserComponent,
+    path:'corporate/viewcorporatecommodities/:id',
+    component:ViewcorporatecommoditiesComponent,
     pathMatch:'full',
     canActivate:[AuthGuard]
   },
   {
-    path:'corporate/corporateaddretailrate',
-    component:CorporateaddretailrateComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate/addcorporateuser/viewcorporateretailrate/:id',
+    component: ViewcorporateretailrateComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
-    path:'corporate/corporatepricefactoradmin',
-    component:CorporatepricefactoradminComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate/addcorporateuser/:id',
+    component: AddcorporateuserComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
-    path:'corporate/corporatepricefactoradmin/viewpricefactoradmin/:id',
-    component:ViewcorporatepriceadminComponent,
-    pathMatch:'full',
+    path: 'corporate/corporateaddretailrate',
+    component: CorporateaddretailrateComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
-    path:'corporate/corporateprice',
-    component:CorporatepricesComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate/corporatepricefactoradmin',
+    component: CorporatepricefactoradminComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'corporate/corporatepricefactoradmin/viewpricefactoradmin/:id',
+    component: ViewcorporatepriceadminComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'corporate/corporateprice',
+    component: CorporatepricesComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: "unauthorized",

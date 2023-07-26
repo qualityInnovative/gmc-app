@@ -16,3 +16,4 @@ export * from './models/mandi';
 export * from './models/mandicommoditypricing';
 export * from './models/districtrateconfiguration';
 export * from './models/mandicommodity';
+export * from './models/coprativecategory';

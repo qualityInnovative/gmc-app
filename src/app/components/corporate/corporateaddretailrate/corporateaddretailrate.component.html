@@ -17,11 +17,7 @@
                                 <thead>
                                     <tr>
                                         <th>Commodity</th>
-                                        <th>mandiPrice</th>
-                                        <th>retailPrice</th>
-                                        <th>Mandi</th>
-                                        <th>District</th>
-                                       
+                                        <th>Mrp</th>
                                         <th>unit</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -33,13 +29,11 @@
                                         <td>{{ratelist.retailPrice}}</td>
                                         <td>{{ratelist.Mandi.name}}</td>
                                         <td>{{ratelist.District.name}}</td>
-
                                         <td>{{ratelist.Unit.name}}</td>
                                         <td class="text-center">
                                             <div class="table_icon">
                                                 <fa-icon (click)="editRetailRateList(ratelist.id)"
                                                     [icon]="faPenToSquare" title="Edit State"></fa-icon>
-
                                                 <fa-icon (click)="deleteRetailRateList(ratelist.id)" [icon]="faTrash"
                                                     title="Delete State"></fa-icon>
                                             </div>

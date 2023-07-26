@@ -38,7 +38,6 @@ export class BannersComponent implements OnInit {
       (response) => {
         this.loading = false;
         this.banners = response.data;
-        console.log(this.banners);
         this.dtTrigger.next(undefined);
       },
       (error) => {

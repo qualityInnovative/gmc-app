@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-6 manage-specialty mt-3">
+                    <h3 *ngIf="edit" class="card-title">Edit Category</h3>
+                    <h3 *ngIf="!edit" class="card-title">Add Category</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <form #form="ngForm" (ngSubmit)="savecoprativecategory()">
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">corporation category Name</label>
+                            <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                                [(ngModel)]="coprativecategory.name" required />
+
+                        </div>
+                    </div>
+                    <!-- if edit == true show image from base64string   -->
+
+                    <div class="col-12 mb-4" *ngIf="edit">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Image</label>
+                            <img [src]="coprativecategory.image" class="categoryimage" />
+                        </div>
+                    </div>
+                    
+                    <!-- upload image to category -->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Upload Image</label>
+                            <!-- upload base64 image  -->
+                            <input type="file" class="form-control input_feild" id="image" name="image" placeholder=" "
+                                [(ngModel)]="coprativecategory.image" required (change)="onFileChange($event)" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn buttonFull" >
+                            save
+                        </button>
+
+                        <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                            cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>

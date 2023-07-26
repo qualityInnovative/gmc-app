@@ -10,11 +10,11 @@
                                 Home
                             </a>
                         </li>
-                        <li *ngIf="User.roleId==Roles.corporateUser" class="nav-item mb-3">
+                        <li class="nav-item mb-3">
                             <a class="nav-link py-3" routerLinkActive="active"
                                 [routerLinkActiveOptions]=" {exact: true}"
-                                [routerLink]="['/corporate/corporatepricefactor']" pathMatch="full">
-                                Corporate price factor
+                                [routerLink]="['/corporate/corporatecommodities']" pathMatch="full">
+                                Corporate commodities
                             </a>
                         <li *ngIf="User.roleId==Roles.corporateAdmin" class="nav-item mb-3">
                             <a class="nav-link py-3" routerLinkActive="active"

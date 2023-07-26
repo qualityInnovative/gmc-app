@@ -23,8 +23,8 @@
                     <div *ngIf="!loading" class="col-12">
                         <div class="row mt-5 mb-5">
                             <div class="d-flex mt-5 justify-content-between align-items-center manage-specialty">
-                                <h3 class="card-title">corporate price factor</h3>
-
+                                <h3 class="card-title">corporate commodities</h3>
+                                <button class="btn buttonFull" (click)="addcorporatecommodity()"> Add commodities </button>
                             </div>
                             <div class="card shadow mt-4">
                                 <div class="card-body">
@@ -35,31 +35,24 @@
                                             <thead>
                                                 <tr>
                                                     <th>price Discount</th>
-                                                    
+                                                   
                                                     <th>commodity</th>
                                                     <th>corporation</th>
-                                                    <th>Approved</th>
                                                     <th>unit</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let pricefactor of corporatepricefactors">
-                                                    <td>{{ pricefactor.corporateDiscountFactor}} {{"%"}}</td>
-                                                    <td>{{ pricefactor.districtId }}</td>
-                                                    <td>{{ getCommoditiesNameBYId(pricefactor.commodityId) }}</td>
-
-                                                    <td>{{ getCorporationNameBYId(pricefactor.corporationId) }}</td>
-                                                    <td>
-
-                                                        {{ pricefactor.isApproved ? 'Approved' : 'Not Approved' }}
-
-                                                    </td>
-                                                    <td>{{ getUnitsNameBYId(pricefactor.unitId) }}</td>
+                                                <tr *ngFor="let corporationcommodity of corporationcommodities">
+                                                    <td>{{ corporationcommodity.name}} {{"%"}}</td>
+                                                    
+                                                   
+                                                    <td>{{ getCorporationNameBYId(corporationcommodity.corporationId) }}</td> 
+                                                    <td>{{ getUnitsNameBYId(corporationcommodity.unitId) }}</td>
                                                     <td class="text-center">
                                                         <div class="table_icon">
                                                             <fa-icon [icon]="faEye"
-                                                                (click)="viewpricefactoradmin(pricefactor.id)"
+                                                                (click)="viewcorporatecommodity(corporationcommodity.id)"
                                                                 title="Edit State"></fa-icon>
                                                         </div>
                                                     </td>

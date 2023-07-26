@@ -37,8 +37,8 @@ export class CorporationComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.corporations = response.data;
-          
           this.loading = false;
+          this.dtTrigger.next(undefined);
         },
         (error) => {
           this.errorStatus = true;
