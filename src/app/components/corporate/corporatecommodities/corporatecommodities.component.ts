@@ -37,6 +37,21 @@ export class CorporatecommoditiesComponent implements OnInit {
     };
     this.getcorporatecommodities();
     this.getallunits();
+    this.getallcorporations();
+  }
+  getallcorporations(){
+    this.loading=true;
+    this.corporationsService.getCorporations()
+    .subscribe(response=>{
+      this.loading=false;
+      if(response.success){
+        this.corporations=response.data;
+      }
+      else{
+        this.error=response.message;
+        console.log(this.error);
+      }
+    })
   }
   getallunits(){
     this.loading=true;

@@ -4,7 +4,7 @@
             <ratelist-corporatemenu></ratelist-corporatemenu>
         </div>
         <div class="col-md-10">
-            <div class="col-12 col-md-10 col-sm-8">
+            <div class=" col-md-12 col-sm-12">
                 <div class="row">
                     <div *ngIf="loading">
                         <div class="row">
@@ -34,9 +34,9 @@
                                             [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                                             <thead>
                                                 <tr>
-                                                    <th>price Discount</th>
-                                                   
-                                                    <th>commodity</th>
+                                                    <th>name</th>
+                                                    <th>description</th>
+                                                    <th>MPR</th>
                                                     <th>corporation</th>
                                                     <th>unit</th>
                                                     <th class="text-center">Action</th>
@@ -44,9 +44,9 @@
                                             </thead>
                                             <tbody>
                                                 <tr *ngFor="let corporationcommodity of corporationcommodities">
-                                                    <td>{{ corporationcommodity.name}} {{"%"}}</td>
-                                                    
-                                                   
+                                                    <td>{{ corporationcommodity.name}}</td>
+                                                    <td>{{ corporationcommodity.description}}</td>
+                                                    <td>{{ corporationcommodity.mrp}}</td>
                                                     <td>{{ getCorporationNameBYId(corporationcommodity.corporationId) }}</td> 
                                                     <td>{{ getUnitsNameBYId(corporationcommodity.unitId) }}</td>
                                                     <td class="text-center">

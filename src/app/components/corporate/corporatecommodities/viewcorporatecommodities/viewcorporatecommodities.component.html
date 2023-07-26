@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <ratelist-corporatemenu></ratelist-corporatemenu>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="row">
                 <div class="col-6 manage-specialty mt-3">
                     <h3 *ngIf="edit" class="card-title">Edit Commodity</h3>
@@ -16,10 +16,77 @@
                 </div>
             </div>
             <div class="row mt-5">
-                <form >
-                    
-                </form>
+                <form>
+                    <div class="col-8 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity Name</label>
+                            <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                                [(ngModel)]="CorporationCommodity.name" required>
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity Category</label>
+                            <select class="form-control input_feild" id="categoryId" name="category" placeholder=" "
+                                [(ngModel)]="CorporationCommodity.coprativeCategoryId" required>
+                                <option *ngFor="let category of CoprativeCategories" [value]="category.id">
+                                    {{ category.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- description -->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="description">Description</label>
+                            <textarea class="form-control input_feild" id="description" name="description"
+                                placeholder=" " [(ngModel)]="CorporationCommodity.description" required></textarea>
+                        </div>
+                    </div>
+                    <!-- MPR -->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">MPR</label>
+                            <input type="text" class="form-control input_feild" id="mrp" name="mrp" placeholder=" "
+                                [(ngModel)]="CorporationCommodity.mrp" required>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Unit</label>
+                            <select class="form-control input_feild" id="unitId" name="unit" placeholder=" "
+                                [(ngModel)]="CorporationCommodity.unitId" required>
+                                <option *ngFor="let unit of units" [value]="unit.id">
+                                    {{ unit.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- if edit show image  -->
+                    <div class="col-12 mb-4" *ngIf="edit || imageset">
+                        <div class="mb-3 form-group ">
+                            <label for="categoryimage">Image</label>
+                            <img style="height: 200px;" [src]="CorporationCommodity.image" class="categoryimage" />
+                        </div>
+                    </div>
+                    <!-- upload image to category -->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="image">Upload Image</label>
+                            <!-- upload base64 image  -->
+                            <input type="file" class="form-control input_feild" id="image" name="image" placeholder=" "
+                                [(ngModel)]="CorporationCommodity.image" required (change)="onFileChange($event)" />
+                        </div>
+                    </div>
 
+                    <div class="col-12">
+                        <button type="button" (click)="saveCommodity()" class="btn buttonFull">
+                            save
+                        </button>
+                        <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                            cancel
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
