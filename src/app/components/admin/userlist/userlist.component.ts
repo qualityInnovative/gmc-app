@@ -7,12 +7,15 @@ import { Roles } from 'src/app/ratelist-models';
 import { Mandi } from 'src/app/ratelist-models';
 import { MandiService } from 'src/app/services/mandi/mandi.service';
 import { Subject } from 'rxjs';
+import { Corporation } from 'src/app/models/corporation';
+import { CorporationService } from 'src/app/services/corporation/corporation.service';
 @Component({
   selector: 'ratelist-userlist',
   templateUrl: './userlist.component.html',
   styleUrls: ['./userlist.component.scss']
 })
 export class UserlistComponent implements OnInit {
+  corporations: Corporation[] = [];
   roles = Roles;
   loading = false;
   error = '';
@@ -26,17 +29,32 @@ export class UserlistComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private mandiService: MandiService
+    private mandiService: MandiService,
+    private corporationService: CorporationService
   ) { }
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10,
+      pageLength: 30,
       processing: true
     };
     this.loading = true;
     this.getAllUsers();
+    this.getallcorporations();
     this.getAllMandis();
+  }
+  getallcorporations() {
+    this.corporationService.getCorporations().subscribe(
+      (data) => {
+        this.corporations = data.data;
+        this.loading = false;
+      },
+      (err) => {
+        this.error = err.error.message;
+        this.errorStatus = err.status;
+        this.loading = false;
+      }
+    )
   }
   getAllMandis() {
     this.mandiService.getallMandis().subscribe(
@@ -90,5 +108,10 @@ export class UserlistComponent implements OnInit {
     let mandi = this.mandis.find((mandi: Mandi) => mandi.id === mandiId);
     return mandi ? mandi.name : '';
   }
+  getCorporationName(corporationId: number) {
+    let corporation = this.corporations.find((corporation: Corporation) => corporation.id === corporationId);
+    return corporation ? corporation.name : '';
+  }
+  addUser() {}
 
 }

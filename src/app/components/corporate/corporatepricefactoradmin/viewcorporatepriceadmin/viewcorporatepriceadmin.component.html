@@ -1,0 +1,107 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 mb-5">
+            <ratelist-corporatemenu></ratelist-corporatemenu>
+        </div>
+        <div class="col-md-10">
+
+            <form #form="ngForm" (ngSubmit)="addorupdatecorporatepricefactor()">
+                <div class="col-12 mb-4">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Commodity</label>
+                        <select class="form-control input_feild" id="commodityId" name="commodityId"
+                            [(ngModel)]=" corporatepricefactor.commodityId" (change)="commoditySelected($event)"
+                            required>
+                            <option value="">Select Commodity</option>
+                            <option *ngFor="let commodity of commodities" [value]="commodity.id">
+                                {{commodity.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--districts-->
+                <div class="col-12 mb-4">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">District</label>
+                        <select class="form-control input_feild" id="districtId" name="districtId"
+                            (change)="districtSelected($event)" [(ngModel)]=" corporatepricefactor.districtId" required>
+                            <option value="">Select District</option>
+                            <option *ngFor="let district of districts" [value]="district.id">
+                                {{district.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <!--corporations-->
+
+                <div class="col-12 mb-4">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Corporation</label>
+                        <select class="form-control input_feild" id="corporationId" name="corporationId" disabled="true"
+                            (change)="corporationSelected($event)" [(ngModel)]=" corporatepricefactor.corporationId"
+                            required>
+                            <option value="">Select Corporation</option>
+                            <option *ngFor="let corporation of corporations" [value]="corporation.id">
+                                {{corporation.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <!-- is approved check box -->
+                <!-- <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Checked checkbox
+                    </label>
+                  </div> -->
+
+                <div class="form-check">
+                    <label class="form-check-label" for="isApproved">
+                        is Approved
+                    </label>
+                    <input type="checkbox" class="form-check-input" id="isApproved" name="isApproved"
+                         value="true"
+                        (ngModelChange)="isApprovedSelected($event)" [(ngModel)]=" corporatepricefactor.isApproved" required />
+                </div>
+
+                <!-- units -->
+                <div class="col-12 mb-4">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Unit</label>
+                        <select class="form-control input_feild" id="unitId" name="unitId"
+                            (change)="unitSelected($event)" [(ngModel)]=" corporatepricefactor.unitId" required>
+                            <option value="">Select Unit</option>
+                            <option *ngFor="let unit of units" [value]="unit.id">
+                                {{unit.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mb-4">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="corporateDiscountFactor">Discount Factor (between 1 to 100)</label>
+                        <input type="text"  class="form-control input_feild"
+                            id="corporateDiscountFactor" name="corporateDiscountFactor" placeholder=" "
+                            [(ngModel)]=" corporatepricefactor.corporateDiscountFactor" required>
+                    </div>
+                </div>
+
+
+
+                <div class="col-12">
+                    <button type="submit" class="btn buttonFull">
+                        save
+                    </button>
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                        cancel
+                    </button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>

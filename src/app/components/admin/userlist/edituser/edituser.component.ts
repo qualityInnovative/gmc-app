@@ -10,12 +10,17 @@ import { District } from 'src/app/ratelist-models';
 import { DistrictsService } from 'src/app/ratelist-services';
 import { Mandi } from 'src/app/ratelist-models';
 import { MandiService } from 'src/app/services/mandi/mandi.service';
+import { Corporation } from 'src/app/models/corporation';
+import { CorporationService } from 'src/app/services/corporation/corporation.service';
+import { Roles } from 'src/app/ratelist-models';
 @Component({
   selector: 'ratelist-edituser',
   templateUrl: './edituser.component.html',
   styleUrls: ['./edituser.component.scss']
 })
 export class EdituserComponent implements OnInit {
+  Roles = Roles;
+  corporations: Corporation[] = [];
   loading = false;
   error = '';
   errorStatus = 0;
@@ -37,14 +42,27 @@ export class EdituserComponent implements OnInit {
     private route: ActivatedRoute,
     private statesService: StatesService,
     private districtsService: DistrictsService,
-    private mandiService: MandiService
+    private mandiService: MandiService,
+    private corporationService: CorporationService
   ) { }
   ngOnInit(): void {
     this.getUserRoles();
     this.getAllStates();
     this.getAllMandis();
     this.isEdit();
+    this.getAllCorporations();
     this.loading = true;
+  }
+  getAllCorporations() {
+    this.corporationService.getCorporations().subscribe(
+      (data) => {
+        this.corporations = data.data;
+        this.loading = false;
+      },
+      (error) => {
+        this.loading = false;
+      }
+    )
   }
   isEdit() {
     this.route.params.subscribe(params => {

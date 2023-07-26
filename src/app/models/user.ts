@@ -4,5 +4,6 @@ export class User {
     password: string = '';
     roleId: number = 0;
     token: string = '';
+    CorporationId: number = 0;
     profileId: number = 0;
 }

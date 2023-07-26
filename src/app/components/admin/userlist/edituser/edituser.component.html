@@ -64,6 +64,22 @@
                         </select>
                     </div>
                 </div>
+
+
+                <!-- show list of corporations if userrole is Role.corporationUser -->
+
+                <div 
+                *ngIf="userProfile.roleId == Roles.corporateUser || userProfile.roleId == Roles.corporateAdmin"
+                class="mb-3 form-group position-relative">
+                    <label for="name">Assign Corporation </label>
+                    <select class="form-control input_feild" id="corporation" name="corporation"
+                        [(ngModel)]="userProfile.CorporationId" required>
+                        <option *ngFor="let corporation of corporations" [value]="corporation.id">
+                            {{corporation.name}}
+                        </option>
+                    </select>
+                </div>
+
                 <div class="col-12 mt-4 mb-4">
                     <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
                 </div>

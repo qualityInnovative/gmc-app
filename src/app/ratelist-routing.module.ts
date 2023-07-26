@@ -70,6 +70,16 @@ import { RolesComponent } from './components/admin/roles/roles.component';
 import { ViewrolesComponent } from './components/admin/roles/viewroles/viewroles.component';
 import { CorporationComponent } from './components/admin/corporation/corporation.component';
 import { ViewcorporationComponent } from './components/admin/corporation/viewcorporation/viewcorporation.component';
+import { CorporatehomeComponent } from './components/corporate/corporatehome/corporatehome.component';
+import { CorporatepricesComponent } from './components/corporate/corporateprices/corporateprices.component';
+import { CorporatemenuComponent } from './components/misc/corporatemenu/corporatemenu.component';
+import { CorporatepricefactorComponent } from './components/corporate/corporatepricefactor/corporatepricefactor.component';
+import { ViewcorporatefactorComponent } from './components/corporate/corporatepricefactor/viewcorporatefactor/viewcorporatefactor.component';
+import { CorporatepricefactoradminComponent } from './components/corporate/corporatepricefactoradmin/corporatepricefactoradmin.component';
+import { ViewcorporatepriceadminComponent } from './components/corporate/corporatepricefactoradmin/viewcorporatepriceadmin/viewcorporatepriceadmin.component';
+import { AddcorporateuserComponent } from './components/corporate/addcorporateuser/addcorporateuser.component';
+import { CorporateaddretailrateComponent } from './components/corporate/corporateaddretailrate/corporateaddretailrate.component';
+import { ViewcorporateretailrateComponent } from './components/corporate/corporateaddretailrate/viewcorporateretailrate/viewcorporateretailrate.component';
 const routes: Routes = [
   {
     path: '',
@@ -459,6 +469,60 @@ const routes: Routes = [
     component: EditbannerComponent,
     pathMatch: "full",
     canActivate: [AuthGuard, AdminauthGuard]
+  },
+  {
+    path:'corporate',
+    component:CorporatehomeComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'corporate/corporatepricefactor',
+    component:CorporatepricefactorComponent ,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'corporate/corporatepricefactor/viewpricefactor/:id',
+    component:ViewcorporatefactorComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+
+  },
+  {
+    path:'corporate/addcorporateuser/viewcorporateretailrate/:id',
+    component:ViewcorporateretailrateComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'corporate/addcorporateuser/:id',
+    component:AddcorporateuserComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'corporate/corporateaddretailrate',
+    component:CorporateaddretailrateComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'corporate/corporatepricefactoradmin',
+    component:CorporatepricefactoradminComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'corporate/corporatepricefactoradmin/viewpricefactoradmin/:id',
+    component:ViewcorporatepriceadminComponent,
+    pathMatch:'full',
+  },
+  {
+    path:'corporate/corporateprice',
+    component:CorporatepricesComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
   },
   {
     path: "unauthorized",

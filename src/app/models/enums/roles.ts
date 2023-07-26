@@ -5,4 +5,6 @@ export enum Roles {
     departmentUser = 4,
     departmentHod=5,
     departmentOfficer=6,
+    corporateAdmin=7,
+    corporateUser=8
 }

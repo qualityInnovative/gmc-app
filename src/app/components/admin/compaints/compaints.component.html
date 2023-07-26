@@ -46,8 +46,8 @@
                                 <tbody>
                                     <tr *ngFor="let complaint of complaints">
                                         <td>{{ complaint.User.mobileNumber }}</td>
-                                        <td>{{ complaint.User.Profile.firstName }}
-                                            {{ complaint.User.Profile.lastName}}
+                                        <td>{{ complaint.User.Profile.firstName || '' }}
+                                            {{ complaint.User.Profile.lastName || ''}}
                                         </td>
                                         <td>{{
                                             getComplaintStatus(complaint.ComplaintId) |

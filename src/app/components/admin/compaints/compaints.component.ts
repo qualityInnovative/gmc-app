@@ -57,9 +57,11 @@ export class CompaintsComponent implements OnInit {
       });
   }
   getUserById(id: number) {
+    if(id==0 || id==null){
+      return 'Admin';
+    }
     return this.Users.find(x => x.id == id)?.Profile?.firstName + ' ' + this.Users.find(x => x.id == id)?.Profile?.lastName;
   }
-
 
   log() {
     console.log('log');

@@ -92,6 +92,16 @@ import { RolesComponent } from './components/admin/roles/roles.component';
 import { ViewrolesComponent } from './components/admin/roles/viewroles/viewroles.component';
 import { CorporationComponent } from './components/admin/corporation/corporation.component';
 import { ViewcorporationComponent } from './components/admin/corporation/viewcorporation/viewcorporation.component';
+import { CorporatehomeComponent } from './components/corporate/corporatehome/corporatehome.component';
+import { CorporatemenuComponent } from './components/misc/corporatemenu/corporatemenu.component';
+import { CorporatepricesComponent } from './components/corporate/corporateprices/corporateprices.component';
+import { CorporatepricefactorComponent } from './components/corporate/corporatepricefactor/corporatepricefactor.component';
+import { ViewcorporatefactorComponent } from './components/corporate/corporatepricefactor/viewcorporatefactor/viewcorporatefactor.component';
+import { CorporatepricefactoradminComponent } from './components/corporate/corporatepricefactoradmin/corporatepricefactoradmin.component';
+import { ViewcorporatepriceadminComponent } from './components/corporate/corporatepricefactoradmin/viewcorporatepriceadmin/viewcorporatepriceadmin.component';
+import { AddcorporateuserComponent } from './components/corporate/addcorporateuser/addcorporateuser.component';
+import { CorporateaddretailrateComponent } from './components/corporate/corporateaddretailrate/corporateaddretailrate.component';
+import { ViewcorporateretailrateComponent } from './components/corporate/corporateaddretailrate/viewcorporateretailrate/viewcorporateretailrate.component';
 
 
 
@@ -177,7 +187,17 @@ import { ViewcorporationComponent } from './components/admin/corporation/viewcor
     RolesComponent,
     ViewrolesComponent,
     CorporationComponent,
-    ViewcorporationComponent
+    ViewcorporationComponent,
+    CorporatehomeComponent,
+    CorporatemenuComponent,
+    CorporatepricesComponent,
+    CorporatepricefactorComponent,
+    ViewcorporatefactorComponent,
+    CorporatepricefactoradminComponent,
+    ViewcorporatepriceadminComponent,
+    AddcorporateuserComponent,
+    CorporateaddretailrateComponent,
+    ViewcorporateretailrateComponent
   ],
   imports: [
     BrowserModule,

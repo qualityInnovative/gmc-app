@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 mb-5">
+            <ratelist-corporatemenu></ratelist-corporatemenu>
+        </div>
+        <div class="col-md-10">
+            <div class="row mt-5 card shadow p-2 m-3 mb-5">
+                <div class="d-flex justify-content-between align-items-center manage-specialty">
+                    <h3 class="card-title">Manage ratelist</h3>
+                    <button (click)="corporateaddretailrate()" class="btn buttonFull"> Add ratelist </button>
+                </div>
+                <div class="mt-5">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover" datatable
+                                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                <thead>
+                                    <tr>
+                                        <th>Commodity</th>
+                                        <th>mandiPrice</th>
+                                        <th>retailPrice</th>
+                                        <th>Mandi</th>
+                                        <th>District</th>
+                                       
+                                        <th>unit</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ratelist of retailratelist">
+                                        <td>{{ratelist.Commodity.name}}</td>
+                                        <td>{{ratelist.mandiPrice}}</td>
+                                        <td>{{ratelist.retailPrice}}</td>
+                                        <td>{{ratelist.Mandi.name}}</td>
+                                        <td>{{ratelist.District.name}}</td>
+
+                                        <td>{{ratelist.Unit.name}}</td>
+                                        <td class="text-center">
+                                            <div class="table_icon">
+                                                <fa-icon (click)="editRetailRateList(ratelist.id)"
+                                                    [icon]="faPenToSquare" title="Edit State"></fa-icon>
+
+                                                <fa-icon (click)="deleteRetailRateList(ratelist.id)" [icon]="faTrash"
+                                                    title="Delete State"></fa-icon>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

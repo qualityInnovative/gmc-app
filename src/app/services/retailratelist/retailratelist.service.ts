@@ -38,6 +38,8 @@ export class RetailratelistService {
   getModeratorRetailRateList(mandiId: number): Observable<Apiresponse> {
     return this.http.get<Apiresponse>(`${environment.apiUrl}/retailratelist/getmoderatorretailratelist/${mandiId}`);
   }
- 
-  
+  getRetailRateListforcorporate(corporateId: number): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(`${environment.apiUrl}/retailratelist/getretailratelistforcorporate/${corporateId}`);
+  }
+
 }

@@ -67,6 +67,11 @@ export class HeaderComponent implements OnInit {
         return "Department HOD";
       case Roles.departmentOfficer:
         return "Department Officer";
+      case Roles.corporateAdmin:
+        return "Corporate Admin";
+      case Roles.corporateUser:
+        return "Corporate User";
+        
       default:
         return "User";
     }
@@ -85,7 +90,16 @@ export class HeaderComponent implements OnInit {
       this.route.navigate(['/home']);
     } else if (this.userProfile.roleId == Roles.departmentUser) {
       this.route.navigate(['/department']);
+    }else if (this.userProfile.roleId == Roles.departmentHod) {
+      this.route.navigate(['/department']);
+    }else if (this.userProfile.roleId == Roles.departmentOfficer) {
+      this.route.navigate(['/department']);
+    }else if (this.userProfile.roleId == Roles.corporateAdmin) {
+      this.route.navigate(['/corporate']);
+    }else if (this.userProfile.roleId == Roles.corporateUser) {
+      this.route.navigate(['/corporate']);
     }
+
   }
   ngOnChanges() {
     this.getUserProfile(this.userId);

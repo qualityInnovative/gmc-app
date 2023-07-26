@@ -65,4 +65,5 @@ export class LoginService {
     const user = this.getLoggedInUser();
     return user.roleId  === this.roles.departmentUser || user.roleId  === this.roles.departmentHod || user.roleId  === this.roles.departmentOfficer
   }
+
 }

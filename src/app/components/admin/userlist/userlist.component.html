@@ -21,6 +21,7 @@
             <div class="row ">
                 <div class="  d-flex justify-content-between align-items-center manage-specialty">
                     <h3 class="card-title">Manage Users</h3>
+                   
                 </div>
                 <table class="table table-striped mt-5 mb-5" datatable>
                     <thead>
@@ -29,6 +30,7 @@
                             <th scope="col">email</th>
                             <th scope="col">Role</th>
                             <th scope="col">Mandi</th>
+                            <th scope="col">Corporation</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -38,8 +40,8 @@
                             <td>{{user.email}}</td>
                             <td>{{getUserRole(user.roleId)}}</td>
                             <td>{{getMandiName(user.Profile.mandiId)}}</td>
-                            <td>
-                                <fa-icon [icon]="faEdit" (click)="editUser(user.id)"></fa-icon>
+                            <td>{{getCorporationName(user.CorporationId)}}</td>
+                            <td><fa-icon [icon]="faEdit" (click)="editUser(user.id)"></fa-icon>
                                 <fa-icon [icon]="faTrash" (click)="deleteUser(user.id)"></fa-icon>
                             </td>
                         </tr>

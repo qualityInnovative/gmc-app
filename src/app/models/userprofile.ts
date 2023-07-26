@@ -6,5 +6,6 @@ export class UserProfile {
     roleId: number = 0;
     token: string = '';
     profileId: number = 0;
+    CorporationId: number = 0;
     Profile: Profile = new Profile();
 }

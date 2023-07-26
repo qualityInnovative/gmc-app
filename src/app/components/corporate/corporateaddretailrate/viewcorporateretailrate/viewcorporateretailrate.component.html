@@ -1,0 +1,109 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <ratelist-corporatemenu></ratelist-corporatemenu>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-6 manage-specialty mt-3">
+                    <h3 *ngIf="edit" class="card-title">Edit RateList</h3>
+                    <h3 *ngIf="!edit" class="card-title">Add RateList</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <form #form="ngForm" (ngSubmit)="saveRateList()">
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity</label>
+                            <select class="form-control input_feild" id="commodityId" name="commodityId"
+                                [(ngModel)]=" retailratelist.commodityId" (change)="commoditySelected($event)" required>
+                                <option value="">Select Commodity</option>
+                                <option *ngFor="let commodity of commodities" [value]="commodity.id">
+                                    {{commodity.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                   
+                  
+                    <!--districts-->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">District</label>
+                            <select class="form-control input_feild" id="districtId" name="districtId"
+                                (change)="districtSelected($event)" [(ngModel)]=" retailratelist.districtId" required>
+                                <option value="">Select District</option>
+                                <option *ngFor="let district of districts" [value]="district.id">
+                                    {{district.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <!-- units -->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Unit</label>
+                            <select class="form-control input_feild" id="unitId" name="unitId"
+                                (change)="unitSelected($event)" [(ngModel)]=" retailratelist.unitId" required>
+                                <option value="">Select Unit</option>
+                                <option *ngFor="let unit of units" [value]="unit.id">
+                                    {{unit.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Retail Price</label>
+                            <input type="text" class="form-control input_feild" id="retailPrice" name="retailPrice"
+                                placeholder=" " [(ngModel)]=" retailratelist.retailPrice" required>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Mandi Price</label>
+                            <input type="text" class="form-control input_feild" id="mandiPrice" name="mandiPrice"
+                                placeholder=" " [(ngModel)]=" retailratelist.mandiPrice" required>
+                        </div>
+                    </div>
+
+                    <!-- effective start date -->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Effective Start Date</label>
+                            <input type="date" class="form-control input_feild" id="effectiveStartDate"
+                                name="effectiveStartDate" placeholder=" "
+                                [(ngModel)]="retailratelist.effectiveStartDate" required>
+                        </div>
+                    </div>
+                    <!-- effective end date -->
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Effective End Date</label>
+                            <input type="date" class="form-control input_feild" id="effectiveEndDate"
+                                name="effectiveEndDate" placeholder=" " [(ngModel)]=" retailratelist.effectiveEndDate"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
+                            save
+                        </button>
+                        <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                            cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

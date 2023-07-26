@@ -28,5 +28,8 @@ export class CorporationService {
   updateCorporation(corporation: Corporation): Observable<Apiresponse> {
     return this.http.put<Apiresponse>(`${this.apiServerUrl}/corporation/update`, corporation);
   }
+  getuserfromadmincorporation(id:number): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(`${this.apiServerUrl}/corporation/getuserfromadmincorporation/${id}`);
+  }
 
 }

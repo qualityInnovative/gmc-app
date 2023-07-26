@@ -45,4 +45,8 @@ export class UserService {
     let user = localStorage.getItem('user') || '{}';
     return JSON.parse(user);
   }
+  addUser(user: User): Observable<Apiresponse> {
+    console.log(user);
+    return this.http.post<Apiresponse>(environment.apiUrl + '/user/create', user);
+  }
 }

@@ -10,6 +10,7 @@ export class RetailRateList {
     unitId: number = 0;
     mandiPrice: number = 0;
     categoryId: number = 0;
+    corporateId: number = 0;
     createdBy!: number;
     createdAt: Date = new Date();
     updatedAt: Date = new Date();

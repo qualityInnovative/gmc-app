@@ -15,6 +15,8 @@ export class RetailRate {
     createdAt: Date = new Date();
     updatedAt: Date = new Date();
     createdBy: number = 0;
+    corporateId: number = 0;
+    corporatePrice: number | undefined;
     approvedByUserId: number = 0;
     Commodity: Commodity = new Commodity();
     Mandi: Mandi = new Mandi();

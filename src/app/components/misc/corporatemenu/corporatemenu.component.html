@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card sidebar_query">
+                <div class="card-body">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item mb-3">
+                            <a class="nav-link py-3" routerLinkActive="active" [routerLink]="['/corporate']"
+                                [routerLinkActiveOptions]=" {exact: true}" pathMatch="full">
+                                Home
+                            </a>
+                        </li>
+                        <li *ngIf="User.roleId==Roles.corporateUser" class="nav-item mb-3">
+                            <a class="nav-link py-3" routerLinkActive="active"
+                                [routerLinkActiveOptions]=" {exact: true}"
+                                [routerLink]="['/corporate/corporatepricefactor']" pathMatch="full">
+                                Corporate price factor
+                            </a>
+                        <li *ngIf="User.roleId==Roles.corporateAdmin" class="nav-item mb-3">
+                            <a class="nav-link py-3" routerLinkActive="active"
+                                [routerLinkActiveOptions]=" {exact: true}" [routerLink]="['/corporate/corporatepricefactoradmin']"
+                                pathMatch="full">
+                                Approve Corporate prices
+                            </a>
+                        </li>
+                        <li *ngIf="User.roleId==Roles.corporateAdmin" class="nav-item mb-3">
+                            <a class="nav-link py-3" routerLinkActive="active"
+                                [routerLinkActiveOptions]=" {exact: true}" [routerLink]="['/corporate/corporateaddretailrate']"
+                                pathMatch="full">
+                                Add retail rates
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
