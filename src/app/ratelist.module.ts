@@ -106,6 +106,8 @@ import { CoprativecategoryComponent } from './components/admin/coprativecategory
 import { ViewcoprativecategoryComponent } from './components/admin/coprativecategory/viewcoprativecategory/viewcoprativecategory.component';
 import { CorporatecommoditiesComponent } from './components/corporate/corporatecommodities/corporatecommodities.component';
 import { ViewcorporatecommoditiesComponent } from './components/corporate/corporatecommodities/viewcorporatecommodities/viewcorporatecommodities.component';
+import { AddcommoditydiscountComponent } from './components/corporate/addcommoditydiscount/addcommoditydiscount.component';
+import { ViewaddcommoditydiscountComponent } from './components/corporate/addcommoditydiscount/viewaddcommoditydiscount/viewaddcommoditydiscount.component';
 
 
 
@@ -205,7 +207,9 @@ import { ViewcorporatecommoditiesComponent } from './components/corporate/corpor
     CoprativecategoryComponent,
     ViewcoprativecategoryComponent,
     CorporatecommoditiesComponent,
-    ViewcorporatecommoditiesComponent
+    ViewcorporatecommoditiesComponent,
+    AddcommoditydiscountComponent,
+    ViewaddcommoditydiscountComponent
   ],
   imports: [
     BrowserModule,

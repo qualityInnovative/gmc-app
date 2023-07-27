@@ -85,6 +85,8 @@ import { CoprativecategoryComponent } from './components/admin/coprativecategory
 import { ViewcoprativecategoryComponent } from './components/admin/coprativecategory/viewcoprativecategory/viewcoprativecategory.component';
 import { CorporatecommoditiesComponent } from './components/corporate/corporatecommodities/corporatecommodities.component';
 import { ViewcorporatecommoditiesComponent } from './components/corporate/corporatecommodities/viewcorporatecommodities/viewcorporatecommodities.component';
+import { AddcommoditydiscountComponent } from './components/corporate/addcommoditydiscount/addcommoditydiscount.component';
+import { ViewaddcommoditydiscountComponent } from './components/corporate/addcommoditydiscount/viewaddcommoditydiscount/viewaddcommoditydiscount.component';
 const routes: Routes = [
   {
     path: '',
@@ -509,6 +511,18 @@ const routes: Routes = [
   {
     path:'corporate/corporatecommodities',
     component:CorporatecommoditiesComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'corporate/addcommoditydiscount',
+    component:AddcommoditydiscountComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'corporate/addcommoditydiscount/viewaddcommoditydiscount/:id',
+    component:ViewaddcommoditydiscountComponent,
     pathMatch:'full',
     canActivate:[AuthGuard]
   },

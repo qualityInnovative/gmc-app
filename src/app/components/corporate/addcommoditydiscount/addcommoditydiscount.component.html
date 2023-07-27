@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 mb-5">
+            <ratelist-corporatemenu></ratelist-corporatemenu>
+        </div>
+        <div class="col-md-10">
+            <div class=" col-md-12 col-sm-12">
+                <div class="row">
+                    <div *ngIf="loading">
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+                                <div class="spinner-border text-primary" role="status"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="errorStatus">
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+                                <span class="text-wrap">{{ error }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!loading" class="col-12">
+                        <div class="row mt-5 mb-5">
+                            <div class="d-flex mt-5 justify-content-between align-items-center manage-specialty">
+                                <h3 class="card-title">commodities discount</h3>
+                                <button class="btn buttonFull" (click)="addcorporatecommoditydiscount()"> Add discount </button>
+                            </div>
+                            <div class="card shadow mt-4">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="complaintsTable"
+                                            class="table table-bordered table-striped table-hover" 
+                                            datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                            <thead>
+                                                <tr>
+                                                    <th>commodity</th>
+                                                    <th>Discount</th>
+                                                    <th>corporation</th>
+                                                    <th>unit</th>
+                                                    <th class="text-center">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let corporationcommoditydiscount of corporationcommoditiesdiscounts">
+                                                    <td>{{ corporationcommoditydiscount.name}}</td>
+                                                    <td>{{ getUnitsNameBYId(corporationcommoditydiscount.unitId) }}</td>
+                                                    <td class="text-center">
+                                                        <div class="table_icon">
+                                                            <fa-icon [icon]="faEye"
+                                                                (click)="viewcorporatecommoditydiscount(corporationcommoditydiscount.id)"
+                                                                title="Edit State"></fa-icon>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

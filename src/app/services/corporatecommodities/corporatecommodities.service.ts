@@ -26,4 +26,7 @@ export class CorporatecommoditiesService {
   deleteCoporateCommodity(corporationcommodity: CorporationCommodity): Observable<Apiresponse> {
     return this.http.post<Apiresponse>(`${environment.apiUrl}/corporationcommodity/delete`, corporationcommodity);
   }
+   getcorporatecommoditiesbycorporateid(corporateid:number): Observable<Apiresponse> {
+    return this.http.post<Apiresponse>(`${environment.apiUrl}/corporationcommodity/getallbycorporateid`,{corporationId:corporateid});
+   }
 }
