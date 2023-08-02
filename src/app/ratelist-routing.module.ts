@@ -87,6 +87,8 @@ import { CorporatecommoditiesComponent } from './components/corporate/corporatec
 import { ViewcorporatecommoditiesComponent } from './components/corporate/corporatecommodities/viewcorporatecommodities/viewcorporatecommodities.component';
 import { AddcommoditydiscountComponent } from './components/corporate/addcommoditydiscount/addcommoditydiscount.component';
 import { ViewaddcommoditydiscountComponent } from './components/corporate/addcommoditydiscount/viewaddcommoditydiscount/viewaddcommoditydiscount.component';
+import { CorporateratesComponent } from './components/corporate/corporaterates/corporaterates.component';
+import { ViewcorporateratesComponent } from './components/corporate/corporaterates/viewcorporaterates/viewcorporaterates.component';
 const routes: Routes = [
   {
     path: '',
@@ -523,6 +525,18 @@ const routes: Routes = [
   {
     path:'corporate/addcommoditydiscount/viewaddcommoditydiscount/:id',
     component:ViewaddcommoditydiscountComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'corporate/corporaterates',
+    component:CorporateratesComponent,
+    pathMatch:'full',
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'corporate/corporaterates/viewcorporaterates/:id',
+    component:ViewcorporateratesComponent,
     pathMatch:'full',
     canActivate:[AuthGuard]
   },

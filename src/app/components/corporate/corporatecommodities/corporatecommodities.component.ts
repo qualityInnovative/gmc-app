@@ -81,6 +81,7 @@ export class CorporatecommoditiesComponent implements OnInit {
         this.loading = false;
         if (response.success) {
           this.corporationcommodities = response.data;
+          console.log(this.corporationcommodities);
           this.dtTrigger.next(undefined);
         }
         else {

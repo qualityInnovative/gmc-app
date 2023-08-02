@@ -1,1 +1,77 @@
-<p>viewaddcommoditydiscount works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 mb-5">
+            <ratelist-corporatemenu></ratelist-corporatemenu>
+        </div>
+        <div class="col-md-10">
+            <div class=" col-md-12 col-sm-12">
+                <div class="row">
+                    <div *ngIf="loading">
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+                                <div class="spinner-border text-primary" role="status"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="errorStatus">
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh">
+                                <span class="text-wrap">{{ error }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!loading" class="col-12">
+                        <div class="row mt-5 mb-5">
+                            <div class="d-flex mt-5 justify-content-between align-items-center manage-specialty">
+                                <h3 *ngIf="edit" class="card-title">edit </h3>
+                                <h3 *ngIf="!edit" class="card-title">add</h3>
+                                <button class="btn buttonFull" (click)="back()"> back </button>
+                            </div>
+                            <div class="card shadow mt-4">
+                                <div class="card-body">
+                                    <form>
+
+                                        <div class="form-group">
+                                            <label for="name">commodity</label>
+                                            <select class="form-control" id="name" name="name" [disabled]=edit
+                                                [(ngModel)]="corporateDiscount.corporationCommodityId" required>
+                                                <option *ngFor="let commodity of corporateCommodities" [value]="commodity.id">
+                                                    {{ commodity.name }}</option>
+                                                
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">discount</label>
+                                            <select class="form-control" id="discount" name="discount"
+                                                [(ngModel)]="corporateDiscount.discount" required>
+                                                <option *ngFor="let discount of corporateDiscountvalues"
+                                                    [value]="discount">{{ discount }}</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group ">
+                                            <div class="mt-5 d-flex justify-content-end align-items-center">
+                                               
+                                                <button 
+                                                *ngIf="!edit"
+                                                 class="btn buttonFull me-2" (click)="save()"> add
+                                                </button>
+                                                <button
+                                                *ngIf="edit"
+                                                 class="btn buttonFull me-2" (click)="update()"> update
+                                                </button>
+                                                <button class="btn buttonFull" (click)="back()"> cancel </button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

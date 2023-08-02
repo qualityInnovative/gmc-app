@@ -4,6 +4,7 @@ export class Corporation {
     address: string = '';
     contact: string = '';
     email: string = '';
+    image:string='';
     latitude: string = '';
     longitude: string = '';
     districtId: number = 0;

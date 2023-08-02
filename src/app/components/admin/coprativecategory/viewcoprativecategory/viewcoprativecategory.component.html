@@ -39,7 +39,9 @@
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Upload Image</label>
                             <!-- upload base64 image  -->
-                            <input type="file" class="form-control input_feild" id="image" name="image" placeholder=" "
+                            <input
+                            accept="image/png, image/gif, image/jpeg, image/jpg, image/svg, image/webp"
+                             type="file" class="form-control input_feild" id="image" name="image" placeholder=" "
                                 [(ngModel)]="coprativecategory.image" required (change)="onFileChange($event)" />
                         </div>
                     </div>

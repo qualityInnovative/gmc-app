@@ -23,32 +23,43 @@
                     <div *ngIf="!loading" class="col-12">
                         <div class="row mt-5 mb-5">
                             <div class="d-flex mt-5 justify-content-between align-items-center manage-specialty">
-                                <h3 class="card-title">commodities discount</h3>
-                                <button class="btn buttonFull" (click)="addcorporatecommoditydiscount()"> Add discount </button>
+                                <h3 class="card-title">corporate Rates</h3>
+
                             </div>
                             <div class="card shadow mt-4">
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table id="complaintsTable"
-                                            class="table table-bordered table-striped table-hover" 
-                                            datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                            class="table table-bordered table-striped table-hover" datatable
+                                            [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                                             <thead>
                                                 <tr>
-                                                    <th>commodity</th>
+                                                    <th>name</th>
+                                                    <th>unit</th>
+                                                    <th>description</th>
+                                                    <th>MPR</th>
                                                     <th>Discount</th>
+                                                    <th>Corporate Price</th>
                                                     <th>corporation</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let discount of corporateDiscounts">
-                                                    <td>{{ getCoporateCommodityName(discount.corporationCommodityId)}}</td>
-                                                    <td>{{ discount.discount}} {{'%'}}</td>
-                                                    <td>{{ corporationName(discount.corporationId)}}</td>
+                                                <tr *ngFor="let rates of corporateRates">
+                                                    <td>{{ rates.name}}</td>
+                                                    <td>{{ rates.Unit.name }}</td>
+                                                    <td>{{ rates.description.slice(0,100)}}</td>
+                                                    <td>{{ rates.mrp }} {{'₹'}}
+                                                    </td>
+                                                    <td>{{ rates.CorporateCommoditydiscount.discount}} {{"%"}}</td>
+                                                    <td>{{
+                                                        getDiscountprice(rates.mrp,rates.CorporateCommoditydiscount.discount)}}
+                                                        {{'₹'}}</td>
+                                                    <td>{{ rates.Corporation.name}}</td>
                                                     <td class="text-center">
                                                         <div class="table_icon">
                                                             <fa-icon [icon]="faEye"
-                                                                (click)="viewcorporatecommoditydiscount(discount.id)"
+                                                                (click)="viewcorporaterates(rates.id)"
                                                                 title="Edit State"></fa-icon>
                                                         </div>
                                                     </td>
@@ -65,4 +76,3 @@
         </div>
     </div>
 </div>
-

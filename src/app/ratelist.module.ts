@@ -108,6 +108,8 @@ import { CorporatecommoditiesComponent } from './components/corporate/corporatec
 import { ViewcorporatecommoditiesComponent } from './components/corporate/corporatecommodities/viewcorporatecommodities/viewcorporatecommodities.component';
 import { AddcommoditydiscountComponent } from './components/corporate/addcommoditydiscount/addcommoditydiscount.component';
 import { ViewaddcommoditydiscountComponent } from './components/corporate/addcommoditydiscount/viewaddcommoditydiscount/viewaddcommoditydiscount.component';
+import { CorporateratesComponent } from './components/corporate/corporaterates/corporaterates.component';
+import { ViewcorporateratesComponent } from './components/corporate/corporaterates/viewcorporaterates/viewcorporaterates.component';
 
 
 
@@ -209,7 +211,9 @@ import { ViewaddcommoditydiscountComponent } from './components/corporate/addcom
     CorporatecommoditiesComponent,
     ViewcorporatecommoditiesComponent,
     AddcommoditydiscountComponent,
-    ViewaddcommoditydiscountComponent
+    ViewaddcommoditydiscountComponent,
+    CorporateratesComponent,
+    ViewcorporateratesComponent
   ],
   imports: [
     BrowserModule,

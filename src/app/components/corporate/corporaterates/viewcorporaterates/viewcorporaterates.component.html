@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-md-3">
+            <ratelist-corporatemenu></ratelist-corporatemenu>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-6 manage-specialty mt-3">
+                    <h3 class="card-title"> Commodity</h3>
+                </div>
+                <div class="col-12 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <form>
+                    <div class="col-12 mb-4">
+                        <img class="img-fluid" src="{{corporateRates.image}}" alt="Card image cap">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity Name</label>
+                            <input disabled="true" type="text" class="form-control input_feild" id="name" name="name"
+                                placeholder=" " [(ngModel)]="corporateRates.name">
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity mrp</label>
+                            <input disabled="true" type="text" class="form-control input_feild" id="mrp" name="mrp"
+                                placeholder=" " [(ngModel)]="corporateRates.mrp">
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity Unit</label>
+                            <input disabled="true" type="text" class="form-control input_feild" id="unit" name="unit"
+                                placeholder=" " [(ngModel)]="corporateRates.Unit.name">
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity description</label>
+                            <input disabled="true" type="text" class="form-control input_feild" id="description"
+                                name="description" placeholder=" " [(ngModel)]="corporateRates.description">
+                        </div>
+
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity discount</label>
+                            <input disabled="true" type="text" class="form-control input_feild" id="discount"
+                                name="discount" placeholder=" "
+                                [(ngModel)]="corporateRates.CorporateCommoditydiscount.discount">
+                        </div>
+
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity discount price</label>
+                            <input disabled="true" type="text" class="form-control input_feild" id="discountprice"
+                                name="discountprice" placeholder=" " [(ngModel)]="corporateRatesdiscount">
+                        </div>
+
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Commodity corporation</label>
+                            <input disabled="true" type="text" class="form-control input_feild" id="corporation"
+                                name="corporation" placeholder=" " [(ngModel)]="corporateRates.Corporation.name">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

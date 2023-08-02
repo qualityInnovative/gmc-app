@@ -29,4 +29,7 @@ export class CorporatecommoditiesService {
    getcorporatecommoditiesbycorporateid(corporateid:number): Observable<Apiresponse> {
     return this.http.post<Apiresponse>(`${environment.apiUrl}/corporationcommodity/getallbycorporateid`,{corporationId:corporateid});
    }
+   getallcorporatecommoditiesbycorporateidwithoutimages(corporateid:number): Observable<Apiresponse> {
+    return this.http.post<Apiresponse>(`${environment.apiUrl}/corporationcommodity/getallcorporatecommoditiesbycorporateidwithoutimages`,{corporationId:corporateid});
+   }
 }
