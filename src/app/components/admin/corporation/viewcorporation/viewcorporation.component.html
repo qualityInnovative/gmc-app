@@ -38,6 +38,27 @@
                             <input type="text" class="form-control input_feild" id="email" name="email" placeholder=" "
                                 [(ngModel)]="corporation.email" required />
                         </div>
+
+                        <!-- only accept image types -->
+                        <div class="mb-3 form-group position-relative">
+                            <label for="image"></label>
+                            <input type="file"
+                                accept="image/png, image/gif, image/jpeg, image/jpg, image/svg, image/webp"
+                             class="form-control input_feild" id="image" name="image" placeholder=" "
+                            [(ngModel)]="corporation.image" required (change)="onFileChange($event)" />
+
+                        </div>
+
+                        <!-- show image -->
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Image</label>
+                            <img [src]="corporation.image" class="categoryimage" />
+                        </div>
+
+
+
+
+
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Select State</label>
                             <select class="form-control input_feild" id="state" name="state"
