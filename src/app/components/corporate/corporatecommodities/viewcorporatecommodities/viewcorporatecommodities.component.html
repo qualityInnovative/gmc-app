@@ -77,8 +77,16 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <button type="button" (click)="saveCommodity()" class="btn buttonFull">
-                            save
+                        <button 
+
+                        type="button" (click)="saveCommodity()" class="btn buttonFull">
+                            <!-- loader when saving =true -->
+                            <span *ngIf="saving" class="spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+
+                            <span *ngIf="edit">Save</span>
+
+
                         </button>
                         <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
                             cancel

@@ -26,6 +26,8 @@ export class ViewcorporatecommoditiesComponent implements OnInit {
   imageset: boolean = false;
   CoprativeCategories: CoprativeCategory[] = [];
   units: Unit[] = [];
+  saving: boolean = false;
+  loading: boolean = true;
   constructor(
     private location: Location,
     private router: Router,
@@ -100,21 +102,30 @@ export class ViewcorporatecommoditiesComponent implements OnInit {
     }
   }
   save() {
+    this.saving = true;
     this.CorporationCommodity.corporationId = this.corporationId;
     this.corporatecommoditiesService.saveCoporateCommodity(this.CorporationCommodity).subscribe(
       (data) => {
         if (data.success) {
+          this.saving = false;
           this.router.navigate(['corporate/corporatecommodities']);
         }
+      },(error) => {
+        this.saving = false;
+        console.log(error);
       }
     )
   }
   update() {
+    this.saving = true;
     this.corporatecommoditiesService.updateCoporateCommodity(this.CorporationCommodity).subscribe(
       (data) => {
         if (data.success) {
           this.router.navigate(['corporate/corporatecommodities']);
         }
+      },(error) => {
+        this.saving = false;
+        console.log(error);
       }
     )
   }

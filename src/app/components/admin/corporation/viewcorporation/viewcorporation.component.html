@@ -41,24 +41,18 @@
 
                         <!-- only accept image types -->
                         <div class="mb-3 form-group position-relative">
-                            <label for="image"></label>
+                            <label for="image">upload image</label>
                             <input type="file"
                                 accept="image/png, image/gif, image/jpeg, image/jpg, image/svg, image/webp"
-                             class="form-control input_feild" id="image" name="image" placeholder=" "
-                            [(ngModel)]="corporation.image" required (change)="onFileChange($event)" />
+                                class="form-control input_feild" id="image" name="image" placeholder=" "
+                                [(ngModel)]="corporation.image" required (change)="onFileChange($event)" />
 
                         </div>
-
                         <!-- show image -->
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Image</label>
                             <img [src]="corporation.image" class="categoryimage" />
                         </div>
-
-
-
-
-
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Select State</label>
                             <select class="form-control input_feild" id="state" name="state"
@@ -91,31 +85,20 @@
                         <ng-container class="mt-5">
                             <google-map width="100%" height="500px" [options]="options" [center]="center" [zoom]="zoom"
                                 (mapClick)="moveMap($event)">
-                                <map-marker *ngFor="let marker of markers" [position]="marker.position" [options]="marker.options"
+                                <map-marker *ngFor="let marker of markers" [position]="marker.position"
+                                    [options]="marker.options"
                                     (mapClick)="clickedMarker(marker.title, marker)"></map-marker>
                             </google-map>
                         </ng-container>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                     <div class="col-12 mb-3 d-flex justify-content-end">
-                        <button type="submit" class="btn buttonFull buttonFull-primary">Save</button>
+                        <button type="submit" class="btn buttonFull buttonFull-primary">
+                            <!-- loader when saving == true -->
+                            <span *ngIf="saving" class="spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+
+                            <span *ngIf="edit">Save</span>
+                        </button>
                         <button type="button" (click)="back()"
                             class="btn buttonFull buttonFull-transparent">Cancel</button>
                     </div>

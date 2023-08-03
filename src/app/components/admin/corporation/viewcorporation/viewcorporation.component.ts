@@ -17,6 +17,7 @@ export class ViewcorporationComponent implements OnInit {
   districts: District[] = [];
   corporation: Corporation = new Corporation();
   markers: any[] = [];
+  saving: boolean = false;
   center: google.maps.LatLngLiteral = {
     // kashmir
     lat: 34.083656,
@@ -114,15 +115,19 @@ export class ViewcorporationComponent implements OnInit {
     this.router.navigate(['/admin/corporation']);
   }
   saveCorporation() {
+    this.saving = true;
     if (this.edit) {
       this.corporationService.updateCorporation(this.corporation)
         .subscribe(
           (response: any) => {
             if (response.success) {
+              this.saving = false;
               this.router.navigate(['/admin/corporation']);
+
             }
           },
           (error) => {
+            this.saving = false;
             console.log(error);
           }
         );
@@ -131,10 +136,12 @@ export class ViewcorporationComponent implements OnInit {
         .subscribe(
           (response: any) => {
             if (response.success) {
+              this.saving = false;
               this.router.navigate(['/admin/corporation']);
             }
           },
           (error) => {
+            this.saving = false;
             console.log(error);
           }
         );
