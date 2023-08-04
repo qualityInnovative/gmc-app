@@ -7,6 +7,7 @@ import { Role } from 'src/app/ratelist-models';
 import { Roles } from 'src/app/ratelist-models';
 import { RoleService } from 'src/app/services/role/role.service';
 import {Router} from '@angular/router';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'ratelist-corporatehome',
   templateUrl: './corporatehome.component.html',
@@ -17,17 +18,18 @@ export class CorporatehomeComponent implements OnInit {
   loggedinUser: User = new User();
   corporations: Corporation[] = [];
   roles: Role[] = [];
+  currentCorporation: Corporation = new Corporation();
   Role= Roles;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
   constructor(
     public lo: LoginService,
     public corporationService: CorporationService,
     public roleService: RoleService,
     public router: Router
   ) { }
-
   ngOnInit(): void {
     this.getLoggedInUser();
-
   }
   getRoles() {
     this.roleService.getAllRoles().subscribe(
@@ -37,39 +39,38 @@ export class CorporatehomeComponent implements OnInit {
       },
       (err) => {
         console.log(err);
-      }
-    )
-
+      })
   }
   getCorporations() {
-    this.corporationService.getCorporations().subscribe(
+    this.corporationService.getCorporations()
+    .subscribe(
       (data) => {
         this.corporations = data.data;
-        console.log(this.corporations);
-      },
+        console.log(this.corporations)
+        this.getCorporationNameofUser(this.loggedinUser.CorporationId);
+        },
       (err) => {
         console.log(err);
-      }
-    )
+      })
   }
   getLoggedInUser() {
     this.loggedinUser = this.lo.getLoggedInUser();
     if (this.loggedinUser.roleId == Roles.corporateAdmin) {
       this.getuserfromadmincorporation(this.loggedinUser.CorporationId);
-      this.getCorporations();
-      this.getRoles();
     }
+    this.getCorporations();
+    this.getRoles();
   }
   getuserfromadmincorporation(id: number) {
     this.corporationService.getuserfromadmincorporation(id).subscribe(
       (data) => {
         this.corporateusers = data.data;
-        console.log(this.corporateusers);
+        console.log(this.corporateusers); 
+        this.dtTrigger.next(this.corporateusers);
       },
       (err) => {
         console.log(err);
-      }
-    )
+      })
   }
   getCorporationName(id: number) {
     return this.corporations.find(x => x.id == id)?.name;
@@ -80,4 +81,9 @@ export class CorporatehomeComponent implements OnInit {
   addUser() {
     this.router.navigate(['/corporate/addcorporateuser',0]);
   }
+  getCorporationNameofUser(id: number) {
+  this.currentCorporation= this.corporations.find(x => x.id == id) || new Corporation();
+    
+  }
+
 }

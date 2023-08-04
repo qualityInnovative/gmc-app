@@ -33,7 +33,7 @@ export class EdituserComponent implements OnInit {
   districtId: number = 0;
   mandis: Mandi[] = [];
   mandi: Mandi = new Mandi();
-
+  edit = false;
 
   constructor(
     private router: Router,
@@ -68,6 +68,7 @@ export class EdituserComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['userId'] > 0) {
         this.userId = params['userId'];
+        this.edit = true;
         this.getUserById(this.userId);
 
 
@@ -140,6 +141,7 @@ export class EdituserComponent implements OnInit {
     this.location.back();
   }
   saveUser() {
+    if(this.edit){
     this.userService.adminUpdateUser(this.userProfile).subscribe(
       (data) => {
         this.router.navigate(['/admin/userlist']);
@@ -150,5 +152,18 @@ export class EdituserComponent implements OnInit {
         this.loading = false;
       }
     )
+  }else{
+    this.userService.adminCreateUser(this.userProfile).subscribe(
+      (data) => {
+        this.router.navigate(['/admin/userlist']);
+        this.loading = false;
+      }
+      ,
+      (error) => {
+        this.loading = false;
+      }
+    )
   }
+}
+  
 }

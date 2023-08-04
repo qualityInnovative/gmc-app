@@ -38,6 +38,9 @@ export class UserService {
   adminUpdateUser(user: UserProfile): Observable<Apiresponse> {
     return this.http.put<Apiresponse>(environment.apiUrl + '/user/adminupdateuser', user);
   }
+  adminCreateUser(user: UserProfile): Observable<Apiresponse> {
+    return this.http.post<Apiresponse>(environment.apiUrl + '/user/admincreateuser', user);
+  }
   admindeleteUser(id: number): Observable<Apiresponse> {
     return this.http.delete<Apiresponse>(environment.apiUrl + '/user/admindeleteuser/' + id);
   }

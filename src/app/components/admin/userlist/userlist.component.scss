@@ -1,43 +1,24 @@
 @import "../../../../styles.scss";
-.sidebar_query{
-  border: none;
-  border-radius: 0px;
-  margin: 0px 20px;
-  background-color: transparent;
-}
-.sidebar_query .nav li.nav-item .nav-link{
-  border-radius: 0px;
-  background-color: transparent;
-  padding-left: 30px;
-  font-weight: 600;
-  font-size: 18px;
-  color: black;
-  text-transform: capitalize;
-  border-bottom: 1px dotted $primary-color;
-}
-.sidebar_query .nav li.nav-item .nav-link.active ,.sidebar_query .nav li.nav-item .nav-link:hover {
-  background-color: rgba(31, 152, 196, 0.05) !important;
-  color: $primary-color !important;
-}
-.pagination a {
-  display: inline-block;
-  padding: 6px 12px;
-  margin: 0 4px;
-  font-size: 14px;
-  color: #333;
-  text-decoration: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
 
-.pagination a.active,
-.pagination a:hover {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
+.manage-specialty .buttonFull {
+  width: auto !important;
+  color: $white;
 }
-
-.pagination a:first-child,
-.pagination a:last-child {
-  margin: 0;
+.manage-specialty .card-title {
+  font-size: 22px;
+  font-weight: 800;
+  position: relative;
+}
+.manage-specialty .card-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background-color: $primary-color;
+}
+.card {
+  border-color: #ededed !important;
+  border-radius: 0px !important;
 }

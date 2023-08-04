@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="row mt-5">
-                <form>
+                <form >
                     <div class="col-8 mb-4">
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Commodity Name</label>
@@ -77,16 +77,11 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <button 
-
-                        type="button" (click)="saveCommodity()" class="btn buttonFull">
+                        <button type="button" (click)="saveCommodity()" class="btn buttonFull">
                             <!-- loader when saving =true -->
                             <span *ngIf="saving" class="spinner-border spinner-border-sm" role="status"
                                 aria-hidden="true"></span>
-
-                            <span *ngIf="edit">Save</span>
-
-
+                            <span *ngIf="!saving">Save</span>
                         </button>
                         <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
                             cancel

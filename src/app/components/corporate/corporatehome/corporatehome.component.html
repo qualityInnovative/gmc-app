@@ -4,13 +4,22 @@
             <ratelist-corporatemenu></ratelist-corporatemenu>
         </div>
         <div class="col-md-10">
-            <h1>corporate home</h1>
-
+            <div class="card shadow mt-3 mb-3 p-3">
+                <h1>corporate home</h1>
+                <p> Name: {{currentCorporation.name}}</p>
+                <p> Address: {{currentCorporation.address}}</p>
+                <p> Phone: {{currentCorporation.contact}}</p>
+                <p> Email: {{currentCorporation.email}}</p>
+            </div>
             <div *ngIf="loggedinUser.roleId === Role.corporateAdmin">
+                <button class="
+                btn buttonFull buttonFull-transparent ms-2 mb-5 mt-3 shadow
+                p-3
+                " (click)="addUser()">Add User</button>
+                <div class="card shadow">
 
-                <button class="btn btn-primary" (click)="addUser()">Add User</button>
-                <div class="table" datatable>
-                    <table class="table table-striped mt-5 mb-5">
+                    <table class="table table-striped mt-5 mb-5" datatable [dtOptions]="dtOptions"
+                        [dtTrigger]="dtTrigger">
                         <thead>
                             <tr>
                                 <th scope="col">Index</th>
@@ -29,7 +38,9 @@
                         </tbody>
                     </table>
                 </div>
+
             </div>
+
         </div>
     </div>
 </div>

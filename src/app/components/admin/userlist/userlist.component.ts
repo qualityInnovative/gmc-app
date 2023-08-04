@@ -112,6 +112,8 @@ export class UserlistComponent implements OnInit {
     let corporation = this.corporations.find((corporation: Corporation) => corporation.id === corporationId);
     return corporation ? corporation.name : '';
   }
-  addUser() {}
+  addUser() {
+    this.router.navigate(['admin/userlist/edituser', 0]);
+  }
 
 }

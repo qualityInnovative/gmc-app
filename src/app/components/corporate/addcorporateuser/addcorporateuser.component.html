@@ -3,41 +3,30 @@
         <div class="col-md-2 mb-5">
             <ratelist-corporatemenu></ratelist-corporatemenu>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 mt-5">
             <div class="card shadow">
-                <div class="card-header">
-                    <h3>Add corporate User</h3>
-                </div>
+                
                 <div class="card-body">
-                   
-                <form class="p-5">
-                    <div class="form-group">
-                        <label for="cemail">Email address</label>
-                        <input 
-                        [(ngModel)]="User.email" 
-                        name="cemail"
-                        id="cemail"
-                        type="email" class="form-control" 
-                            aria-describedby="emailHelp" placeholder="Enter email"
-                            autocomplete="off">
-                        <small id="emailHelp" class="form-text text-muted">We'll add this user to your
-                            corporation.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input [(ngModel)]="User.password" 
-                        name="password"
-                        id="password"
-                        autocomplete="off"
-                        type="password" class="form-control" id="password"
-                            placeholder="Password">
-                    </div>
-                    <div class="form-group mt-5">
-                        <button type="button" (click)="addUser()" class="btn btn-primary">Add User</button>
-                        <button type="button" (click)="cancel()" class="btn btn-danger">Cancel</button>
-                    </div>
-                </form>
-                </div>  
+                    <h1 class="card-title">Add User to your corporation</h1>
+                    <form class="p-5">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="cemail">Email address</label>
+                            <input [(ngModel)]="User.email" name="cemail" id="cemail" type="email" class="form-control input_feild"
+                                aria-describedby="emailHelp" placeholder="Enter email" autocomplete="off">
+                            <small id="emailHelp" class="form-text text-muted">We'll add this user to your
+                                corporation.</small>
+                        </div>
+                        <div class="mb-3 form-group position-relative">
+                            <label for="password">Password</label>
+                            <input [(ngModel)]="User.password" name="password" id="password" autocomplete="off"
+                                type="password" class="form-control input_feild" id="password" placeholder="Password">
+                        </div>
+                        <div class="mb-3 form-group position-relative mt-5">
+                            <button type="button" (click)="addUser()" class="btn buttonFull buttonFull-transparent ms-2">Add User</button>
+                            <button type="button" (click)="cancel()" class="btn buttonFull buttonFull-transparent ms-2">Cancel</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

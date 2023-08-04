@@ -47,7 +47,6 @@ export class ViewcorporatecommoditiesComponent implements OnInit {
   }
   getallunits() {
     this.unitsService.
-
       getUnits
       ().subscribe(
         (data) => {
@@ -56,7 +55,6 @@ export class ViewcorporatecommoditiesComponent implements OnInit {
         }
       )
   }
-
   getallcoprativecategory() {
     this.coperativecategoryService.
       getAllCoprativeCategories
@@ -95,7 +93,6 @@ export class ViewcorporatecommoditiesComponent implements OnInit {
   saveCommodity() {
     if (this.edit) {
       this.update();
-
     }
     else {
       this.save();

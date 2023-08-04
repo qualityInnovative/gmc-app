@@ -25,9 +25,22 @@
                     </div>
                     <div class="mb-3 form-group position-relative">
                         <label for="name">Email</label>
-                        <input type="text" class="form-control input_feild" id="email" name="email" placeholder=" "
-                            [(ngModel)]="userProfile.email" required disabled="" />
+                        <input type="text" 
+                        autocomplete="off"
+                        class="form-control input_feild" id="email" name="email" placeholder=" "
+                            [(ngModel)]="userProfile.email" required disabled={{edit}} />
                     </div>
+                    {{edit}}
+
+                    <div
+                    *ngIf=!edit class="mb-3 form-group position-relative">
+                        <label for="name">Password</label>
+                        <input 
+                        autocomplete="off"
+                        type="text" class="form-control input_feild" id="password" name="password"
+                            placeholder=" " [(ngModel)]="userProfile.password" required />
+                    </div>
+
                     <!-- select role -->
                     <div class="mb-3 form-group position-relative">
                         <label for="name">Role</label>
