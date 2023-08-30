@@ -58,6 +58,14 @@ export class BannerService {
         retry(2),
         catchError(this.handleError))
   }
+  uploadbannerimage(image: File): Observable<Apiresponse> {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.http.post<Apiresponse>(`${environment.apiUrl}/banners/upload`, formData)
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
   
 
 }

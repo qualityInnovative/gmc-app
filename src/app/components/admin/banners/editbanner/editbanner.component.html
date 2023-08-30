@@ -76,7 +76,7 @@
                     <div class="col-12 mb-4" *ngIf="edit">
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Image</label>
-                            <img [src]="banner.image" class="categoryimage" />
+                            <img [src]="getImageUrl(banner.image)" alt="Category Image" class="categoryimage" />
                         </div>
                     </div>
                     <!-- upload image to category -->

@@ -9,6 +9,7 @@ import { Apiresponse } from 'src/app/ratelist-models';
 import { UserService } from 'src/app/ratelist-services';
 import { StatesService } from 'src/app/ratelist-services';
 import { State } from 'src/app/ratelist-models';
+
 @Component({
   selector: 'ratelist-editbanner',
   templateUrl: './editbanner.component.html',
@@ -76,18 +77,32 @@ export class EditbannerComponent implements OnInit {
   back() {
     this.router.navigate(['admin/banners']);
   }
-  onFileChange(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    if (inputElement.files && inputElement.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.banner.image = (event.target as any).result as string;
-        console.log(this.banner.image);
-      };
-      reader.readAsDataURL(inputElement.files[0]); // read file as data URL
-      console.log(inputElement.files[0]);
+  onFileChange(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      this.uploadCategoryImage(file);
     }
   }
+
+  uploadCategoryImage(file: File) {
+    this.bannerService.uploadbannerimage(file).subscribe(
+      (response) => {
+        if (response.success) {
+          this.banner.image = response.data.path;
+        } else {
+          console.log(response.message);
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  getImageUrl(image: string) {
+    console.log(`${environment.folderPath}${image}`);
+    return `${environment.folderPath}${image}`;
+  }
+  
   
   saveBanner() {
     console.log(this.banner)
