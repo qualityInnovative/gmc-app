@@ -43,15 +43,16 @@
                         <div class="mb-3 form-group position-relative">
                             <label for="image">upload image</label>
                             <input type="file"
-                                accept="image/png, image/gif, image/jpeg, image/jpg, image/svg, image/webp"
+                                accept="image/png, image/jpeg, image/jpg,"
                                 class="form-control input_feild" id="image" name="image" placeholder=" "
-                                [(ngModel)]="corporation.image" required (change)="onFileChange($event)" />
+                                [(ngModel)]="corporation.image" required 
+                                (change)="onFileChange($event)" />
 
                         </div>
                         <!-- show image -->
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Image</label>
-                            <img [src]="corporation.image" class="categoryimage" />
+                            <img [src]="getImageUrl(corporation.image)" alt="Category Image" class="categoryimage" />
                         </div>
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Select State</label>

@@ -31,5 +31,11 @@ export class CorporationService {
   getuserfromadmincorporation(id:number): Observable<Apiresponse> {
     return this.http.get<Apiresponse>(`${this.apiServerUrl}/corporation/getuserfromadmincorporation/${id}`);
   }
+  uploadCorporationImage(image: File): Observable<Apiresponse> {
+    const formData = new FormData();
+    formData.append('image', image);
+    console.log('service',FormData);
+   return this.http.post<Apiresponse>(`${this.apiServerUrl}/corporation/upload`, formData);
+  }
 
 }

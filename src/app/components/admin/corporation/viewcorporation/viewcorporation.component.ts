@@ -6,6 +6,7 @@ import { State } from 'src/app/ratelist-models';
 import { District } from 'src/app/ratelist-models';
 import { StatesService } from 'src/app/ratelist-services';
 import { DistrictsService } from 'src/app/ratelist-services';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'ratelist-viewcorporation',
   templateUrl: './viewcorporation.component.html',
@@ -66,7 +67,7 @@ export class ViewcorporationComponent implements OnInit {
           },
         ];
         this.center = {
-          lat: Number(this.corporation.latitude) ,
+          lat: Number(this.corporation.latitude),
           lng: Number(this.corporation.longitude)
         };
         if (this.corporation.stateId) {
@@ -168,7 +169,7 @@ export class ViewcorporationComponent implements OnInit {
     minZoom: 8,
   };
   clickedMarker(label: string, index: number) {
-     this.markers=[
+    this.markers = [
       {
         position: {
           lat: Number(this.corporation?.latitude),
@@ -181,20 +182,39 @@ export class ViewcorporationComponent implements OnInit {
         },
         title: 'Marker title ' + (this.corporation.name ? this.corporation.name : ''),
       },
-     ]
+    ]
 
   }
-  onFileChange(event:any) {
+
+  onFileChange(event: any) {
+    console.log(event.target.files[0]);
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.corporation.image = (event.target as any).result as string
-       
-      }
+      const file = event.target.files[0];
+      this.uploadCategoryImage(file);
     }
   }
- 
+
+  uploadCategoryImage(file: File) {
+    
+    this.corporationService.
+      uploadCorporationImage
+      (file).subscribe(
+        (response) => {
+          if (response.success) {
+            this.corporation.image = response.data.path;
+          } else {
+            console.log(response.message);
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+  getImageUrl(image: string) {
+    console.log(`${environment.folderPath}${image}`);
+    return `${environment.folderPath}${image}`;
+  }
+
 
 }
