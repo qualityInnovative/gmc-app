@@ -117,6 +117,13 @@ export class EditcommoditiesComponent implements OnInit {
       }
     }
   }
+  onCheckboxChange(event:any) {
+    if (event.target.checked) {
+      this.commodity.canComplaint = true;
+    } else {
+      this.commodity.canComplaint = false;
+    }
+  }
   
 
 }

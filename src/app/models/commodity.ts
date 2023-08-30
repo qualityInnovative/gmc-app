@@ -3,4 +3,5 @@ export class Commodity{
     name: string = '';
     categoryId: number = 0;
     image: string = '';
+    canComplaint: boolean = false;
 }

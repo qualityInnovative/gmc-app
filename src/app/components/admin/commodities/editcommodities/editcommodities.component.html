@@ -27,39 +27,44 @@
                             <label for="name">Commodity Category</label>
                             <select class="form-control input_feild" id="categoryId" name="category" placeholder=" "
                                 [(ngModel)]="   commodity.categoryId" required>
-                              
-                               <option *ngFor="let category of categories" [value]="category.id">
+                                <option *ngFor="let category of categories" [value]="category.id">
                                     {{ category.name }}
                                 </option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- if edit show image  -->
 
-                    <div class="col-12 mb-4" *ngIf="edit || imageset" >
-                        <div class="mb-3 form-group position-relative">
-                            <label for="name">Image</label>
-                            <img [src]="commodity.image" class="categoryimage" />
+
+                    <div class="mb-3 form-group  ">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="commodities.canComplaint"
+                                name="commodities.canComplaint" id="commodities.canComplaint"
+                                (ngModelChange)="onCheckboxChange($event)" [(ngModel)]="commodity.canComplaint">
+                            <label class="form-check-label" for="commodity.canComplaint">
+                                can complaint
+                            </label>
                         </div>
                     </div>
 
-                    <!-- upload image to category -->
+                    <div class="col-12 mb-4" *ngIf="edit || imageset">
+                        <label for="name">Image</label>
+                        <div class="mb-3 mt-2 form-group position-relative ">
+
+                            <img [src]="commodity.image" class="categoryimage image-size" />
+                        </div>
+                    </div>
 
                     <div class="col-12 mb-4">
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Upload Image</label>
-                            <!-- upload base64 image  -->
                             <input type="file" class="form-control input_feild" id="image" name="image" placeholder=" "
                                 [(ngModel)]="commodity.image" required (change)="onFileChange($event)" />
                         </div>
                     </div>
 
-
-
-
                     <div class="col-12">
-                        <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
+                        <button type="submit" class="btn buttonFull">
                             save
                         </button>
                         <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
@@ -68,6 +73,4 @@
                     </div>
                 </form>
             </div>
-
-
         </div>

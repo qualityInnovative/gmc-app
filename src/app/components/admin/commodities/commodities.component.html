@@ -31,7 +31,8 @@
                                     <tr>
                                         <th scope="col">Index</th>
                                         <th scope="col">Commodity</th>
-                                        <th scope="cole">Category</th>                                        
+                                        <th scope="cole">Category</th>   
+                                        <th scope="col">Can Complaint</th>                                     
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
@@ -42,6 +43,7 @@
                                         <td>{{
                                             getCategoryName(commodity.categoryId)
                                         }}</td>
+                                        <td>{{commodity.canComplaint}}</td>
                                         <td>
                                             <fa-icon [icon]="faEdit" (click)="editCommodities(commodity.id)"></fa-icon>
                                             <fa-icon [icon]="faTrash" (click)="deleteCommodities(commodity.id)"></fa-icon>
