@@ -30,7 +30,7 @@
                     <div class="col-12 mb-4" *ngIf="edit">
                         <div class="mb-3 form-group position-relative">
                             <label for="name">Image</label>
-                            <img [src]="category.image" class="categoryimage" />
+                            <img [src]="getImageUrl(category.image)" alt="Category Image" class="categoryimage" />
                         </div>
                     </div>
                     

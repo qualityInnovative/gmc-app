@@ -30,4 +30,9 @@ export class CategoryService {
   getAllCategories():Observable<Apiresponse>  {
     return this.http.get<Apiresponse>(`${environment.apiUrl}/categories/getall`)
   }
+  uploadCategoryImage(image:File):Observable<Apiresponse>  {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.http.post<Apiresponse>(`${environment.apiUrl}/categories/upload`,formData)
+  }
 }

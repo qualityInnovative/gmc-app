@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/ratelist-models';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { Apiresponse } from 'src/app/models/apiresponse';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'ratelist-editcategory',
   templateUrl: './editcategory.component.html',
@@ -24,14 +25,14 @@ export class EditcategoryComponent implements OnInit {
     this.isEdit();
   }
 
-  saveCategory(){
-    if(this.edit){
+  saveCategory() {
+    if (this.edit) {
       this.updateCategory();
-    }else{
+    } else {
       this.addCategory();
     }
   }
-  getCategoryById(id:number){
+  getCategoryById(id: number) {
     this.categoryService.admingetCategoryById(id).subscribe(
       (data) => {
         this.category = data.data;
@@ -42,22 +43,22 @@ export class EditcategoryComponent implements OnInit {
       }
     )
   }
-  isEdit(){
+  isEdit() {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
-      if(this.categoryId > 0){
+      if (this.categoryId > 0) {
         this.edit = true;
         this.getCategoryById(this.categoryId);
-      }else{
+      } else {
         this.edit = false;
       }
     });
   }
 
-  back(){
+  back() {
     this.location.back();
   }
-  updateCategory(){
+  updateCategory() {
     this.categoryService.adminupdateCategory(this.category).subscribe(
       (data) => {
         this.back();
@@ -67,7 +68,7 @@ export class EditcategoryComponent implements OnInit {
       }
     )
   }
-  addCategory(){
+  addCategory() {
     this.categoryService.adminaddCategory(this.category).subscribe(
       (data) => {
         this.back();
@@ -77,29 +78,47 @@ export class EditcategoryComponent implements OnInit {
       }
     )
   }
-  onFileChange(event:any) {
+  onFileChange(event: any) {
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      console.log(event.target.files[0]);
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.category.image = (event.target as any).result as string
-        console.log(this.category.image)
-      }
+      const file = event.target.files[0];
+      this.uploadCategoryImage(file);
     }
   }
-  
-  
 
-
-
-
-
-
-
-
-
+  uploadCategoryImage(file: File) {
+    this.categoryService.uploadCategoryImage(file).subscribe(
+      (response) => {
+        if (response.success) {
+          this.category.image = response.data.path;
+        } else {
+          console.log(response.message);
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  getImageUrl(image: string) {
+    console.log(`${environment.folderPath}${image}`);
+    return `${environment.folderPath}${image}`;
+  }
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
