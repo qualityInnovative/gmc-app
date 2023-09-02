@@ -20,6 +20,24 @@
                         
                     </div>
                 </div>
+                <div class="col-12 mb-4" *ngIf="edit || imageset">
+                    <label for="name">Image</label>
+                    <div class="mb-3 mt-2 form-group position-relative ">
+
+                        <img [src]="unit.image" class="categoryimage image-size" />
+                    </div>
+                </div>
+
+                <div class="col-12 mb-4">
+                    <div class="mb-3 form-group position-relative">
+                        <label for="name">Upload Image</label>
+                        <input 
+                      
+                        accept="image/jpeg, image/png , image/jpg"
+                        type="file" class="form-control input_feild" id="image" name="image" placeholder=" "
+                            [(ngModel)]="unit.image" required (change)="onFileChange($event)" />
+                    </div>
+                </div>
                 <div class="col-12">
                     <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
                         save
