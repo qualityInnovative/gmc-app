@@ -93,14 +93,22 @@
                     </div>
                     <!-- assign to user -->
                     <div class="mb-3 form-group position-relative">
-                        <label for="name">Assign to user </label>
-                        <select (change)="assignToUser($event)" class="form-control input_feild"
-                            id="exampleFormControlSelect1" [(ngModel)]="complaint.assignedTo">
-                            <option value="0">Select User</option>
-                            <option *ngFor="let user of deparmentUsers" [value]="user.id">{{user.id}}
-                                {{user.Profile.firstName}}</option>
-                        </select>
-                    </div>
+                        <label for="name">Assign to user</label>
+                        <ng-select
+                          [items]="deparmentUsers"
+                          bindLabel="Profile.firstName"
+                          bindValue="id"
+                          placeholder="Select User"
+                          [(ngModel)]="selectedUserId"
+                          (change)="assignToUser($event)">
+                          <ng-template ng-option-tmp let-item="item" let-index="index">
+                            {{ item.Profile.firstName }} {{ item.Profile.lastName }},
+                           
+                            {{ item.Role.name }}, {{ item.Profile.District.name }}
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                      
                     <div class="col-12 mb-3">
                         <ratelist-remarkhistory *ngIf="complaint.ComplaintId > 0" [complaintId]="complaint.id"
                             [districtId]="complaint.districtId"></ratelist-remarkhistory>

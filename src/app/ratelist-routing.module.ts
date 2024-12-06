@@ -80,7 +80,6 @@ import { ViewcorporatepriceadminComponent } from './components/corporate/corpora
 import { AddcorporateuserComponent } from './components/corporate/addcorporateuser/addcorporateuser.component';
 import { CorporateaddretailrateComponent } from './components/corporate/corporateaddretailrate/corporateaddretailrate.component';
 import { ViewcorporateretailrateComponent } from './components/corporate/corporateaddretailrate/viewcorporateretailrate/viewcorporateretailrate.component';
-
 import { CoprativecategoryComponent } from './components/admin/coprativecategory/coprativecategory.component';
 import { ViewcoprativecategoryComponent } from './components/admin/coprativecategory/viewcoprativecategory/viewcoprativecategory.component';
 import { CorporatecommoditiesComponent } from './components/corporate/corporatecommodities/corporatecommodities.component';
@@ -122,6 +121,7 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
+  
   {
     path: 'admin/states',
     component: AdminhomeComponent,

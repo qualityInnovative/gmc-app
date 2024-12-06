@@ -25,10 +25,8 @@
                 <div class="card shadow mt-5">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover" 
-                                datatable
-                                [dtOptions]="dtOptions" 
-                                [dtTrigger]="dtTrigger">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                class="table table-bordered table-striped table-hover" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th>Complaints</th>
@@ -68,11 +66,8 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>

@@ -1,0 +1,40 @@
+.container-fluid {
+    margin-top: 20px;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  h3 {
+    font-weight: bold;
+  }
+  
+  h5 {
+    font-size: 1.2rem;
+    color: #007bff;
+  }
+  
+  .progress {
+    height: 20px;
+  }
+  
+  .progress-bar {
+    background-color: #28a745; /* Green for progress bar */
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #555;
+  }
+  

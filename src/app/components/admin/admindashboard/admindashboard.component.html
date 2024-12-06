@@ -1,1 +1,37 @@
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div class="col-md-9 mt-4">
+            <div class="row">
+                <div class="col-md-2 mb-3">
+                    <div (click)="changeSelectedType('0')" class="card">
+                        <div class="card-body text-center">
+                            <h5>Total Complaints Received</h5>
+                            <h4>{{ totalComplaintsReceived }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-3"
+                    *ngFor="let status of ['open', 'In Progress', 'Under Review', 'On Hold', 'Escalated', 'Resolved', 'Closed']">
+                    <div class="card" (click)="changeSelectedType(status)">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ status | titlecase }}</h5>
+                            <p class="card-text">Complaints: {{ complaintsByStatus[status] || 0 }}</p>
+                            <div class="progress">
+                                <div class="progress-bar" [style.width.%]="getProgress(status)" role="progressbar">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="selectedComplaintType">
+                    <ratelist-complainttable [complaintType]="selectedComplaintType"></ratelist-complainttable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

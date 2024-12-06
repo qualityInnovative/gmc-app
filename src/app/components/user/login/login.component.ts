@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
           this.loginService.setUser(res.data.user);
           
           if (res.data.user.roleId == Roles.admin) {
-            this.router.navigate(['/admin/states']);
+            this.router.navigate(['/admindashboard']);
           } else if (res.data.user.roleId == Roles.mandiAdmin) {
             this.router.navigate(['/moderator']);
           } else if (res.data.user.roleId == Roles.mandiUser) {

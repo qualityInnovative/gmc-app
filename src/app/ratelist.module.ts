@@ -110,7 +110,8 @@ import { AddcommoditydiscountComponent } from './components/corporate/addcommodi
 import { ViewaddcommoditydiscountComponent } from './components/corporate/addcommoditydiscount/viewaddcommoditydiscount/viewaddcommoditydiscount.component';
 import { CorporateratesComponent } from './components/corporate/corporaterates/corporaterates.component';
 import { ViewcorporateratesComponent } from './components/corporate/corporaterates/viewcorporaterates/viewcorporaterates.component';
-
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ComplainttableComponent } from './components/admin/complainttable/complainttable.component';
 
 
 
@@ -213,7 +214,8 @@ import { ViewcorporateratesComponent } from './components/corporate/corporaterat
     AddcommoditydiscountComponent,
     ViewaddcommoditydiscountComponent,
     CorporateratesComponent,
-    ViewcorporateratesComponent
+    ViewcorporateratesComponent,
+    ComplainttableComponent
   ],
   imports: [
     BrowserModule,
@@ -225,6 +227,7 @@ import { ViewcorporateratesComponent } from './components/corporate/corporaterat
     BrowserAnimationsModule,
     GoogleMapsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    NgSelectModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-bottom-right',

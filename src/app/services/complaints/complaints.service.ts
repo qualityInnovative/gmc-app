@@ -12,6 +12,9 @@ export class ComplaintsService {
   constructor(
     private http: HttpClient
   ) { }
+  getAllComplaintsToadminDashboard(): Observable<any> {
+    return  this.http.post(`${environment.acogsApiUrl}/complaint/totalcomplaints`, {});
+  }
   getAllComplaints(): Observable<any> {
     return  this.http.post(`${environment.acogsApiUrl}/complaint/getallcomplaintoadmin`, {});
   }
@@ -48,6 +51,10 @@ export class ComplaintsService {
   }
   getAssignComplaintsAssignedToCurrentUser(id: number): Observable<any> {
     return  this.http.get(`${environment.acogsApiUrl}/complaint/getassigncomplaintsassignedtouser/${id}`);
+  }
+  // this.c.getSortedComplaintsbyType(complaintType, perPage, page)
+  getSortedComplaintsbyType(complaintType: string, perPage: number, page: number): Observable<any> {
+    return  this.http.post(`${environment.acogsApiUrl}/complaint/getsortedcomplaintsbytype`, {complaintType, perPage, page});
   }
     
 }

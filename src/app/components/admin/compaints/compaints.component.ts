@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { faEdit, faTrash, faPenToSquare, faEye } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { ComplaintsService } from 'src/app/services/complaints/complaints.service';
@@ -26,28 +25,27 @@ export class CompaintsComponent implements OnInit {
   complaints: Complaint[] = [];
   complaintStaus: ComplaintStatus[] = [];
   Users: UserProfile[] = [];
-
   constructor(
     private complaintsService: ComplaintsService,
     private router: Router,
     private userService: UserService
   ) { }
-
   ngOnInit(): void {
+    this.getAllComplaints();
+    this.getAllComplaintStatus();
+
+    this.getAllUsers();
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 20,
+      pageLength: 10,
       processing: true,
-      
+      searching: true,
+      ordering: true
     };
-    this.getAllComplaintStatus();
-    this.getAllComplaints();
-    this.getAllUsers();
-
-
   }
   getAllUsers() {
-    this.userService.getAllUsers()
+    this.userService
+      .getAllUsers()
       .subscribe((res: Apiresponse) => {
         if (res.success) {
           this.Users = res.data;
@@ -57,7 +55,7 @@ export class CompaintsComponent implements OnInit {
       });
   }
   getUserById(id: number) {
-    if(id==0 || id==null){
+    if (id == 0 || id == null) {
       return 'Admin';
     }
     return this.Users.find(x => x.id == id)?.Profile?.firstName + ' ' + this.Users.find(x => x.id == id)?.Profile?.lastName;
@@ -69,12 +67,14 @@ export class CompaintsComponent implements OnInit {
   viewcomplain(id: number) {
     this.router.navigate(['admin/complaints/complaindetail', id]);
   }
+
   deletecomplain(complaint: any) {
     if (confirm('Are you sure to delete this record ?')) {
       this.complaintsService.deleteComplaint(complaint.id)
         .subscribe((res: Apiresponse) => {
           if (res.success) {
             this.getAllComplaints();
+
           }
         }, (err) => {
           console.log(err);
@@ -85,17 +85,20 @@ export class CompaintsComponent implements OnInit {
     this.loading = true;
     this.errorStatus = false;
     this.error = '';
-    this.complaintsService.getAllComplaints()
+    this.complaintsService
+      .getAllComplaints()
       .subscribe((res: Apiresponse) => {
         this.loading = false;
         if (res.success) {
           this.complaints = res.data;
+          this.dtTrigger.next(res.data);
           console.log(this.complaints, 'dsdsdsds');
-          this.dtTrigger.next(undefined);
+
         } else {
           this.errorStatus = true;
           this.error = res.message;
         }
+
       }, (err) => {
         this.loading = false;
         this.errorStatus = true;
@@ -107,7 +110,7 @@ export class CompaintsComponent implements OnInit {
       .subscribe((res: Apiresponse) => {
         if (res.success) {
           this.complaintStaus = res.data;
-          console.log('complaint status', this.complaintStaus);
+
         } else {
           console.log(res);
         }
@@ -117,7 +120,7 @@ export class CompaintsComponent implements OnInit {
         });
   }
   getComplaintStatus(id: number) {
-    console.log(id);
+
     return this.complaintStaus.find(x => x.id == id)?.status;
   }
 }

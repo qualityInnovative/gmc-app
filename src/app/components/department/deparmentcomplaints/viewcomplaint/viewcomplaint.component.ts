@@ -30,6 +30,7 @@ export class ViewcomplaintComponent implements OnInit {
   faTrash = faTrash;
   faPenToSquare = faPenToSquare;
   faEye = faEye;
+  selectedUserId: number = 0;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   complaints: Complaint[] = [];
@@ -238,9 +239,10 @@ export class ViewcomplaintComponent implements OnInit {
         }
       });
   }
-  assignToUser(e: Event) {
+  assignToUser(e: any) {
     // Assign the complain to user
-    let userId = (e.target as HTMLSelectElement).value;
+    let userId = e.id
+    this.selectedUserId= parseInt(userId);
     this.assignComplaint.assignedTo = userId;
     this.shouldGoBack = true;
    // console.warn(this.assignComplaint);

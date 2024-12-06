@@ -37,6 +37,7 @@ export class ComplaintdetailComponent implements OnInit {
   deparmentUsers: UserProfile[] = [];
   assignComplaint: AssignComplaint = new AssignComplaint();
   currentUser: UserProfile = new UserProfile();
+  selectedUserId: number = 0;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -169,7 +170,6 @@ export class ComplaintdetailComponent implements OnInit {
   }
   getAllDeparmentUserFromComplainDistrict(districtId: number) {
     console.warn(districtId);
-    // Get all department user from complain district
     this.complaintsService
       .getAllDeparmentUserFromComplainDistrict(districtId)
       .subscribe((res: Apiresponse) => {
@@ -209,10 +209,10 @@ export class ComplaintdetailComponent implements OnInit {
         }
       });
   }
-  assignToUser(e: Event) {
-    console.log(e);
-    // Assign the complain to user
-    let userId = (e.target as HTMLSelectElement).value;
+  assignToUser(e: any) {
+    console.log(e?.id);
+    let userId = e.id
+    this.selectedUserId = parseInt(userId);
     this.assignComplaint.assignedTo = userId;
     console.log(userId);
     this.complaintsService
@@ -224,10 +224,11 @@ export class ComplaintdetailComponent implements OnInit {
           console.log(res.message);
         }
       });
+   
   }
-  changeStatus(e: Event) {
+  changeStatus(e: any) {
     // change the status of complaint.Complaint status is changed by admin
-    let ComplaintStatusId = (e.target as HTMLSelectElement).value;
+    let ComplaintStatusId = e.id
     console.log(ComplaintStatusId, this.complainId);
     this.complaintsService
       .changeComplaintStatus(ComplaintStatusId, this.complainId)

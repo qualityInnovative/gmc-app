@@ -83,23 +83,42 @@
                         </select>
                     </div>
                     <div class="mb-3 form-group position-relative">
+                        <label for="name">Complaint Status</label>
+                        <ng-select 
+                          [items]="complaintStaus" 
+                          bindLabel="status" 
+                          bindValue="id" 
+                          [(ngModel)]="complaint.ComplaintId" 
+                          placeholder="Select a status"
+                          (change)="changeStatus($event)">
+                        </ng-select>
+                      </div>
+                      
+                    <div class="mb-3 form-group position-relative">
                         <label for="name">from district </label>
                         <select class="form-control input_feild" id="exampleFormControlSelect1"
                             [(ngModel)]="complaint.districtId" disabled>
                             <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
                         </select>
                     </div>
-                    <!-- assign to user -->
+                  
                     <div class="mb-3 form-group position-relative">
-                        <label for="name">Assign to user </label>
-                        <select (change)="assignToUser($event)" class="form-control input_feild"
-                            id="exampleFormControlSelect1">
-                            <option value="0">Select User</option>
-                            <option *ngFor="let user of deparmentUsers" [value]="user.id">{{user.id}}
-                                {{user.Profile.firstName}}</option>
-                        </select>
-                    </div>
-
+                        <label for="name">Assign to user</label>
+                        <ng-select
+                          [items]="deparmentUsers"
+                          bindLabel="Profile.firstName"
+                          bindValue="id"
+                          placeholder="Select User"
+                          [(ngModel)]="selectedUserId"
+                          (change)="assignToUser($event)">
+                          <ng-template ng-option-tmp let-item="item" let-index="index">
+                            {{ item.Profile.firstName }} {{ item.Profile.lastName }},
+                           
+                            {{ item.Role.name }}, {{ item.Profile.District.name }}
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                      
                     <button (click)="saveComplaint()" class="btn buttonFull buttonFull-transparent mb-3">
                         Assign
                     </button>
@@ -124,12 +143,8 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
-
             </div>
             <div class="col-12 mb-3">
                 <ratelist-remarkhistory *ngIf="complaint.ComplaintId > 0"
