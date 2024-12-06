@@ -24,18 +24,21 @@
             <div class="d-flex justify-content-between align-items-center manage-specialty">
               <h3 class="card-title">Complaints Received</h3>
             </div>
-            <div class="card shadow show-complaints">
-              <div (click)="filterComplaints(0)" class="complaints-received">
+            <div class="card show-complaints mb-4 p-4 shadow-sm">
+              <div (click)="filterComplaints(0)" class="complaints-received highlight-card">
                 <p class="complaints-received-text">Complaints Received</p>
-                <h4 class="complaints-received-text-p">{{ complaints.length }}</h4>
+                <h4 class="complaints-received-count">{{ complaints.length }}</h4>
               </div>
-              <div *ngFor="let complaints of complaintStauses;let i = index" (click)="filterComplaints(i+1)"
-                class="complaints-received">
-                <h4 class="complaint-length-text">{{ getComplaintStatus(i+1)}}</h4>
-                <p class="complaints-received-text-p">{{ complaints }}</p>
+            
+              <div *ngFor="let complaints of complaintStauses; let i = index" (click)="filterComplaints(i+1)"
+                class="complaints-received status-card">
+                <h4 class="complaint-status-title">{{ getComplaintStatus(i+1) }}</h4>
+                <p class="complaint-status-count">{{ complaints }}</p>
               </div>
             </div>
             
+
+
             <div class="card shadow mt-4">
               <div class="card-body">
                 <div class="table-responsive">
