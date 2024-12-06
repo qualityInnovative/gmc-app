@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5001/api/v1',
-  acogsApiUrl: 'http://localhost:5002/api',
-  folderPath: 'http://localhost:5001',
+  apiUrl: 'http://localhost:6662/api/v1',
+  acogsApiUrl: 'http://localhost:6661/api',
+  folderPath: 'http://localhost:6662',
   
 };
 
