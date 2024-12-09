@@ -57,26 +57,27 @@ export class DistrictsComponent implements OnInit {
     ]);
   }
   getAllDistricts() {
-    this.DistrictsService.admingetDistricts().subscribe((districts) => {
-      this.loading = false;
-      this.districts = districts.data;
-      this.dtTrigger.next(districts.data);
-    }, (error) => {
-      this.errorStatus = true;
-      this.error = error.message;
-      this.loading = false;
-    });
+    this.DistrictsService.admingetDistricts()
+      .subscribe((districts) => {
+        this.loading = false;
+        this.districts = districts.data;
+        this.dtTrigger.next(districts.data);
+      }, (error) => {
+        this.errorStatus = true;
+        this.error = error.message;
+        this.loading = false;
+      });
   }
   deleteDistrict(district: District) {
     if (confirm("Are you sure to delete " + district.name)) {
       this.DistrictsService.adminDeleteDistrict(district.id)
         .subscribe(
           data => {
-            if(data.success == true){
+            if (data.success == true) {
               this.toastr.success(data.message);
             }
             this.getAllDistricts();
-            
+
           },
           error => {
             this.errorStatus = true;

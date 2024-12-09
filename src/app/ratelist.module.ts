@@ -112,6 +112,8 @@ import { CorporateratesComponent } from './components/corporate/corporaterates/c
 import { ViewcorporateratesComponent } from './components/corporate/corporaterates/viewcorporaterates/viewcorporaterates.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ComplainttableComponent } from './components/admin/complainttable/complainttable.component';
+import { SuggestionsComponent } from './components/admin/suggestions/suggestions.component';
+import { ViewsuggestionsComponent } from './components/admin/suggestions/viewsuggestions/viewsuggestions.component';
 
 
 
@@ -215,7 +217,9 @@ import { ComplainttableComponent } from './components/admin/complainttable/compl
     ViewaddcommoditydiscountComponent,
     CorporateratesComponent,
     ViewcorporateratesComponent,
-    ComplainttableComponent
+    ComplainttableComponent,
+    SuggestionsComponent,
+    ViewsuggestionsComponent
   ],
   imports: [
     BrowserModule,

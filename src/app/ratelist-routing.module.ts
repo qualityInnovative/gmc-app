@@ -88,6 +88,8 @@ import { AddcommoditydiscountComponent } from './components/corporate/addcommodi
 import { ViewaddcommoditydiscountComponent } from './components/corporate/addcommoditydiscount/viewaddcommoditydiscount/viewaddcommoditydiscount.component';
 import { CorporateratesComponent } from './components/corporate/corporaterates/corporaterates.component';
 import { ViewcorporateratesComponent } from './components/corporate/corporaterates/viewcorporaterates/viewcorporaterates.component';
+import { SuggestionsComponent } from './components/admin/suggestions/suggestions.component';
+import { ViewsuggestionsComponent } from './components/admin/suggestions/viewsuggestions/viewsuggestions.component';
 const routes: Routes = [
   {
     path: '',
@@ -109,6 +111,7 @@ const routes: Routes = [
     component: LoginComponent,
     pathMatch: 'full'
   },
+
   {
     path: 'profile',
     component: ProfileComponent,
@@ -121,7 +124,7 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard]
   },
-  
+
   {
     path: 'admin/states',
     component: AdminhomeComponent,
@@ -139,6 +142,20 @@ const routes: Routes = [
     component: DistrictsComponent,
     pathMatch: 'full'
     , canActivate: [AuthGuard, AdminauthGuard]
+  },
+  {
+    path: "admin/suggestions",
+    component: SuggestionsComponent,
+    pathMatch: "full",
+    canActivate: [AuthGuard, AdminauthGuard]
+
+  },
+  {
+    path: "admin/suggestions/view/:id",
+    component: ViewsuggestionsComponent,
+    pathMatch: "full",
+    canActivate: [AuthGuard, AdminauthGuard]
+
   },
   {
     path: 'admin/districts/editdistricts/:stateId/:districtId',
@@ -511,40 +528,40 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path:'corporate/corporatecommodities',
-    component:CorporatecommoditiesComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate/corporatecommodities',
+    component: CorporatecommoditiesComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'corporate/addcommoditydiscount',
-    component:AddcommoditydiscountComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    component: AddcommoditydiscountComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
-    path:'corporate/addcommoditydiscount/viewaddcommoditydiscount/:id',
-    component:ViewaddcommoditydiscountComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate/addcommoditydiscount/viewaddcommoditydiscount/:id',
+    component: ViewaddcommoditydiscountComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
-    path:'corporate/corporaterates',
-    component:CorporateratesComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate/corporaterates',
+    component: CorporateratesComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
-    path:'corporate/corporaterates/viewcorporaterates/:id',
-    component:ViewcorporateratesComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate/corporaterates/viewcorporaterates/:id',
+    component: ViewcorporateratesComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
-    path:'corporate/viewcorporatecommodities/:id',
-    component:ViewcorporatecommoditiesComponent,
-    pathMatch:'full',
-    canActivate:[AuthGuard]
+    path: 'corporate/viewcorporatecommodities/:id',
+    component: ViewcorporatecommoditiesComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'corporate/addcorporateuser/viewcorporateretailrate/:id',
