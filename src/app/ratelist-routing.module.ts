@@ -90,6 +90,10 @@ import { CorporateratesComponent } from './components/corporate/corporaterates/c
 import { ViewcorporateratesComponent } from './components/corporate/corporaterates/viewcorporaterates/viewcorporaterates.component';
 import { SuggestionsComponent } from './components/admin/suggestions/suggestions.component';
 import { ViewsuggestionsComponent } from './components/admin/suggestions/viewsuggestions/viewsuggestions.component';
+import { DepartmentGrevanceCategoryComponent } from './components/admin/department-grevance-category/department-grevance-category.component';
+import { ViewdepartmentGrevanceCategoryComponent } from './components/admin/department-grevance-category/viewdepartment-grevance-category/viewdepartment-grevance-category.component';
+import { DepartmentsubcategoryComponent } from './components/admin/departmentsubcategory/departmentsubcategory.component';
+import { ViewsubcategoryComponent } from './components/admin/departmentsubcategory/viewsubcategory/viewsubcategory.component';
 const routes: Routes = [
   {
     path: '',
@@ -156,6 +160,30 @@ const routes: Routes = [
     pathMatch: "full",
     canActivate: [AuthGuard, AdminauthGuard]
 
+  },
+  {
+    path: "admin/departmentgrevancegategory",
+    component: DepartmentGrevanceCategoryComponent,
+    pathMatch: "full",
+    canActivate: [AuthGuard, AdminauthGuard]
+
+  }, {
+    path: "admin/departmentgrevancecategory/view/:id",
+    component: ViewdepartmentGrevanceCategoryComponent,
+    pathMatch: "full",
+    canActivate: [AuthGuard, AdminauthGuard]
+  },
+  {
+    path: "admin/departmentgrevancsubegategory",
+    component: DepartmentsubcategoryComponent,
+    pathMatch: "full",
+    canActivate: [AuthGuard, AdminauthGuard]
+  },
+  {
+    path: "admin/departmentgrevancsubegategory/view/:id",
+    component: ViewsubcategoryComponent,
+    pathMatch: "full",
+    canActivate: [AuthGuard, AdminauthGuard]
   },
   {
     path: 'admin/districts/editdistricts/:stateId/:districtId',

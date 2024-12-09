@@ -12,15 +12,15 @@ export class DeparmentService {
     private http: HttpClient
   ) { }
   getAllDepartments() {
-    return this.http.get<Apiresponse>(environment.apiUrl + '/department/getall');
+    return this.http.get<Apiresponse>(environment.acogsApiUrl + '/department/getall');
   }
   getDepartmentById(id: number) {
-    return this.http.get<Apiresponse>(environment.apiUrl + '/department/getbyid/' + id);
+    return this.http.get<Apiresponse>(environment.acogsApiUrl + '/department/getbyid/' + id);
   }
   saveDepartment(department: Department) {
-    return this.http.post<Apiresponse>(environment.apiUrl + '/department/add', department);
+    return this.http.post<Apiresponse>(environment.acogsApiUrl + '/department/add', department);
   }
   updateDepartment(department: Department) {
-    return this.http.put<Apiresponse>(environment.apiUrl + '/department/update', department);
+    return this.http.put<Apiresponse>(environment.acogsApiUrl + '/department/update', department);
   }
 }

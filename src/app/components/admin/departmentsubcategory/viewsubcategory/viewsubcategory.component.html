@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <ratelist-adminmenu></ratelist-adminmenu>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-6 manage-specialty mt-3">
+                    <h3 *ngIf="edit" class="card-title">Edit Grevance Category</h3>
+                    <h3 *ngIf="!edit" class="card-title">Add Grevance Category</h3>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent">
+                        Back
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <form #form="ngForm" (ngSubmit)="adddepartmentGrevanceSubCategory(0)">
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="name">Grevance Sub Category Name</label>
+                            <input type="text" class="form-control input_feild" id="name" name="name" placeholder=" "
+                                [(ngModel)]="departmentGrevanceSubCategory.name" required>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="description">Grevance Sub Category Description</label>
+                            <input type="text" class="form-control input_feild" id="description" name="description"
+                                placeholder=" " [(ngModel)]="departmentGrevanceSubCategory.description" required>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="mb-3 form-group position-relative">
+                            <label for="department">Select Department</label>
+                            <select id="department" name="department" class="form-control"
+                                [(ngModel)]="departmentGrevanceSubCategory.departmentId"
+                                (change)="onDepartmentChange($event)">
+                                <option *ngFor="let department of departments" [value]="department.id">
+                                    {{ department.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4" >
+                        <div class="mb-3 form-group position-relative">
+                            <label for="category">Select Category</label>
+                            <select id="category" name="category" class="form-control"
+                                [(ngModel)]="departmentGrevanceSubCategory.categoryId" required>
+                                <option *ngFor="let category of filteredCategories" [value]="category.id">
+                                    {{ category.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn buttonFull" [disabled]="!form.valid">
+                            Save
+                        </button>
+                        <button type="button" (click)="back()" class="btn buttonFull buttonFull-transparent ms-2">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

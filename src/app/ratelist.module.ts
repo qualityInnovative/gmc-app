@@ -114,6 +114,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ComplainttableComponent } from './components/admin/complainttable/complainttable.component';
 import { SuggestionsComponent } from './components/admin/suggestions/suggestions.component';
 import { ViewsuggestionsComponent } from './components/admin/suggestions/viewsuggestions/viewsuggestions.component';
+import { DepartmentGrevanceCategoryComponent } from './components/admin/department-grevance-category/department-grevance-category.component';
+import { ViewdepartmentGrevanceCategoryComponent } from './components/admin/department-grevance-category/viewdepartment-grevance-category/viewdepartment-grevance-category.component';
+import { DepartmentsubcategoryComponent } from './components/admin/departmentsubcategory/departmentsubcategory.component';
+import { ViewsubcategoryComponent } from './components/admin/departmentsubcategory/viewsubcategory/viewsubcategory.component';
 
 
 
@@ -219,7 +223,11 @@ import { ViewsuggestionsComponent } from './components/admin/suggestions/viewsug
     ViewcorporateratesComponent,
     ComplainttableComponent,
     SuggestionsComponent,
-    ViewsuggestionsComponent
+    ViewsuggestionsComponent,
+    DepartmentGrevanceCategoryComponent,
+    ViewdepartmentGrevanceCategoryComponent,
+    DepartmentsubcategoryComponent,
+    ViewsubcategoryComponent
   ],
   imports: [
     BrowserModule,
