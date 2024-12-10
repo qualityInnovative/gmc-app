@@ -77,10 +77,10 @@
                 <div class="col-12 mb-3">
 
                     <div class="mb-3 form-group position-relative">
-                        <label for="name">from district </label>
+                        <label for="name">for deparment </label>
                         <select class="form-control input_feild" id="exampleFormControlSelect1"
-                            [(ngModel)]="complaint.districtId" disabled>
-                            <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
+                            [(ngModel)]="complaint.departmentId" disabled>
+                            <option *ngFor="let deps of departments" [value]="deps.id">{{deps.name}}</option>
                         </select>
                     </div>
 
@@ -104,7 +104,8 @@
                           <ng-template ng-option-tmp let-item="item" let-index="index">
                             {{ item.Profile.firstName }} {{ item.Profile.lastName }},
                            
-                            {{ item.Role.name }}, {{ item.Profile.District.name }}
+                            {{ item.Role.name }}, 
+                            {{item.email}}
                           </ng-template>
                         </ng-select>
                       </div>

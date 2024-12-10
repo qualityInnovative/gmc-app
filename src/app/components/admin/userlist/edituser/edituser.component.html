@@ -40,7 +40,6 @@
                         type="text" class="form-control input_feild" id="password" name="password"
                             placeholder=" " [(ngModel)]="userProfile.password" required />
                     </div>
-
                     <!-- select role -->
                     <div class="mb-3 form-group position-relative">
                         <label for="name">Role</label>
@@ -50,12 +49,11 @@
                         </select>
                     </div>
                     <!-- select mandi -->
-
                     <div class="mb-3 from-group position-relative">
-                        <label for="name">Assign Mandi </label>
+                        <label for="name">Assign Departments </label>
                         <select class="form-control input_feild" id="mandi" name="mandi"
-                            [(ngModel)]="userProfile.Profile.mandiId" required>
-                            <option *ngFor="let mandi of mandis" [value]="mandi.id">{{mandi.name}}
+                            [(ngModel)]="userProfile.Profile.departmentId" required>
+                            <option *ngFor="let dept of departments" [value]="dept.id">{{dept.name}}
                             </option>
                         </select>
                     </div>

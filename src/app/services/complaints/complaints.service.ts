@@ -30,8 +30,8 @@ export class ComplaintsService {
   changeComplaintStatus(ComplaintStatusId: string,complaintId:number): Observable<any> {
     return  this.http.put(`${environment.acogsApiUrl}/complaint/changecomplaintstatus/${ComplaintStatusId}/${complaintId}`, {});
   }
-  getAllDeparmentUserFromComplainDistrict(districtId: number): Observable<any> {
-    return  this.http.get(`${environment.apiUrl}/complaint/getalldepartmentuserfromcomplaindistrict/${districtId}`, {});
+  getAllDeparmentUserFromComplainDistrict(departmentId: number): Observable<any> {
+    return  this.http.get(`${environment.apiUrl}/complaint/getalldepartmentuserfromcomplaindistrict/${departmentId}`, {});
   }
   submitComplain(assignComplaint: AssignComplaint): Observable<any> {
     return  this.http.post(`${environment.apiUrl}/complaint/submitcomplaint`, assignComplaint);

@@ -14,6 +14,9 @@ export class MandiService {
   getallMandis(): Observable<Apiresponse> {
     return this.http.get<Apiresponse>(`${environment.apiUrl}/mandi/get`)
   }
+  getAlldepartments(): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(`${environment.acogsApiUrl}/department/getall`)
+  }
   adminAddMandi(mandi: Mandi): Observable<Apiresponse> {
     return this.http.post<Apiresponse>(`${environment.apiUrl}/mandi/add`, mandi);
   }

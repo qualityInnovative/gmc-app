@@ -17,6 +17,7 @@ import { Notification } from 'src/app/models/notification';
 import { NotificationService } from 'src/app/services/notification/notification.service';
  import { NotificationType } from 'src/app/models/enums/notificationType';
  import { Location } from '@angular/common';
+import { MandiService } from 'src/app/services/mandi/mandi.service';
 @Component({
   selector: 'ratelist-viewcomplaint',
   templateUrl: './viewcomplaint.component.html',
@@ -52,6 +53,7 @@ export class ViewcomplaintComponent implements OnInit {
   deparmentUsers: UserProfile[] = [];
   notification: Notification = new Notification();
   shouldGoBack: boolean = false;
+  departments:any[]=[];
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -59,12 +61,13 @@ export class ViewcomplaintComponent implements OnInit {
     private statesService: StatesService,
     private districtsService: DistrictsService,
     private notificationService: NotificationService,
-    private location: Location
+    private location: Location,
+    private mandiService:MandiService
   ) { }
   ngOnInit(): void {
     this.currentUserId = JSON.parse(localStorage.getItem('user') || '{}').id;
     this.getAllstates();
-    this.getAlldistricts();
+    this.getAlldepartments();
     this.getAllComplaintStatus();
     this.route.params.subscribe(params => {
       this.complainId = params['id'];
@@ -90,6 +93,14 @@ export class ViewcomplaintComponent implements OnInit {
   }
   move(event: google.maps.MapMouseEvent) {
     if (event.latLng != null) this.display = event.latLng.toJSON();
+  }
+  getAlldepartments(){
+    this.mandiService.getAlldepartments()
+      .subscribe((res) => {
+        console.log(res.data)
+        this.departments=res.data
+      })
+
   }
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`);
@@ -120,7 +131,7 @@ export class ViewcomplaintComponent implements OnInit {
           ];
           this.latitudes = this.complaint.latitude
           this.longitudes = this.complaint.longitude
-          this.getAllDeparmentUserFromComplainDistrict(this.complaint.districtId);
+          this.getAllDeparmentUserFromComplainDistrict(this.complaint.departmentId);
           if (this.complaint.mediaType == 'image/jpeg' || this.complaint.mediaType == 'image/png') {
             this.complaint.media = 'data:' + this.complaint.mediaType + ';base64,' + this.complaint.media;
           } else {
@@ -199,7 +210,7 @@ export class ViewcomplaintComponent implements OnInit {
       .subscribe((res: Apiresponse) => {
         if (res.success) {
           this.deparmentUsers = res.data
-          //.filter((x:any) => x.id != this.currentUserId);
+          .filter((x:any) => x.id != this.currentUserId);
         } else {
           console.log(res.message);
         }

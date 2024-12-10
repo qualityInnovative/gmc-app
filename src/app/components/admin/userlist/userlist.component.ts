@@ -40,35 +40,11 @@ export class UserlistComponent implements OnInit {
     };
     this.loading = true;
     this.getAllUsers();
-    this.getallcorporations();
-    this.getAllMandis();
+   
+    
   }
-  getallcorporations() {
-    this.corporationService.getCorporations().subscribe(
-      (data) => {
-        this.corporations = data.data;
-        this.loading = false;
-      },
-      (err) => {
-        this.error = err.error.message;
-        this.errorStatus = err.status;
-        this.loading = false;
-      }
-    )
-  }
-  getAllMandis() {
-    this.mandiService.getallMandis().subscribe(
-      (data) => {
-        this.mandis = data.data;
-        this.loading = false;
-      },
-      (err) => {
-        this.error = err.error.message;
-        this.errorStatus = err.status;
-        this.loading = false;
-      }
-    )
-  }
+ 
+ 
   getAllUsers() {
     this.userService.getAllUsers().subscribe(
       (data) => {

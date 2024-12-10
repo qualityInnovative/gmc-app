@@ -34,6 +34,7 @@ export class EdituserComponent implements OnInit {
   mandis: Mandi[] = [];
   mandi: Mandi = new Mandi();
   edit = false;
+  departments:any[]=[];
 
   constructor(
     private router: Router,
@@ -48,44 +49,28 @@ export class EdituserComponent implements OnInit {
   ngOnInit(): void {
     this.getUserRoles();
     this.getAllStates();
-    this.getAllMandis();
     this.isEdit();
-    this.getAllCorporations();
+    this.getalldepartments();
     this.loading = true;
   }
-  getAllCorporations() {
-    this.corporationService.getCorporations().subscribe(
-      (data) => {
-        this.corporations = data.data;
-        this.loading = false;
-      },
-      (error) => {
-        this.loading = false;
-      }
-    )
+  getalldepartments() {
+    this.mandiService.getAlldepartments()
+      .subscribe((res) => {
+        console.log(res.data)
+        this.departments=res.data
+      })
   }
+
   isEdit() {
     this.route.params.subscribe(params => {
       if (params['userId'] > 0) {
         this.userId = params['userId'];
         this.edit = true;
         this.getUserById(this.userId);
-
-
       }
     });
   }
-  getAllMandis() {
-    this.mandiService.getallMandis().subscribe(
-      (data) => {
-        this.mandis = data.data;
-        this.loading = false;
-      },
-      (error) => {
-        this.loading = false;
-      }
-    )
-  }
+
   getAllStates() {
     this.statesService.admingetStates().subscribe(
       (data) => {
@@ -98,15 +83,16 @@ export class EdituserComponent implements OnInit {
     )
   }
   getDistrictsofstate(stateId: number) {
-    this.districtsService.admingetDistrictsByStateId(stateId).subscribe(
-      (data) => {
-        this.districts = data.data;
-        this.loading = false;
-      },
-      (error) => {
-        this.loading = false;
-      }
-    )
+    this.districtsService.admingetDistrictsByStateId(stateId)
+      .subscribe(
+        (data) => {
+          this.districts = data.data;
+          this.loading = false;
+        },
+        (error) => {
+          this.loading = false;
+        }
+      )
   }
   getUserById(userId: number) {
     this.userService.getUserById(userId).subscribe(
@@ -127,7 +113,7 @@ export class EdituserComponent implements OnInit {
     this.userService.getUserRoles().subscribe(
       (data) => {
         this.roles = data.data;
-        console.log(this.roles);
+       
         this.loading = false;
       },
       (error) => {
@@ -141,29 +127,30 @@ export class EdituserComponent implements OnInit {
     this.location.back();
   }
   saveUser() {
-    if(this.edit){
-    this.userService.adminUpdateUser(this.userProfile).subscribe(
-      (data) => {
-        this.router.navigate(['/admin/userlist']);
-        this.loading = false;
-      }
-      ,
-      (error) => {
-        this.loading = false;
-      }
-    )
-  }else{
-    this.userService.adminCreateUser(this.userProfile).subscribe(
-      (data) => {
-        this.router.navigate(['/admin/userlist']);
-        this.loading = false;
-      }
-      ,
-      (error) => {
-        this.loading = false;
-      }
-    )
+    if (this.edit) {
+      this.userService.adminUpdateUser(this.userProfile)
+      .subscribe(
+        (data) => {
+          this.router.navigate(['/admin/userlist']);
+          this.loading = false;
+        }
+        ,
+        (error) => {
+          this.loading = false;
+        }
+      )
+    } else {
+      this.userService.adminCreateUser(this.userProfile).subscribe(
+        (data) => {
+          this.router.navigate(['/admin/userlist']);
+          this.loading = false;
+        }
+        ,
+        (error) => {
+          this.loading = false;
+        }
+      )
+    }
   }
-}
-  
+
 }
