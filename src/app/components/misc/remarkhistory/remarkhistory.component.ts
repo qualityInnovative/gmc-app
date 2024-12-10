@@ -13,7 +13,7 @@ import { ComplaintStatus } from 'src/app/models/complaintStatus';
 })
 export class RemarkhistoryComponent implements OnInit {
   @Input() complaintId: number = 0;
-  @Input() districtId: number = 0;
+  @Input() departmentId: number = 0;
   @Output() remarkSubmitted: EventEmitter<void> = new EventEmitter<void>();
   @Input() updatedRemark: any;
   faEdit = faEdit;
@@ -32,13 +32,13 @@ export class RemarkhistoryComponent implements OnInit {
     this.getCurrentUser();
     this.getDepartmentUsers();
     this.getAllComplaintStatus();
-   
+
   }
   getAllComplaintStatus(): void {
     this.complaintsService.getAllComplaintStatus()
       .subscribe((res: Apiresponse) => {
         if (res.success) {
-          
+
           console.log('complaint status', res.data);
           this.complaintStaus = res.data;
         } else {
@@ -57,7 +57,7 @@ export class RemarkhistoryComponent implements OnInit {
   }
 
   getDepartmentUsers(): void {
-    this.complaintsService.getAllDeparmentUserFromComplainDistrict(this.districtId)
+    this.complaintsService.getAllDeparmentUserFromComplainDistrict(this.departmentId)
       .subscribe((res: Apiresponse) => {
         if (res.success) {
           console.log('department users', res.data);
@@ -72,7 +72,9 @@ export class RemarkhistoryComponent implements OnInit {
   }
   getUserNameFromId = (id: number) => {
     console.log('id', id);
-    const user = this.departmentUsers.find((user) => user.id == id); 
+
+    const user = this.departmentUsers.find((user) => user.id == id);
+    console.log(user)
     return user?.Profile?.firstName + ' ' + user?.Profile?.lastName;
   }
   getCurrentUser(): void {
@@ -81,54 +83,37 @@ export class RemarkhistoryComponent implements OnInit {
   }
   extractHistoryFromRemarks = (complaints: AssignComplaint[]) => {
     console.log('extractHistoryFromRemarks', complaints);
-    let remarkhistory: any[] = []
-    complaints.forEach((complaint) => {
-      const { assignedTo ,id, complaintStatusId, createdAt, createdBy, remarks } = complaint;
+  
+    const remarkHistory: any[] = complaints.map((complaint) => {
+      const { assignedTo, id, complaintStatusId, createdAt, createdBy, remarks } = complaint;
+      console.log(assignedTo, id, complaintStatusId, createdAt, createdBy, remarks);
+  
+      // Determine description based on conditions
+      let description: string;
+  
       if (createdBy === parseInt(assignedTo) && createdBy === this.currentUserId) {
-        const historyObject = {
-          id: id,
-          createdBy: createdBy,
-          description: 'you' + ' added a remark',
-          createdAt: createdAt,
-          remarks: remarks,
-          complaintStatusId: complaintStatusId,
-        };
-        remarkhistory.push(historyObject);
-      }
-      else if (createdBy !== parseInt(assignedTo)) {
-        const historyObject = {
-          id: id,
-          createdBy: createdBy,
-          description: '"' + this.getUserNameFromId(createdBy) + '"' + ' added a remark',
-          createdAt: createdAt,
-          remarks: remarks,
-          complaintStatusId: complaintStatusId,
-        };
-        remarkhistory.push(historyObject);
+        description = 'You added a remark';
       } else if (createdBy !== parseInt(assignedTo)) {
-        const historyObject = {
-          id: id,
-          createdBy: createdBy,
-          description: '"' + this.getUserNameFromId(createdBy) + '"' + ' added a remark',
-          createdAt: createdAt,
-          remarks: remarks,
-          complaintStatusId: complaintStatusId,
-        };
-        remarkhistory.push(historyObject);
-      } else if (createdBy !== parseInt(assignedTo)) {
-        const historyObject = {
-          id: id,
-          createdBy: createdBy,
-          description: '"' + this.getUserNameFromId(createdBy) + '"' + ' added a remark',
-          createdAt: createdAt,
-          remarks: remarks,
-          complaintStatusId: complaintStatusId,
-        };
-        remarkhistory.push(historyObject);
+        const userName = this.getUserNameFromId(createdBy);
+        description = `"${userName}" added a remark`;
+      } else {
+        description = 'A remark was added by ' + this.getUserNameFromId(createdBy)
       }
+  
+      // Return history object for this complaint
+      return {
+        id,
+        createdBy,
+        description,
+        createdAt,
+        remarks,
+        complaintStatusId,
+      };
     });
-    return remarkhistory;
+  
+    return remarkHistory;
   };
+  
   gettheRemarkHistory() {
     this.complaintsService
       .getComplaintRemarkHistory(this.complaintId)
